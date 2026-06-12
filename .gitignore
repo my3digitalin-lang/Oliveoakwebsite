@@ -1,5 +1,6 @@
-﻿node_modules/
+node_modules/
 .vercel/
+.env.local
 laptop/
 framesformobile/
 Frames/
@@ -7,7 +8,4 @@ Pc_frames/
 Desktopframes/
 Frames_pc2/
 Frames_pc/
-Frames-webp-pc/
-Frames-webp/
-Frames-webp-mobile/
 *.log
