@@ -729,42 +729,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Project header
         html += `
-          <div class="project-header">
+          <div class="project-header" style="margin-top: 60px; margin-bottom: 24px;">
             <div class="proj-info-left">
-              <span class="p-no">${noStr}</span>
-              <h3 class="p-name">${d.title}</h3>
-              <span class="p-type">${subtitle}</span>
+              <span class="p-no" style="font-family:var(--f-body);font-size:12px;color:var(--gold);margin-right:12px;">${noStr}</span>
+              <h3 class="p-name" style="font-family:var(--f-display);font-size:clamp(22px,3vw,36px);color:var(--white);display:inline-block;">${d.title}</h3>
+              <span class="p-type" style="display:block;font-family:var(--f-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(248,243,234,.3);margin-top:8px;">${subtitle}</span>
             </div>
-            <a href="project.html?id=${slug}" class="btn-ghost">View Full Project</a>
+            <a href="project.html?id=${slug}" class="btn-ghost" style="display:inline-block;margin-top:16px;font-family:var(--f-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,126,0.4);padding:10px 20px;border-radius:3px;">View Full Project</a>
           </div>`;
 
-        // Bento grid with original layout classes
-        html += `<div class="bento-grid">`;
+        // Masonry grid
+        html += `<div class="masonry-grid" style="column-count: 3; column-gap: 16px;">`;
 
         images.forEach((img, i) => {
-          let cls = 'sm';
-          if (i === 0) cls = 'hero';
-          else if (i === 1) cls = 'left';
-          else if (i === 2) cls = 'right';
-
           html += `
-            <a class="bento-item ${cls} portal" href="project.html?id=${slug}">
-              <div class="bento-inner">
-                <img src="${img}" alt="${d.title}" loading="lazy">
-              </div>
-              <div class="bento-overlay">
-                <span class="bento-project">${d.title}</span>
-              </div>
-            </a>`;
+            <div class="masonry-item" style="break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; position: relative;">
+              <a href="project.html?id=${slug}" class="portal" style="display: block;">
+                <img src="${img}" alt="${d.title}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 12px; transition: filter 0.3s ease;">
+                <div class="bento-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(8,7,6,0.85), transparent); opacity: 0; transition: opacity 0.3s ease;">
+                  <span class="bento-project" style="font-family: var(--f-serif); font-size: 16px; color: white; font-style: italic;">${d.title}</span>
+                </div>
+              </a>
+            </div>`;
         });
-
-        // CTA cell
-        html += `
-            <a class="bento-item sm cta-cell portal" href="project.html?id=${slug}">
-              <span class="cta-cell-no">${noStr}</span>
-              <span class="cta-cell-name">${d.title}</span>
-              <span class="cta-cell-link">View Full Project &rarr;</span>
-            </a>`;
 
         html += `</div>`;
         num++;
@@ -786,6 +773,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         rip.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;`;
         this.appendChild(rip);
         setTimeout(() => rip.remove(), 700);
+      });
+      // Add simple hover effect for the overlay since hover logic is usually in CSS
+      el.addEventListener('mouseenter', function() {
+        const overlay = this.querySelector('.bento-overlay');
+        if(overlay) overlay.style.opacity = '1';
+        const img = this.querySelector('img');
+        if(img) img.style.filter = 'brightness(0.8)';
+      });
+      el.addEventListener('mouseleave', function() {
+        const overlay = this.querySelector('.bento-overlay');
+        if(overlay) overlay.style.opacity = '0';
+        const img = this.querySelector('img');
+        if(img) img.style.filter = 'none';
       });
     });
 
