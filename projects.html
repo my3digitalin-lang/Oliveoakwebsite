@@ -756,7 +756,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Masonry grid
         html += `<div class="masonry-grid" style="column-count: 3; column-gap: 16px;">`;
 
-        images.forEach((img, i) => {
+        images.slice(0, 5).forEach((img, i) => {
           html += `
             <div class="masonry-item" style="break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; position: relative;">
               <a href="project.html?id=${slug}" class="portal" style="display: block;">
@@ -767,6 +767,16 @@ document.addEventListener('DOMContentLoaded', async () => {
               </a>
             </div>`;
         });
+
+        // CTA cell
+        html += `
+            <div class="masonry-item" style="break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; position: relative; background: var(--gold); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; min-height: 240px; transition: background 0.3s ease;">
+              <a class="portal" href="project.html?id=${slug}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 40px 20px;">
+                <span style="font-family: var(--f-display); font-size: 48px; color: rgba(8,7,6,0.2); line-height: 1;">${noStr}</span>
+                <span style="font-family: var(--f-display); font-size: 18px; color: #080706; letter-spacing: 0.5px; margin: 16px 0;">${d.title}</span>
+                <span style="font-family: var(--f-body); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #080706; border-bottom: 1px solid rgba(8,7,6,0.2); padding-bottom: 4px;">View Full Project &rarr;</span>
+              </a>
+            </div>`;
 
         html += `</div>`;
         num++;
