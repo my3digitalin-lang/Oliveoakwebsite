@@ -4,9 +4,7 @@
     "slug": "test",
     "category": "Residential",
     "status": "published",
-    "technologies": [
-      "test"
-    ],
+    "technologies": ["test"],
     "description": "test",
     "images": [
       "/public/uploads/projects/1781245507307-891.webp",
@@ -17,5 +15,142 @@
     "id": "1781245518070",
     "createdAt": "2026-06-12T06:25:18.070Z",
     "updatedAt": "2026-06-12T06:25:18.073Z"
+  },
+  {
+    "id": "proj-linden-court",
+    "slug": "linden-court",
+    "title": "Linden Court Residences",
+    "category": "Residential",
+    "description": "A luxurious residential project featuring elegant interiors with modern design sensibilities. Every space has been thoughtfully curated to blend comfort with sophistication.",
+    "featuredImage": "/images/projects/linden-court-living.webp",
+    "images": [
+      "/images/projects/linden-court-living.webp",
+      "/images/projects/linden-court-dining.webp",
+      "/images/projects/linden-court-bedroom-1.webp",
+      "/images/projects/linden-court-bedroom-2.webp",
+      "/images/projects/linden-court-bathroom.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-01-15T10:00:00Z",
+    "updatedAt": "2025-01-15T10:00:00Z"
+  },
+  {
+    "id": "proj-residence-01",
+    "slug": "residence-01",
+    "title": "Modern Luxury Residence",
+    "category": "Residential",
+    "description": "A contemporary residence that seamlessly blends modern aesthetics with functional living spaces. Clean lines, natural materials, and thoughtful lighting create an atmosphere of refined comfort.",
+    "featuredImage": "/images/projects/proj1_1.webp",
+    "images": [
+      "/images/projects/proj1_1.webp",
+      "/images/projects/proj1_2.webp",
+      "/images/projects/proj1_3.webp",
+      "/images/projects/proj1_4.webp",
+      "/images/projects/proj1_5.webp",
+      "/images/projects/proj1_6.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-02-10T10:00:00Z",
+    "updatedAt": "2025-02-10T10:00:00Z"
+  },
+  {
+    "id": "proj-residence-02",
+    "slug": "residence-02",
+    "title": "Elegant Family Home",
+    "category": "Residential",
+    "description": "Designed for a growing family, this home features warm tones, inviting textures, and spaces that encourage togetherness while offering private retreats for each family member.",
+    "featuredImage": "/images/projects/proj2_1.webp",
+    "images": [
+      "/images/projects/proj2_1.webp",
+      "/images/projects/proj2_2.webp",
+      "/images/projects/proj2_3.webp",
+      "/images/projects/proj2_4.webp",
+      "/images/projects/proj2_5.webp",
+      "/images/projects/proj2_6.webp",
+      "/images/projects/proj2_7.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-03-20T10:00:00Z",
+    "updatedAt": "2025-03-20T10:00:00Z"
+  },
+  {
+    "id": "proj-residence-03",
+    "slug": "residence-03",
+    "title": "Contemporary Urban Living",
+    "category": "Residential",
+    "description": "An urban apartment transformed into a sophisticated living space. Strategic use of space, premium materials, and artful design elements create an experience of luxury in every corner.",
+    "featuredImage": "/images/projects/proj3_1.webp",
+    "images": [
+      "/images/projects/proj3_1.webp",
+      "/images/projects/proj3_2.webp",
+      "/images/projects/proj3_3.webp",
+      "/images/projects/proj3_4.webp",
+      "/images/projects/proj3_5.webp",
+      "/images/projects/proj3_6.webp",
+      "/images/projects/proj3_7.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-04-05T10:00:00Z",
+    "updatedAt": "2025-04-05T10:00:00Z"
+  },
+  {
+    "id": "proj-residence-04",
+    "slug": "residence-04",
+    "title": "Minimalist Haven",
+    "category": "Residential",
+    "description": "A celebration of minimalism where every element serves a purpose. Clean aesthetics, neutral palettes, and carefully selected furnishings create a serene sanctuary from the outside world.",
+    "featuredImage": "/images/projects/proj4_1.webp",
+    "images": [
+      "/images/projects/proj4_1.webp",
+      "/images/projects/proj4_2.webp",
+      "/images/projects/proj4_3.webp",
+      "/images/projects/proj4_4.webp",
+      "/images/projects/proj4_5.webp",
+      "/images/projects/proj4_6.webp",
+      "/images/projects/proj4_7.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-05-18T10:00:00Z",
+    "updatedAt": "2025-05-18T10:00:00Z"
+  },
+  {
+    "id": "proj-residence-05",
+    "slug": "residence-05",
+    "title": "Warm Transitional Home",
+    "category": "Residential",
+    "description": "Bridging traditional warmth with contemporary style, this home features rich wood tones, plush textiles, and thoughtfully layered lighting to create spaces that feel both grand and intimate.",
+    "featuredImage": "/images/projects/proj5_1.webp",
+    "images": [
+      "/images/projects/proj5_1.webp",
+      "/images/projects/proj5_2.webp",
+      "/images/projects/proj5_3.webp",
+      "/images/projects/proj5_4.webp",
+      "/images/projects/proj5_5.webp",
+      "/images/projects/proj5_6.webp",
+      "/images/projects/proj5_7.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-06-01T10:00:00Z",
+    "updatedAt": "2025-06-01T10:00:00Z"
+  },
+  {
+    "id": "proj-psv-precast",
+    "slug": "psv-precast-corporate-office",
+    "title": "PSV Precast Corporate Office",
+    "category": "Commercial",
+    "description": "Designed by OliveOak Interiors. Designed to reflect PSV Precast's commitment to strength, precision, and progress, this workspace blends functionality with refined elegance. Thoughtfully planned work zones, warm material palettes, and biophilic elements come together to create an environment that fosters collaboration, focus, and growth.",
+    "featuredImage": "/images/commercial/commercial-1.webp",
+    "images": [
+      "/images/commercial/commercial-1.webp",
+      "/images/commercial/commercial-2.webp",
+      "/images/commercial/commercial-3.webp",
+      "/images/commercial/commercial-4.webp",
+      "/images/commercial/commercial-5.webp",
+      "/images/commercial/commercial-6.webp",
+      "/images/commercial/commercial-7.webp"
+    ],
+    "status": "published",
+    "createdAt": "2025-07-10T10:00:00Z",
+    "updatedAt": "2025-07-10T10:00:00Z"
   }
 ]
