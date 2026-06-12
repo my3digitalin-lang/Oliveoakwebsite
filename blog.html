@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -257,9 +257,10 @@ body::before {
 .mc:hover .mc-read { opacity: 1; transform: none; }
 
 /* Grid placement */
-/* .mc-featured grid removed */
+.mc-featured { grid-column: 1; grid-row: 1; }
 .mc-2 { grid-column: 2; grid-row: 1; }
 .mc-3 { grid-column: 3; grid-row: 1; }
+.mc-6 { grid-column: 1; grid-row: 2; }
 .mc-4 { grid-column: 2; grid-row: 2; }
 .mc-5 { grid-column: 3; grid-row: 2; }
 
@@ -267,8 +268,9 @@ body::before {
 .mc-featured { transition-delay: 0s; }
 .mc-2 { transition-delay: .07s; }
 .mc-3 { transition-delay: .13s; }
-.mc-4 { transition-delay: .19s; }
-.mc-5 { transition-delay: .25s; }
+.mc-6 { transition-delay: .19s; }
+.mc-4 { transition-delay: .25s; }
+.mc-5 { transition-delay: .31s; }
 
 /* ════════════════════════════════════════
    SCROLL STRIP
@@ -472,12 +474,11 @@ footer {
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 240px;
   }
-  /* .mc-featured grid removed */
-  /* .mc-featured title size removed */
   .mc-2 { grid-column: 1; grid-row: 2; }
   .mc-3 { grid-column: 2; grid-row: 2; }
-  .mc-4 { grid-column: 1; grid-row: 3; }
-  .mc-5 { grid-column: 2; grid-row: 3; }
+  .mc-6 { grid-column: 1; grid-row: 3; }
+  .mc-4 { grid-column: 2; grid-row: 3; }
+  .mc-5 { grid-column: 1; grid-row: 4; }
   .scroll-strip { grid-template-columns: 1fr 1fr; }
 }
 
@@ -514,7 +515,7 @@ footer {
     gap: 8px;
   }
   .mc-featured,
-  .mc-2, .mc-3, .mc-4, .mc-5 {
+  .mc-2, .mc-3, .mc-6, .mc-4, .mc-5 {
     grid-column: 1 !important;
     grid-row: auto !important;
     min-height: 220px;
@@ -573,7 +574,7 @@ footer {
   .mosaic-section { padding: 0 12px; }
   .mc-featured { min-height: 200px; }
   /* .mc-featured title size removed */
-  .mc-2, .mc-3, .mc-4, .mc-5 { min-height: 200px; }
+  .mc-2, .mc-3, .mc-6, .mc-4, .mc-5 { min-height: 200px; }
   .strip-section { padding: 0 12px 48px; }
   .scroll-strip { grid-template-columns: 1fr; }
   .newsletter { margin: 0 12px 48px; padding: 36px 16px; }
@@ -735,6 +736,19 @@ footer {
         <div class="mc-date" style="display:none">January 30, 2026</div>
         <div class="mc-title">Latest Dining Room Interior Design Ideas</div>
         <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">Elevate your dining experience with the latest interior design ideas for modern dining rooms.</div>
+        <div class="mc-read">Read Article →</div>
+      </div>
+    </a>
+
+    <!-- 6 -->
+    <a href="home-interior-decoration.html" class="mc mc-6" data-cat="Decoration">
+      <img src="images/home-decoration.webp" alt="Home Interior Decoration" loading="lazy" decoding="async">
+      <div class="mc-overlay"></div>
+      <span class="mc-cat">Decoration</span>
+      <div class="mc-body">
+        <div class="mc-date" style="display:none">January 30, 2026</div>
+        <div class="mc-title">Best Home Interior Decoration Ideas</div>
+        <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">Discover the best home interior decoration ideas to elevate your living space beautifully.</div>
         <div class="mc-read">Read Article →</div>
       </div>
     </a>
