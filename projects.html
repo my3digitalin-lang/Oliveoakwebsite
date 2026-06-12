@@ -723,15 +723,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       list.forEach(d => {
         let images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
-        // Filter out bathroom/washroom images from the main projects page
-        images = images.filter(img => {
-          const lowerImg = img.toLowerCase();
-          return !lowerImg.includes('bath') && !lowerImg.includes('washroom') && !lowerImg.includes('toilet');
-        });
         
-        // If everything was filtered out somehow, fallback to featuredImage or first original image
+        // Move bathroom/washroom images to the end of the gallery instead of removing them
+        images.sort((a, b) => {
+          const isBathA = a.toLowerCase().includes('bath') || a.toLowerCase().includes('washroom') || a.toLowerCase().includes('toilet');
+          const isBathB = b.toLowerCase().includes('bath') || b.toLowerCase().includes('washroom') || b.toLowerCase().includes('toilet');
+          if (isBathA && !isBathB) return 1;
+          if (!isBathA && isBathB) return -1;
+          return 0;
+        });
+
+        // Fallback
         if (images.length === 0) {
-          images = [d.featuredImage || (d.images && d.images[0]) || ''];
+          images = [d.featuredImage || ''];
         }
 
         const noStr = String(num).padStart(2, '0');
