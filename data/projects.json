@@ -1,22 +1,5 @@
 [
   {
-    "title": "test",
-    "slug": "test",
-    "category": "Residential",
-    "status": "published",
-    "technologies": ["test"],
-    "description": "test",
-    "images": [
-      "/public/uploads/projects/1781245507307-891.webp",
-      "/public/uploads/projects/1781245509701-240.webp",
-      "/public/uploads/projects/1781245511627-18.webp"
-    ],
-    "featuredImage": "/public/uploads/projects/1781245507307-891.webp",
-    "id": "1781245518070",
-    "createdAt": "2026-06-12T06:25:18.070Z",
-    "updatedAt": "2026-06-12T06:25:18.073Z"
-  },
-  {
     "id": "proj-linden-court",
     "slug": "linden-court",
     "title": "Linden Court Residences",
@@ -40,25 +23,6 @@
     "title": "Modern Luxury Residence",
     "category": "Residential",
     "description": "A contemporary residence that seamlessly blends modern aesthetics with functional living spaces. Clean lines, natural materials, and thoughtful lighting create an atmosphere of refined comfort.",
-    "featuredImage": "/images/projects/proj1_1.webp",
-    "images": [
-      "/images/projects/proj1_1.webp",
-      "/images/projects/proj1_2.webp",
-      "/images/projects/proj1_3.webp",
-      "/images/projects/proj1_4.webp",
-      "/images/projects/proj1_5.webp",
-      "/images/projects/proj1_6.webp"
-    ],
-    "status": "published",
-    "createdAt": "2025-02-10T10:00:00Z",
-    "updatedAt": "2025-02-10T10:00:00Z"
-  },
-  {
-    "id": "proj-residence-02",
-    "slug": "residence-02",
-    "title": "Elegant Family Home",
-    "category": "Residential",
-    "description": "Designed for a growing family, this home features warm tones, inviting textures, and spaces that encourage togetherness while offering private retreats for each family member.",
     "featuredImage": "/images/projects/proj2_1.webp",
     "images": [
       "/images/projects/proj2_1.webp",
@@ -70,15 +34,15 @@
       "/images/projects/proj2_7.webp"
     ],
     "status": "published",
-    "createdAt": "2025-03-20T10:00:00Z",
-    "updatedAt": "2025-03-20T10:00:00Z"
+    "createdAt": "2025-02-10T10:00:00Z",
+    "updatedAt": "2025-02-10T10:00:00Z"
   },
   {
-    "id": "proj-residence-03",
-    "slug": "residence-03",
-    "title": "Contemporary Urban Living",
+    "id": "proj-residence-02",
+    "slug": "residence-02",
+    "title": "Elegant Family Home",
     "category": "Residential",
-    "description": "An urban apartment transformed into a sophisticated living space. Strategic use of space, premium materials, and artful design elements create an experience of luxury in every corner.",
+    "description": "Designed for a growing family, this home features warm tones, inviting textures, and spaces that encourage togetherness while offering private retreats for each family member.",
     "featuredImage": "/images/projects/proj3_1.webp",
     "images": [
       "/images/projects/proj3_1.webp",
@@ -90,15 +54,15 @@
       "/images/projects/proj3_7.webp"
     ],
     "status": "published",
-    "createdAt": "2025-04-05T10:00:00Z",
-    "updatedAt": "2025-04-05T10:00:00Z"
+    "createdAt": "2025-03-20T10:00:00Z",
+    "updatedAt": "2025-03-20T10:00:00Z"
   },
   {
-    "id": "proj-residence-04",
-    "slug": "residence-04",
-    "title": "Minimalist Haven",
+    "id": "proj-residence-03",
+    "slug": "residence-03",
+    "title": "Contemporary Urban Living",
     "category": "Residential",
-    "description": "A celebration of minimalism where every element serves a purpose. Clean aesthetics, neutral palettes, and carefully selected furnishings create a serene sanctuary from the outside world.",
+    "description": "An urban apartment transformed into a sophisticated living space. Strategic use of space, premium materials, and artful design elements create an experience of luxury in every corner.",
     "featuredImage": "/images/projects/proj4_1.webp",
     "images": [
       "/images/projects/proj4_1.webp",
@@ -110,15 +74,15 @@
       "/images/projects/proj4_7.webp"
     ],
     "status": "published",
-    "createdAt": "2025-05-18T10:00:00Z",
-    "updatedAt": "2025-05-18T10:00:00Z"
+    "createdAt": "2025-04-05T10:00:00Z",
+    "updatedAt": "2025-04-05T10:00:00Z"
   },
   {
-    "id": "proj-residence-05",
-    "slug": "residence-05",
-    "title": "Warm Transitional Home",
+    "id": "proj-residence-04",
+    "slug": "residence-04",
+    "title": "Minimalist Haven",
     "category": "Residential",
-    "description": "Bridging traditional warmth with contemporary style, this home features rich wood tones, plush textiles, and thoughtfully layered lighting to create spaces that feel both grand and intimate.",
+    "description": "A celebration of minimalism where every element serves a purpose. Clean aesthetics, neutral palettes, and carefully selected furnishings create a serene sanctuary from the outside world.",
     "featuredImage": "/images/projects/proj5_1.webp",
     "images": [
       "/images/projects/proj5_1.webp",
@@ -130,8 +94,8 @@
       "/images/projects/proj5_7.webp"
     ],
     "status": "published",
-    "createdAt": "2025-06-01T10:00:00Z",
-    "updatedAt": "2025-06-01T10:00:00Z"
+    "createdAt": "2025-05-18T10:00:00Z",
+    "updatedAt": "2025-05-18T10:00:00Z"
   },
   {
     "id": "proj-psv-precast",
