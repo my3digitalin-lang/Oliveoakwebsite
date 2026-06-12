@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interior Design Projects | Portfolio – OliveOak Interiors</title>
+<meta name="description" content="Explore OliveOak Interiors' curated portfolio of luxury residential projects in Hyderabad — spaces crafted with restraint, warmth, and timeless elegance.">
+<link rel="canonical" href="https://oliveoak-site.vercel.app/projects.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ───────────────────────────────── */
+:root{
+  --f-display:'Yeseva One',serif;
+  --f-serif:'Cormorant Garamond',serif;
+  --f-body:'Outfit',sans-serif;
+  --gold:#c8a97e; --gold-l:#e8d5a3; --gold-d:#9a7a56;
+  --white:#f8f3ea; --bg:#080706; --bg2:#0d0b09; --bg3:#110f0c;
+  --spring:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--bg) url('bg-texture.webp') center/cover fixed;color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+
+/* ── NOISE GRAIN ─────────────────────────── */
+.noise-overlay{
+  position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+  animation:noise-anim .2s infinite;
+}
+@keyframes noise-anim{
+  0%{transform:translate(0,0)}10%{transform:translate(-5%,-5%)}
+  20%{transform:translate(-10%,5%)}30%{transform:translate(5%,-10%)}
+  40%{transform:translate(-5%,15%)}50%{transform:translate(-10%,5%)}
+  60%{transform:translate(15%,0)}70%{transform:translate(0,10%)}
+  80%{transform:translate(-15%,0)}90%{transform:translate(10%,5%)}
+  100%{transform:translate(5%,0)}
+}
+
+/* ── SCROLL PROGRESS ─────────────────────── */
+#scroll-progress{
+  position:fixed;top:0;right:0;width:2px;height:0;
+  background:var(--gold);z-index:100;transition:height .05s ease-out;
+}
+
+/* ── OLIVE CURSOR ────────────────────────── */
+@media (pointer:fine) {
+  *{ cursor:none !important }
+  #olive-cursor{
+    position:fixed;top:0;left:0;
+    width:36px;height:36px;
+    border-radius:50%;
+    border:1.5px solid rgba(240,212,144,1);
+    box-shadow:
+      0 0 0 1px rgba(240,212,144,.25),
+      0 0 14px rgba(240,212,144,.5),
+      inset 0 0 6px rgba(240,212,144,.08);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--f-display);
+    font-size:16px;font-weight:400;font-style:italic;
+    color:#f0d490;
+    text-shadow:0 0 8px rgba(240,212,144,.8);
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    transition:width .18s var(--spring),height .18s var(--spring),
+               box-shadow .18s,border-color .18s;
+    will-change:top,left
+  }
+  #olive-cursor.hov{
+    width:50px;height:50px;
+    border-color:#f0d490;
+    box-shadow:
+      0 0 0 1px rgba(240,212,144,.4),
+      0 0 22px rgba(240,212,144,.7),
+      inset 0 0 12px rgba(240,212,144,.12);
+    background:rgba(240,212,144,.06)
+  }
+  .c-ripple {
+    position:fixed;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:99998;
+    transform:translate(-50%,-50%) scale(0);
+    opacity:0;
+    will-change:transform,opacity
+  }
+  .c-ripple.move {
+    width:28px;height:28px;
+    border:1px solid rgba(240,212,144,.55);
+    animation:rippleOut .75s cubic-bezier(.2,.6,.4,1) forwards
+  }
+  .c-ripple.click {
+    border:1.5px solid rgba(240,212,144,.8);
+    box-shadow:0 0 8px rgba(240,212,144,.25);
+    animation:rippleOut .9s cubic-bezier(.15,.7,.3,1) forwards
+  }
+  .c-dot {
+    position:fixed;
+    width:5px;height:5px;
+    border-radius:50%;
+    background:rgba(240,212,144,.9);
+    box-shadow:0 0 6px rgba(240,212,144,.7);
+    pointer-events:none;
+    z-index:100000;
+    transform:translate(-50%,-50%);
+    will-change:top,left
+  }
+  @keyframes rippleOut {
+    0%   { transform:translate(-50%,-50%) scale(0);   opacity:.85 }
+    60%  { opacity:.35 }
+    100% { transform:translate(-50%,-50%) scale(4.5); opacity:0   }
+  }
+}
+
+/* ── NAV ─────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;z-index:9000;background:transparent;border-bottom:1px solid transparent;transition:background .6s,border-color .6s,backdrop-filter .6s}
+.nav.solid{background:rgba(8,7,6,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom-color:rgba(200,169,126,.1)}
+.nav-logo{height:44px;overflow:hidden;display:flex;align-items:center}
+.nav-logo img{height:128px;margin-top:-2px;filter:brightness(1.2);width:auto;object-fit:contain;display:block}
+.nav-links{display:flex;gap:38px;align-items:center}
+.nav-link{font-family:var(--f-body);font-size:10.5px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .3s}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-btn{font-family:var(--f-body);font-size:9.5px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:3px;border:1px solid rgba(200,169,126,.4);color:var(--gold);transition:background .3s,color .3s,border-color .3s}
+.nav-btn:hover{background:var(--gold);color:#080706;border-color:var(--gold)}
+.ham{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer}
+.ham span{display:block;width:22px;height:1px;background:var(--white);transition:transform .3s,opacity .3s}
+.mob-nav{display:none;position:fixed;inset:0;z-index:8000;background:rgba(8,7,6,.97);flex-direction:column;align-items:center;justify-content:center;gap:34px}
+.mob-nav.open{display:flex}
+.mob-link{font-family:var(--f-display);font-size:28px;color:rgba(255,255,255,.8);transition:color .3s}
+.mob-link:hover,.mob-link.active{color:var(--gold)}
+.mob-close{position:absolute;top:22px;right:22px;font-size:26px;background:none;border:none;color:var(--white);padding:8px;cursor:pointer}
+
+/* ── WHATSAPP FAB ────────────────────────── */
+.wa{position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;z-index:8000;box-shadow:0 6px 24px rgba(200,169,126,.3);transition:transform .3s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:24px;height:24px;fill:white}
+
+/* ── PAGE HEADER ─────────────────────────── */
+.page-header{
+  padding-top:68px;
+  min-height:38vh;
+  display:flex;align-items:flex-end;
+  position:relative;
+  overflow:hidden;
+  background:var(--bg);
+}
+.page-header::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 20% 60%,rgba(200,169,126,.06),transparent 70%);
+  pointer-events:none;
+}
+.page-header-inner{
+  padding:0 60px 52px;
+  position:relative;z-index:2;width:100%;
+}
+.page-header-inner .eyebrow-label{
+  font-family:var(--f-body);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+}
+.page-header-inner .eyebrow-label::before{content:'';width:32px;height:1px;background:var(--gold)}
+.page-header-inner h1{
+  font-family:var(--f-display);font-size:clamp(44px,7vw,88px);
+  line-height:1;color:var(--white);margin-bottom:16px;
+}
+.page-header-inner .sub{
+  font-family:var(--f-serif);font-size:17px;font-style:italic;
+  color:rgba(248,243,234,.45);letter-spacing:.3px;
+}
+
+/* ── GALLERY SECTION ─────────────────────── */
+.gallery-section{
+  padding:0 4px;
+  background:var(--bg);
+}
+
+/* ── PROJECT LABEL ───────────────────────── */
+.project-label{
+  display:flex;align-items:baseline;gap:18px;
+  padding:36px 60px 16px;
+}
+.project-label-no{
+  font-family:var(--f-body);font-size:11px;letter-spacing:4px;color:var(--gold);
+}
+.project-label-name{
+  font-family:var(--f-display);font-size:clamp(22px,3vw,36px);color:var(--white);
+}
+.project-label-type{
+  font-family:var(--f-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(248,243,234,.3);margin-left:auto;
+}
+
+/* ── BENTO GRID ──────────────────────────── */
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:4px;
+  padding-bottom:4px;
+}
+
+/* Row 1 — Full width hero */
+.bento-item.hero{
+  grid-column:1 / -1;
+  height:75vh;
+}
+/* Row 2 — 5/12 + 7/12 */
+.bento-item.left{
+  grid-column:1 / 6;
+  height:55vh;
+}
+.bento-item.right{
+  grid-column:6 / -1;
+  height:55vh;
+}
+/* Row 3 — three equal */
+.bento-item.sm{
+  grid-column:span 4;
+  height:38vh;
+}
+
+/* ── BENTO ITEM BASE ─────────────────────── */
+.bento-item{
+  position:relative;overflow:hidden;display:block;
+  background:var(--bg2);
+  /* Visible immediately — no scroll reveal */
+}
+/* Hero items get a single CSS load animation only */
+.bento-item.hero{
+  animation:bentoFade .5s ease both;
+}
+@keyframes bentoFade{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+
+/* Parallax inner container */
+.bento-inner{
+  position:absolute;inset:0;
+}
+.bento-inner img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 3.5s cubic-bezier(.19,1,.22,1),opacity .8s ease;
+}
+.bento-item:hover .bento-inner img{
+  transform:scale(1.06);
+  opacity:.88;
+}
+
+/* Gradient overlay bottom */
+.bento-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,7,6,.72) 0%,transparent 55%);
+  z-index:1;pointer-events:none;
+  opacity:0;transition:opacity .6s ease;
+}
+.bento-item:hover::after{opacity:1}
+
+/* Info overlay */
+.bento-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:24px 28px;z-index:2;
+  transform:translateY(6px);
+  opacity:0;
+  transition:transform .6s var(--spring),opacity .6s ease;
+}
+.bento-item:hover .bento-overlay{opacity:1;transform:none}
+.bento-room{
+  display:block;font-family:var(--f-body);font-size:10px;
+  letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:4px;
+}
+.bento-project{
+  display:block;font-family:var(--f-display);font-size:20px;color:var(--white);
+}
+
+/* Gold corner accent on hero */
+.bento-item.hero .bento-corner{
+  position:absolute;top:28px;right:28px;z-index:3;
+  font-family:var(--f-body);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(200,169,126,.7);padding:6px 14px;
+  border:1px solid rgba(200,169,126,.2);
+}
+
+/* CTA bento cell */
+.bento-item.cta-cell{
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;
+  text-align:center;
+}
+.bento-item.cta-cell::after{display:none}
+.bento-item.cta-cell:hover{background:var(--gold-l)}
+.cta-cell-no{font-family:var(--f-display);font-size:48px;color:rgba(8,7,6,.2);line-height:1}
+.cta-cell-name{font-family:var(--f-display);font-size:18px;color:#080706;letter-spacing:.5px}
+.cta-cell-link{
+  font-family:var(--f-body);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(8,7,6,.6);display:flex;align-items:center;gap:8px;margin-top:8px;
+  transition:gap .3s var(--spring);
+}
+.bento-item.cta-cell:hover .cta-cell-link{gap:14px}
+
+/* Ripple on click */
+.bento-ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(200,169,126,.3);
+  transform:scale(0);
+  animation:bentorip .7s cubic-bezier(.19,1,.22,1) forwards;
+  pointer-events:none;z-index:5;
+}
+@keyframes bentorip{to{transform:scale(4);opacity:0}}
+
+/* ── DIVIDER ─────────────────────────────── */
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,126,.3),transparent);margin:0}
+.section-gap{height:80px;background:var(--bg)}
+
+/* ── CTA SECTION ─────────────────────────── */
+.cta-section{
+  padding:100px 60px;max-width:1400px;margin:0 auto;
+  text-align:center;
+}
+.cta-tag{font-family:var(--f-body);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:14px}
+.cta-tag::before,.cta-tag::after{content:'';height:1px;width:32px;background:var(--gold)}
+.cta-h2{font-family:var(--f-display);font-size:clamp(36px,5vw,68px);line-height:1.08;margin-bottom:20px}
+.cta-h2 em{font-style:italic;color:var(--gold)}
+.cta-sub{font-family:var(--f-serif);font-size:18px;color:rgba(248,243,234,.5);max-width:520px;margin:0 auto 40px;line-height:1.7}
+.cta-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.btn-gold{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;padding:14px 34px;background:var(--gold);color:#080706;border-radius:3px;transition:background .3s,transform .2s}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-ghost{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;padding:14px 34px;border:1px solid rgba(200,169,126,.4);color:var(--gold);border-radius:3px;transition:background .3s,border-color .3s,transform .2s}
+.btn-ghost:hover{background:rgba(200,169,126,.08);transform:translateY(-2px)}
+
+/* ── FOOTER ──────────────────────────────── */
+footer{background:var(--bg2);padding:72px 60px 40px}
+.foot-top{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid rgba(200,169,126,.08)}
+.foot-logo{font-family:var(--f-display);font-size:28px;color:var(--white)}
+.foot-logo span{color:var(--gold)}
+.foot-logo-sub{font-family:var(--f-body);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(248,243,234,.3);margin-top:4px}
+.foot-tagline{font-family:var(--f-serif);font-size:14px;font-style:italic;color:rgba(248,243,234,.4);margin-top:16px;line-height:1.6}
+.foot-col{display:flex;flex-direction:column;gap:12px}
+.foot-col h4{font-family:var(--f-body);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(200,169,126,.5);margin-bottom:8px}
+.foot-col a{font-family:var(--f-body);font-size:13px;color:rgba(248,243,234,.5);transition:color .3s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{max-width:1400px;margin:32px auto 0;display:flex;justify-content:space-between;align-items:center}
+.foot-copy{font-family:var(--f-body);font-size:11px;color:rgba(248,243,234,.25);letter-spacing:1px}
+.foot-copy span{color:var(--gold)}
+
+/* ── REVEAL ANIMATION ────────────────────── */
+.reveal-up{
+  /* No scroll animation — visible immediately */
+}
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media(max-width:900px){
+  .nav{padding:0 24px}
+  .nav-links,.nav-btn{display:none}
+  .ham{display:flex}
+  .page-header-inner,.project-label,.cta-section{padding-left:24px;padding-right:24px}
+  .project-label{flex-wrap:wrap;gap:8px}
+  .project-label-type{margin-left:0;width:100%}
+  
+  /* Show only one image per project as a rounded card */
+  .bento-grid{
+    grid-template-columns:1fr;
+    padding:0 24px 24px;
+  }
+  .bento-item:not(.hero){
+    display:none !important;
+  }
+
+  /* Mobile adjustments per user request */
+  .bento-room { display: none !important; }
+  .bento-item.hero { height: 320px !important; min-height: unset !important; }
+
+  .bento-item.hero{
+    grid-column:1/-1;
+    height:60vw;
+    min-height:300px;
+    border-radius:20px;
+  }
+  
+  .foot-top{grid-template-columns:1fr 1fr;gap:32px}
+  .foot-bottom{flex-direction:column;gap:10px;text-align:center}
+}
+@media(max-width:480px){
+  .page-header-inner h1{font-size:44px}
+  .bento-grid{padding:0 16px 24px;}
+  .project-label{padding-left:16px;padding-right:16px;}
+  .bento-item.hero{height:300px;}
+}
+
+@media(max-width:900px) {
+  /* Black tint on mobile as requested */
+  .page-header::after, .proj-hero-overlay::after, .about-img-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+    pointer-events: none;
+  }
+  body {
+    background-color: #040404 !important;
+  }
+}
+
+  #page-bg{position:fixed;inset:0;z-index:-1;background:url('imag4.webp') center/cover no-repeat;opacity:.3;pointer-events:none}
+</style>
+
+
+<style>
+  img:not([src*="logo"]):not(.wa-icon) {
+    border-radius: 12px;
+    margin: 4px;
+  }
+  .bento-inner { 
+    border-radius: 12px; 
+    overflow: hidden; 
+  }
+  @media (min-width: 901px) {
+    img:not([src*="logo"]):not(.wa-icon) {
+      border-radius: 24px;
+    }
+    .bento-inner {
+      border-radius: 24px;
+    }
+  }
+</style>
+
+  
+  <style>
+  .section-title {
+    font-family: var(--f-display);
+    font-size: clamp(32px, 4vw, 56px);
+    color: var(--white);
+    padding: 0 60px;
+    margin: 80px 0 20px;
+  }
+  @media(max-width: 900px) { .section-title { padding: 0 24px; } }
+  
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 60px;
+    margin-top: 60px;
+    margin-bottom: 32px;
+    border-top: 1px solid rgba(200,169,126,0.15);
+    padding-top: 40px;
+  }
+  @media(max-width: 900px) { 
+    .project-header { 
+      flex-direction: column; 
+      align-items: flex-start; 
+      padding: 0 24px; 
+      gap: 20px;
+    } 
+  }
+
+  .proj-info-left { display: flex; flex-direction: column; gap: 8px; }
+  .p-no { font-family: var(--f-body); font-size: 11px; letter-spacing: 4px; color: var(--gold); }
+  .p-name { font-family: var(--f-display); font-size: clamp(28px, 4vw, 42px); color: var(--white); line-height: 1.1; margin: 0; }
+  .p-type { font-family: var(--f-body); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(248,243,234,.4); }
+
+  .masonry-grid {
+    column-count: 3;
+    column-gap: 24px;
+    padding: 0 60px 40px;
+  }
+  @media(max-width: 900px) { .masonry-grid { column-count: 2; column-gap: 16px; padding: 0 24px 24px; } }
+  @media(max-width: 480px) { .masonry-grid { column-count: 1; padding: 0 16px 24px; } }
+  
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg2);
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  @media(max-width: 900px) { .masonry-item { margin-bottom: 16px; } }
+
+  .masonry-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s;
+  }
+  .masonry-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.85);
+  }
+  .masonry-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(8,7,6,0.95), transparent);
+    color: white;
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    border-radius: 0 0 4px 4px;
+  }
+  .masonry-item:hover .masonry-overlay {
+    opacity: 1;
+  }
+  </style>
+
+  <style>
+  .projects-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px auto;
+    padding: 0 24px;
+  }
+  .tab-btn {
+    font-family: var(--f-body);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid rgba(200,169,126,0.3);
+    color: rgba(255,255,255,0.6);
+    padding: 12px 32px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .tab-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .tab-btn.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+  </style>
+</head>
+<body>
+<div id="page-bg"></div>
+
+<!-- Noise overlay -->
+<div class="noise-overlay"></div>
+
+<!-- Scroll progress -->
+<div id="scroll-progress"></div>
+
+<!-- Olive cursor -->
+<div id="olive-cursor">O</div>
+<div class="c-dot" id="cDot"></div>
+
+<!-- Mobile Nav -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="about.html"    class="mob-link" onclick="closeMob()">About</a>
+  <a href="projects.html" class="mob-link active" onclick="closeMob()">Projects</a>
+  <a href="services.html" class="mob-link" onclick="closeMob()">Services</a>
+  <a href="blog.html"     class="mob-link" onclick="closeMob()">Blog</a>
+  <a href="contact.html"  class="mob-link" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.webp" alt="OliveOak Interiors">
+  </a>
+  <div class="nav-links">
+    <a href="about.html"    class="nav-link">About</a>
+    <a href="projects.html" class="nav-link active">Projects</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="blog.html"     class="nav-link">Blog</a>
+    <a href="contact.html"  class="nav-link">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-btn">Contact Us</a>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/918187094428" class="wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- SEO H1 -->
+<h1 style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden">Interior Design Projects Portfolio — OliveOak Interiors</h1>
+
+<!-- ══════ PAGE HEADER ══════ -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <span class="eyebrow-label">Portfolio</span>
+    <h1 style="font-size:clamp(44px,7vw,88px);font-family:'Yeseva One',serif;line-height:1;margin-bottom:14px">Selected Works</h1>
+    <p class="sub">Spaces crafted with restraint, warmth &amp; timeless elegance</p>
+  </div>
+</div>
+
+<!-- ══════ GALLERY SECTION ══════ -->
+<section class="gallery-section" id="gallerySection">
+  <div class="projects-tabs">
+    <button class="tab-btn active" onclick="showTab('residential')">Residential</button>
+    <button class="tab-btn" onclick="showTab('commercial')">Commercial</button>
+  </div>
+
+  <div id="tab-residential">
+
+  <div class="project-header" id="label-proj1">
+    <div class="proj-info-left">
+      <span class="p-no">01</span>
+      <h3 class="p-name">The Linden Court</h3>
+      <span class="p-type">OliveOak Residences — Hyderabad</span>
+    </div>
+    <a href="project-1.html" class="btn-ghost">View Full Project</a>
+  </div>
+  <div class="masonry-grid" id="dyn-projects-grid">
+  <div style="color:var(--gold);padding:40px;text-align:center;">Loading projects...</div>
+</div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<div class="gold-line"></div>
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">Olive<span>Oak</span></div>
+      <div class="foot-logo-sub">Interiors</div>
+      <p class="foot-tagline">Where restraint is the highest form of luxury.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="services.html">Services</a>
+    </div>
+    <div class="foot-col">
+      <h4>Resources</h4>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html">Privacy</a>
+      <a href="contact.html">Terms</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="tel:+918187094428">+91 8187094428</a>
+      <a href="mailto:hello@oliveoak.in">hello@oliveoak.in</a>
+      <a href="https://www.instagram.com/oliveoak.in" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/share/1FmNWiu74T/" target="_blank">Facebook</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="foot-copy">© 2026 <span>OliveOak Interiors</span>. All rights reserved.</p>
+    <p class="foot-copy">Crafted with <span>&#9654;</span> in Hyderabad</p>
+  </div>
+</footer>
+
+<!-- ══════ SCRIPTS ══════ -->
+<script>
+/* ── NAV ─────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), {passive:true});
+document.getElementById('ham').onclick = () => document.getElementById('mobNav').classList.add('open');
+document.getElementById('mobClose').onclick = () => document.getElementById('mobNav').classList.remove('open');
+function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+
+/* ── OLIVE CURSOR ────────────────────────── */
+if(window.matchMedia('(pointer:fine)').matches){
+  const cur = document.getElementById('olive-cursor');
+  const dot  = document.getElementById('cDot');
+  let mx=0,my=0,cx=0,cy=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+    const r=document.createElement('div'); r.className='c-ripple move';
+    r.style.left=mx+'px'; r.style.top=my+'px';
+    document.body.appendChild(r); setTimeout(()=>r.remove(),800);
+  });
+  document.addEventListener('click',e=>{
+    const r=document.createElement('div'); r.className='c-ripple click';
+    r.style.left=e.clientX+'px'; r.style.top=e.clientY+'px';
+    document.body.appendChild(r); setTimeout(()=>r.remove(),1000);
+  });
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+  });
+  (function loop(){cx+=(mx-cx)*.18; cy+=(my-cy)*.18;
+    cur.style.left=cx+'px'; cur.style.top=cy+'px';
+    requestAnimationFrame(loop);
+  })();
+}
+
+
+
+/* ── SCROLL PROGRESS ─────────────────────── */
+const sp = document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  sp.style.height = pct + '%';
+},{passive:true});
+
+/* Zero scroll-triggered JS — all items visible by default */
+
+/* ── RIPPLE on PORTAL ITEMS ────── */
+document.querySelectorAll('.portal:not(.cta-cell)').forEach(el=>{
+  el.addEventListener('click',function(e){
+    const r = this.getBoundingClientRect();
+    const rip = document.createElement('div');
+    rip.className = 'bento-ripple';
+    const size = Math.max(r.width,r.height);
+    rip.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${e.clientX-r.left-size/2}px;
+      top:${e.clientY-r.top-size/2}px;
+    `;
+    this.appendChild(rip);
+    setTimeout(()=>rip.remove(),700);
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('firebase-grids') || document.querySelector('.container') || document.body;
+  
+  // Clear container if it has "firebase-grids" to start fresh
+  if(container.id === 'firebase-grids') container.innerHTML = '';
+
+  try {
+    const res = await fetch('/data/projects.json');
+    const projects = await res.json();
+    const published = projects.filter(p => p.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+    
+    let htmlStr = '';
+    let projNum = 1;
+    
+    published.forEach((d) => {
+      const images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
+      const noStr = String(projNum).padStart(2,'0');
+      const gridId = `gh-grid-${d.id}`;
+      const layoutClasses = ['hero','left','right','sm','sm','sm cta-cell'];
+      
+      let labelHTML = `
+        <div class="project-label" style="margin-top:80px;margin-bottom:16px;">
+          <span class="project-label-no" style="font-size:12px;color:var(--gold);margin-right:12px;">${noStr}</span>
+          <span class="project-label-name" style="font-size:24px;font-family:var(--f-display);">${d.title}</span>
+          <span class="project-label-type" style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-left:16px;">${d.category}</span>
+        </div>`;
+
+      let itemsHTML = '';
+      images.slice(0,5).forEach((img,i)=>{
+        const cls = layoutClasses[i]||'sm';
+        itemsHTML += `
+          <a class="bento-item ${cls} portal" href="project.html?id=${d.slug}">
+            <div class="bento-inner">
+              <img src="${img}" alt="${d.title}" loading="lazy">
+            </div>
+            <div class="bento-overlay">
+              <span class="bento-project">${d.title}</span>
+            </div>
+          </a>`;
+      });
+
+      if(images.length < 6){
+        itemsHTML += `
+          <a class="bento-item sm cta-cell portal" href="project.html?id=${d.slug}">
+            <span class="cta-cell-no">${noStr}</span>
+            <span class="cta-cell-name">${d.title}</span>
+            <span class="cta-cell-link">View Full Project &rarr;</span>
+          </a>`;
+      }
+
+      htmlStr += labelHTML + `<div class="bento-grid" id="${gridId}">${itemsHTML}</div>`;
+      projNum++;
+    });
+    
+    // Inject at the bottom before footer or append to container
+    container.innerHTML += htmlStr;
+    
+  } catch(e) {
+    console.error(e);
+  }
+});
+</script>
+
+</body>
+</html>
+
+
+
+

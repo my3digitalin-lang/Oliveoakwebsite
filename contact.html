@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact OliveOak | Premium Interior Design Hyderabad</title>
+  <meta name="description" content="Get in touch with OliveOak Interiors. Let's begin your journey towards a beautifully designed space in Hyderabad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ──────────────────────────────────────────────── */
+:root{
+  --f-display:'Yeseva One',serif;
+  --f-serif:'Cormorant Garamond',serif;
+  --f-body:'Outfit',sans-serif;
+  --gold:#c8a97e;--gold-l:#e8d5a3;
+  --white:#f8f3ea;--bg:#080706;
+  --spring:cubic-bezier(.22,1,.36,1);
+  --ease:cubic-bezier(.4,0,.2,1)
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-body);
+  background:var(--bg) url('bg-texture.webp') center/cover fixed;
+  color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased
+}
+body::before{content:'';position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:0;pointer-events:none}
+body > *{position:relative;z-index:1}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* ── CURSOR ──────────────────────────────────────────────── */
+@media (pointer:fine) {
+  *{ cursor:none !important }
+  #olive-cursor{
+    position:fixed;top:0;left:0;
+    width:36px;height:36px;
+    border-radius:50%;
+    border:1.5px solid rgba(240,212,144,1);
+    box-shadow:
+      0 0 0 1px rgba(240,212,144,.25),
+      0 0 14px rgba(240,212,144,.5),
+      inset 0 0 6px rgba(240,212,144,.08);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--f-display);
+    font-size:16px;font-weight:400;font-style:italic;
+    color:#f0d490;
+    text-shadow:0 0 8px rgba(240,212,144,.8);
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    transition:width .18s var(--spring),height .18s var(--spring),
+               box-shadow .18s,border-color .18s;
+    will-change:top,left
+  }
+  #olive-cursor.hov{
+    width:50px;height:50px;
+    border-color:#f0d490;
+    box-shadow:
+      0 0 0 1px rgba(240,212,144,.4),
+      0 0 22px rgba(240,212,144,.7),
+      inset 0 0 12px rgba(240,212,144,.12);
+    background:rgba(240,212,144,.06)
+  }
+}
+
+/* ── NAV ──────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;width:100%;z-index:9000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 64px;height:72px;
+  background:rgba(8,7,6,0.30);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(200,169,126,0.10);
+  transition:background .5s,backdrop-filter .5s,border-color .5s
+}
+.nav.solid{
+  background:rgba(8,7,6,0.55);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-color:rgba(200,169,126,.15)
+}
+.nav-links{display:flex;gap:40px;align-items:center}
+.nav-link{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.65);transition:color .3s}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-btn{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:4px;border:1px solid rgba(200,169,126,.5);color:var(--gold);transition:background .3s,color .3s}
+.nav-btn:hover{background:var(--gold);color:#080706}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.ham span{display:block;width:24px;height:1.5px;background:var(--white);transition:.3s}
+.mob-nav{display:none;position:fixed;inset:0;z-index:8000;background:rgba(8,7,6,0);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mob-nav.open{display:flex}
+.mob-link{font-family:var(--f-display);font-size:30px;color:rgba(255,255,255,.85);transition:color .3s}
+.mob-link:hover,.mob-link.active{color:var(--gold)}
+.mob-close{position:absolute;top:24px;right:24px;font-size:28px;background:none;border:none;color:var(--white);cursor:pointer;padding:8px}
+
+/* ── HERO ──────────────────────────────────────────────── */
+.hero{
+  position:relative;height:60vh;min-height:420px;
+  display:flex;align-items:center;justify-content:center;overflow:hidden
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  transform:scale(1.06);transition:transform 1.8s var(--spring)
+}
+.hero-bg.loaded{transform:scale(1)}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(8,7,6,.92) 0%,rgba(8,7,6,.6) 55%,rgba(8,7,6,.85) 100%)}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:160px;z-index:1;background:linear-gradient(to top,var(--bg) 0%,transparent 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 40px;max-width:820px}
+.hero-eyebrow{
+  font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;
+  opacity:0;transform:translateY(20px);transition:opacity .8s var(--spring),transform .8s var(--spring)
+}
+.hero-eyebrow.show{opacity:1;transform:none}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:rgba(200,169,126,.6)}
+.hero-h1{
+  font-family:var(--f-display);font-size:clamp(36px,5.5vw,76px);
+  font-weight:400;line-height:.96;color:var(--white);letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px
+}
+.hero-h1 .word{display:inline-block;opacity:0;transform:translateY(60px);transition:opacity .9s var(--spring),transform .9s var(--spring)}
+.hero-h1 .word.show{opacity:1;transform:none}
+.hero-h1 em{font-family:var(--f-serif);font-style:italic;text-transform:none;color:var(--gold);font-size:1.08em}
+.hero-sub{
+  font-family:var(--f-serif);font-size:clamp(15px,1.5vw,19px);font-weight:300;font-style:italic;
+  color:rgba(255,255,255,.5);max-width:520px;margin:0 auto;
+  opacity:0;transform:translateY(20px);transition:opacity .9s var(--spring),transform .9s var(--spring)
+}
+.hero-sub.show{opacity:1;transform:none}
+
+/* ── SECTION LABEL ───────────────────────────────────────── */
+.section-tag{
+  font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:4px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;
+  opacity:0;transition:opacity .8s var(--spring)
+}
+.section-tag.visible{opacity:1}
+
+/* ── CONTACT LAYOUT ──────────────────────────────────────── */
+.contact-wrap{max-width:1280px;margin:0 auto;padding:100px 80px 120px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+
+/* ── FORM CARD ───────────────────────────────────────────── */
+.form-card{
+  background:rgba(18,16,13,.6);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(200,169,126,.12);border-radius:20px;
+  padding:52px 48px;
+  opacity:0;transform:translateY(32px);transition:opacity .9s var(--spring),transform .9s var(--spring)
+}
+.form-card.visible{opacity:1;transform:none}
+.form-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:radial-gradient(ellipse at 30% -10%,rgba(200,169,126,.07),transparent 65%);pointer-events:none}
+.form-card{position:relative;overflow:hidden}
+.form-h2{
+  font-family:var(--f-display);font-size:clamp(22px,2.2vw,32px);font-weight:400;
+  color:var(--white);line-height:1.1;margin-bottom:10px
+}
+.form-h2 em{font-family:var(--f-serif);font-style:italic;color:var(--gold)}
+.form-sub{font-family:var(--f-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-bottom:36px;line-height:1.7}
+.form-group{margin-bottom:20px}
+.form-group label{
+  display:block;font-family:var(--f-body);font-size:10px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(200,169,126,.7);margin-bottom:8px
+}
+.form-input{
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid rgba(200,169,126,.15);border-radius:8px;
+  padding:14px 18px;font-family:var(--f-body);font-size:14px;font-weight:300;
+  color:var(--white);outline:none;
+  transition:border-color .3s,background .3s,box-shadow .3s
+}
+.form-input::placeholder{color:rgba(255,255,255,.25)}
+.form-input:focus{
+  border-color:rgba(200,169,126,.5);
+  background:rgba(200,169,126,.04);
+  box-shadow:0 0 0 3px rgba(200,169,126,.06)
+}
+select.form-input option{background:#0e0c0a;color:var(--white)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+textarea.form-input{resize:vertical;min-height:110px;line-height:1.6}
+.btn-submit{
+  width:100%;margin-top:8px;
+  font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
+  padding:16px 32px;border-radius:10px;border:none;
+  background:rgba(200,169,126,.18);color:rgba(240,212,144,1);border:1px solid rgba(200,169,126,.55);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.30),0 10px 36px rgba(0,0,0,.50);
+  backdrop-filter:blur(14px);transition:all .35s var(--spring);cursor:pointer
+}
+.btn-submit:hover{background:rgba(200,169,126,.30);border-color:rgba(200,169,126,.80);transform:translateY(-3px);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.40),0 16px 48px rgba(0,0,0,.55),0 0 28px rgba(200,169,126,.22)}
+.form-note{font-family:var(--f-body);font-size:11px;color:rgba(255,255,255,.2);text-align:center;margin-top:14px;line-height:1.7}
+
+/* ── INFO SIDE ───────────────────────────────────────────── */
+.info-side{
+  opacity:0;transform:translateY(32px);transition:opacity .9s var(--spring) .15s,transform .9s var(--spring) .15s
+}
+.info-side.visible{opacity:1;transform:none}
+.info-h2{
+  font-family:var(--f-display);font-size:clamp(28px,3vw,46px);font-weight:400;
+  color:var(--white);line-height:1.05;margin-bottom:12px
+}
+.info-h2 em{font-family:var(--f-serif);font-style:italic;color:var(--gold)}
+.info-sub{font-family:var(--f-body);font-size:14px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.8;margin-bottom:44px}
+.info-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.info-card{
+  background:rgba(18,16,13,.55);
+  border:1px solid rgba(200,169,126,.1);border-radius:14px;
+  padding:24px 20px;text-align:center;
+  transition:border-color .3s,box-shadow .3s,transform .3s
+}
+.info-card:hover{border-color:rgba(200,169,126,.3);box-shadow:0 12px 40px rgba(0,0,0,.4);transform:translateY(-4px)}
+.info-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(200,169,126,.1);border:1px solid rgba(200,169,126,.2);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
+}
+.info-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.info-label{font-family:var(--f-body);font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(200,169,126,.6);margin-bottom:6px}
+.info-val{font-family:var(--f-serif);font-size:14px;font-weight:400;color:rgba(255,255,255,.7);line-height:1.6}
+
+/* ── MAP ─────────────────────────────────────────────────── */
+.map-card{
+  background:rgba(18,16,13,.55);border:1px solid rgba(200,169,126,.1);
+  border-radius:16px;overflow:hidden
+}
+.map-card iframe{display:block;width:100%;height:260px;filter:grayscale(.9) invert(.9) contrast(.8);opacity:.8}
+.map-footer{padding:16px 20px;display:flex;align-items:center;gap:10px}
+.map-footer svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;flex-shrink:0}
+.map-footer span{font-family:var(--f-body);font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.3px}
+
+/* ── GOLD LINE ───────────────────────────────────────────── */
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.15;max-width:1280px;margin:0 auto}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+footer{background:rgba(6,5,4,.95);border-top:1px solid rgba(200,169,126,.08);padding:80px 80px 40px}
+.foot-top{display:grid;grid-template-columns:1fr auto auto auto;gap:60px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.06)}
+.foot-logo{font-family:var(--f-display);font-size:28px;color:var(--white)}
+.foot-logo span{color:var(--gold)}
+.foot-logo-sub{font-family:var(--f-body);font-size:10px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px}
+.foot-tagline{font-family:var(--f-serif);font-size:16px;font-style:italic;color:rgba(255,255,255,.3);margin-top:16px;max-width:280px;line-height:1.6}
+.foot-col h4{font-family:var(--f-body);font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.foot-col a{display:block;font-family:var(--f-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:10px;transition:color .3s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;flex-wrap:wrap;gap:16px}
+.foot-copy{font-family:var(--f-body);font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+.foot-copy span{color:rgba(200,169,126,.4)}
+
+/* ── MOBILE ──────────────────────────────────────────────── */
+@media(max-width:900px){
+  /* NAV   fully transparent on mobile */
+  .nav,.nav.solid{
+    backdrop-filter:none !important;-webkit-backdrop-filter:none !important;
+    background:rgba(8,7,6,.92) !important;border-bottom:1px solid rgba(200,169,126,.1) !important
+  }
+  .nav{padding:0 20px}
+  .nav-links,.nav-btn{display:none}
+  .ham{display:flex}
+  .contact-wrap{grid-template-columns:1fr;gap:48px;padding:80px 24px 80px}
+  .form-card{padding:36px 24px}
+  .form-row{grid-template-columns:1fr}
+  .info-cards{grid-template-columns:1fr 1fr}
+  footer{padding:60px 24px 32px}
+  .foot-top{grid-template-columns:1fr;gap:40px}
+  .foot-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+}
+@media(max-width:480px){
+  .info-cards{grid-template-columns:1fr}
+}
+/* PAGE BACKGROUND */
+#page-bg{position:fixed;inset:0;z-index:-1;background:url('imag4.webp') center/cover no-repeat;opacity:.3;pointer-events:none}
+@media(max-width:900px) {
+  /* Black tint on mobile as requested */
+  .page-header::after, .proj-hero-overlay::after, .about-img-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+    pointer-events: none;
+  }
+  body {
+    background-color: #040404 !important;
+  }
+}
+</style>
+
+
+<style>
+  img:not([src*="logo"]):not(.wa-icon) {
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+<div id="page-bg"></div>
+
+
+<!-- CURSOR -->
+<div id="olive-cursor">O</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div style="height:46px;overflow:hidden;display:flex;align-items:center">
+      <img src="logo.webp" alt="OliveOak" style="height:130px;margin-top:-2px;display:block;filter:brightness(1.2)">
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="about.html"          class="nav-link">About</a>
+    <a href="projects.html"       class="nav-link">Projects</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="index.html#blog"     class="nav-link">Blog</a>
+    <a href="contact.html"        class="nav-link active">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-btn">Contact Us</a>
+  <button class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="about.html"          class="mob-link" onclick="closeMob()">About</a>
+  <a href="projects.html"       class="mob-link" onclick="closeMob()">Projects</a>
+  <a href="services.html" class="mob-link" onclick="closeMob()">Services</a>
+  <a href="index.html#blog"     class="mob-link" onclick="closeMob()">Blog</a>
+  <a href="contact.html"        class="mob-link active" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="eyebrow">Begin the Conversation</p>
+    <h1 class="hero-h1" id="heroTitle">
+      <span class="word">Let's</span>
+      <span class="word"> Create</span>
+      <span class="word"> Something</span><br>
+      <span class="word"><em>Exceptional</em></span>
+    </h1>
+    <p class="hero-sub" id="heroSub">Every great space begins with a single conversation.</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<div class="contact-wrap">
+
+  <!-- FORM -->
+  <div class="form-card" id="formCard">
+    <p class="section-tag visible">Send a Message</p>
+    <h2 class="form-h2">Start Your <em>Design Journey</em></h2>
+    <p class="form-sub">Tell us about your vision and we'll craft a bespoke experience tailored to your needs.</p>
+
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" name="name" class="form-input" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="fphone">Phone</label>
+          <input type="tel" id="fphone" name="phone" class="form-input" placeholder="+91 00000 00000" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="femail">Email Address</label>
+        <input type="email" id="femail" name="email" class="form-input" placeholder="your@email.com" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fservice">Service Type</label>
+          <select id="fservice" name="service" class="form-input" required>
+            <option value="">Select service</option>
+            <option value="residential">Residential Interior</option>
+            <option value="commercial">Commercial Space</option>
+            <option value="hospitality">Hospitality Design</option>
+            <option value="renovation">Home Renovation</option>
+            <option value="consultation">Design Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fbudget">Budget Range</label>
+          <select id="fbudget" name="budget" class="form-input">
+            <option value="">Select budget</option>
+            <option value="5-10L">₹5L   ₹10L</option>
+            <option value="10-25L">₹10L   ₹25L</option>
+            <option value="25-50L">₹25L   ₹50L</option>
+            <option value="50L+">₹50L+</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Send Message &nbsp;→</button>
+      <p class="form-note">We respond within 24 hours · All enquiries are confidential</p>
+    </form>
+  </div>
+
+  <!-- INFO SIDE -->
+  <div class="info-side" id="infoSide">
+    <p class="section-tag visible">Get in Touch</p>
+    <h2 class="info-h2">Where <em>Elegance</em><br>Meets Expertise</h2>
+    <p class="info-sub">Visit our studio or reach us through any of the channels below. We'd love to hear about your project.</p>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="info-label">Studio</div>
+        <div class="info-val">Rd No. 33, Kondapur,<br>Raghavendra Colony, Gachibowli,<br>Hyderabad, Telangana 500084</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        </div>
+        <div class="info-label">Call Us</div>
+        <div class="info-val">+91 77801 96804<br><small style="font-size:12px;opacity:.6">Available 24 / 7</small></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="info-label">Email</div>
+        <div class="info-val">info@oliveoak.in<br><small style="font-size:12px;opacity:.6">Reply within 24 hrs</small></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="info-label">Hours</div>
+        <div class="info-val">Mon Fri: 9AM 6PM<br>Sat: 10AM 4PM</div>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-card">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.963734225899!2d78.4865820750188!3d17.41241750121515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99b88fb5c4b5%3A0x6c69c2e36d59c7b1!2sRoad%20Number%201%2C%20Shantinagar%20Colony%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1699623456789!5m2!1sen!2sin"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div class="map-footer">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Rd No. 33, Kondapur, Raghavendra Colony, Gachibowli, Hyderabad, Telangana 500084</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="gold-line"></div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">Olive<span>Oak</span></div>
+      <div class="foot-logo-sub">By TEV Contractors · Singapore</div>
+      <p class="foot-tagline">Where spaces inspire, and interior design comes alive.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Sitemap</h4>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Socials</h4>
+      <a href="https://www.facebook.com/share/1FmNWiu74T/?mibextid=wwXIfr" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/oliveoak.in" target="_blank">Instagram</a>
+      <a href="https://oliveoak.in" target="_blank">LinkedIn</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="tel:+918187094428">+91 77801 96804</a>
+      <a href="mailto:info@oliveoak.in">info@oliveoak.in</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="foot-copy">&copy; 2026 OliveOak by TEV Contractors. All rights reserved.</p>
+    <p class="foot-copy">Crafted with <span>&#9829;</span> in Singapore &amp; Hyderabad</p>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{ nav.classList.toggle('solid',window.scrollY>60); });
+const ham=document.getElementById('ham'),mobNav=document.getElementById('mobNav'),mobClose=document.getElementById('mobClose');
+ham.addEventListener('click',()=>mobNav.classList.add('open'));
+mobClose.addEventListener('click',()=>mobNav.classList.remove('open'));
+function closeMob(){mobNav.classList.remove('open')}
+
+/* HERO */
+requestAnimationFrame(()=>{
+  setTimeout(()=>{ document.getElementById('heroBg').classList.add('loaded'); },80);
+  setTimeout(()=>{ document.getElementById('eyebrow').classList.add('show'); },400);
+  document.querySelectorAll('.hero-h1 .word').forEach((w,i)=>{ setTimeout(()=>w.classList.add('show'),600+i*90); });
+  setTimeout(()=>{ document.getElementById('heroSub').classList.add('show'); },1100);
+});
+
+/* INTERSECTION OBSERVER */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+},{threshold:0.06});
+document.querySelectorAll('.form-card,.info-side,.section-tag').forEach(el=>io.observe(el));
+
+/* FORM */
+function handleSubmit(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(()=>{
+    btn.textContent = '✓ Message Sent';
+    btn.style.background='rgba(100,180,100,.2)';
+    btn.style.borderColor='rgba(100,200,100,.5)';
+    btn.style.color='#a0e0a0';
+    document.getElementById('contactForm').reset();
+    setTimeout(()=>{
+      btn.textContent='Send Message →';
+      btn.disabled=false;
+      btn.style.background='';btn.style.borderColor='';btn.style.color='';
+    },3000);
+  },1200);
+}
+
+/* CURSOR */
+(function(){
+  const cur = document.getElementById('olive-cursor');
+  if(!cur) return;
+  if(!window.matchMedia('(pointer:fine)').matches){ cur.style.display='none'; return; }
+  let mx=-100,my=-100,cx=-100,cy=-100;
+  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; },{passive:true});
+  document.addEventListener('mouseover',e=>{
+    const hov=!!(e.target.closest('a,button,.info-card'));
+    cur.classList.toggle('hov',hov);
+  },{passive:true});
+  function anim(){ cx+=(mx-cx)*.18; cy+=(my-cy)*.18; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(anim); }
+  anim();
+  const dot=document.createElement('div'); dot.className='c-dot'; document.body.appendChild(dot);
+  let dmx=0,dmy=0;
+  document.addEventListener('mousemove',e=>{ dmx=e.clientX; dmy=e.clientY; },{passive:true});
+  function moveDot(){ dot.style.left=dmx+'px'; dot.style.top=dmy+'px'; requestAnimationFrame(moveDot); }
+  moveDot();
+})();
+</script>
+</body>
+</html>
+
+
+
+

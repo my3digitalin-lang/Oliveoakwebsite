@@ -1,0 +1,5523 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Best Interior Design Company in Hyderabad | OliveOak</title>
+
+  <meta name="description" content="Looking for premium interior design in Hyderabad? OliveOak Interiors offers modern, luxury, and functional home interiors tailored to your lifestyle.">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+
+
+  <!-- Preload first mobile frames at highest browser priority -->
+
+  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-001.webp" as="image" media="(max-width:768px)">
+
+  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-002.webp" as="image" media="(max-width:768px)">
+
+  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-003.webp" as="image" media="(max-width:768px)">
+
+  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-004.webp" as="image" media="(max-width:768px)">
+
+  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-005.webp" as="image" media="(max-width:768px)">
+
+  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-006.webp" as="image" media="(max-width:768px)">
+
+  <!-- Preload first desktop frames at highest priority -->
+
+  <link rel="preload" href="Frames-webp-pc/frame_0001.webp" as="image" media="(min-width:769px)">
+
+  <link rel="preload" href="Frames-webp-pc/frame_0002.webp" as="image" media="(min-width:769px)">
+
+  <link rel="preload" href="Frames-webp-pc/frame_0003.webp" as="image" media="(min-width:769px)">
+
+
+
+  <style>
+
+/* ================================================================
+
+   TOKENS
+
+================================================================ */
+
+:root {
+
+  --black:    #080808;
+
+  --ink:      #111010;
+
+  --charcoal: #1c1c1c;
+
+  --smoke:    #2a2828;
+
+  --gold:     #C8A97E;
+
+  --gold-lt:  #DEC49A;
+
+  --gold-dk:  #9A7A52;
+
+  --cream:    #F4EDE3;
+
+  --white:    #FFFFFF;
+
+  --wood:     #5C3D1E;
+
+  --rust:     #7B3A2A;
+
+
+
+  --f-display: 'Yeseva One', 'Cormorant Garamond', Georgia, serif;
+
+  --f-body:    'Outfit', system-ui, sans-serif;
+
+
+
+  --ease:     cubic-bezier(.25,.46,.45,.94);
+
+  --spring:   cubic-bezier(.16,1,.3,1);
+
+}
+
+
+
+/* ================================================================
+
+   HERO LOAD PROGRESS — slim non-blocking bar, never hides content
+
+================================================================ */
+
+
+
+.loader-content {
+
+  text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px;
+
+}
+
+.loader-logo {
+
+  font-family: var(--f-display); font-size: 42px; color: var(--gold);
+
+  letter-spacing: 6px; font-weight: 300; text-transform: uppercase;
+
+}
+
+.loader-subtitle {
+
+  font-family: var(--f-body); font-size: 11px; color: var(--gold-lt);
+
+  letter-spacing: 4px; text-transform: uppercase; opacity: 0.6;
+
+}
+
+.loader-bar-wrap {
+
+  width: 200px; height: 1px; background: rgba(200, 169, 126, 0.2);
+
+  margin-top: 10px; position: relative; overflow: hidden;
+
+}
+
+.loader-bar-fill {
+
+  position: absolute; top: 0; left: 0; bottom: 0; width: 0%;
+
+  background: var(--gold); transition: width 0.1s linear;
+
+}
+
+.loader-pct {
+
+  font-family: var(--f-body); font-size: 10px; color: var(--gold);
+
+  letter-spacing: 2px; margin-top: 5px;
+
+}
+
+
+
+/* ================================================================
+
+   RESET
+
+================================================================ */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{font-size:16px;overflow-x:clip;scroll-behavior:smooth}
+
+body{
+
+  font-family:var(--f-body);
+
+  background:var(--black);
+
+  color:var(--white);
+
+  overflow-x:clip;
+
+  /* LOCKED during hero animation */
+
+  overflow-y:hidden;
+
+}
+
+body.unlocked{overflow-y:auto}
+
+img{max-width:100%;height:auto;display:block}
+
+a{text-decoration:none;color:inherit}
+
+
+
+/* Scrollbar */
+
+::-webkit-scrollbar{width:5px}
+
+::-webkit-scrollbar-track{background:var(--ink)}
+
+::-webkit-scrollbar-thumb{background:var(--gold-dk);border-radius:3px}
+
+
+
+/* ================================================================
+
+   SECTION BACKGROUND   imag3.webp, revealed after 3D hero exits
+
+================================================================ */
+
+#page-bg{
+
+  position:fixed;inset:0;
+
+  z-index:0;
+
+  background:url('imag4.webp') center/cover no-repeat;
+
+  /* Hidden during 3D hero   revealed after body.unlocked */
+
+  opacity:0;
+
+  transform:scale(1.08);
+
+  animation:bgFloat 12s ease-in-out infinite alternate;
+
+  pointer-events:none;
+
+  transition:opacity 1.8s ease
+
+}
+
+/* Fade in once hero exits */
+
+body.unlocked #page-bg{
+
+  opacity:.55
+
+}
+
+@keyframes bgFloat{
+
+  0%   { transform:scale(1.08) translate(0%,    0%)   }
+
+  33%  { transform:scale(1.10) translate(-0.6%, -0.8%)}
+
+  66%  { transform:scale(1.09) translate( 0.5%, -1.2%)}
+
+  100% { transform:scale(1.08) translate(-0.3%, -0.5%)}
+
+}
+
+
+
+/* ================================================================
+
+   SCROLL-BACK HINT BAR
+
+================================================================ */
+
+#back-hint{
+
+  position:fixed;
+
+  top:0;left:0;right:0;
+
+  height:44px;
+
+  display:flex;align-items:center;justify-content:center;gap:10px;
+
+  background:linear-gradient(90deg,rgba(8,8,8,.92),rgba(20,16,10,.97),rgba(8,8,8,.92));
+
+  border-bottom:1px solid rgba(200,169,126,.35);
+
+  color:var(--gold);
+
+  font-family:var(--f-body);
+
+  font-size:11px;font-weight:500;
+
+  letter-spacing:3px;text-transform:uppercase;
+
+  z-index:10001;
+
+  cursor:pointer;
+
+  opacity:0;
+
+  transform:translateY(-100%);
+
+  transition:opacity .4s ease, transform .4s var(--spring);
+
+  pointer-events:none;
+
+}
+
+#back-hint.visible{
+
+  opacity:1;
+
+  transform:translateY(0);
+
+  pointer-events:auto;
+
+}
+
+#back-hint:hover{
+
+  background:linear-gradient(90deg,rgba(15,12,7,.97),rgba(30,22,8,1),rgba(15,12,7,.97));
+
+  border-bottom-color:rgba(200,169,126,.7);
+
+}
+
+
+
+/* ================================================================
+
+   NAVBAR
+
+================================================================ */
+
+.nav{
+
+  position:fixed;top:0;left:0;right:0;
+
+  height:76px;
+
+  display:flex;align-items:center;justify-content:space-between;
+
+  padding:0 64px;
+
+  z-index:9999;
+
+  background:transparent;
+
+  border-bottom:1px solid transparent;
+
+  transition:all .5s var(--ease);
+
+}
+
+.nav.solid{
+
+  background:rgba(8,7,6,0.72);
+
+  backdrop-filter:blur(22px);
+
+  -webkit-backdrop-filter:blur(22px);
+
+  border-bottom:1px solid rgba(200,169,126,.12);
+
+  height:76px;
+
+}
+
+.nav-logo{display:flex;flex-direction:column;gap:2px}
+
+.nav-logo-main{
+
+  font-family:var(--f-display);
+
+  font-size:22px;font-weight:500;
+
+  color:var(--white);letter-spacing:.5px;line-height:1
+
+}
+
+.nav-logo-sub{
+
+  font-family:var(--f-body);
+
+  font-size:9px;color:var(--gold);
+
+  letter-spacing:3px;text-transform:uppercase
+
+}
+
+.nav-links{display:flex;gap:40px;align-items:center}
+
+.nav-link{
+
+  font-family:var(--f-body);
+
+  font-size:12px;font-weight:400;
+
+  color:rgba(255,255,255,.6);
+
+  letter-spacing:2px;text-transform:uppercase;
+
+  position:relative;padding:4px 0;
+
+  transition:color .3s
+
+}
+
+.nav-link::after{
+
+  content:'';position:absolute;bottom:0;left:0;
+
+  width:0;height:1px;background:var(--gold);
+
+  transition:width .4s var(--ease)
+
+}
+
+.nav-link:hover{color:var(--gold)}
+
+.nav-link:hover::after{width:100%}
+
+.nav-btn{
+
+  padding:13px 32px;
+
+  border-radius:10px;
+
+  font-family:var(--f-body);font-size:11px;
+
+  font-weight:500;color:rgba(240,212,144,.95);
+
+  letter-spacing:2px;text-transform:uppercase;
+
+  /* Luminous glass   same as btn-gold */
+
+  background:rgba(200,169,126,.14);
+
+  border:1px solid rgba(200,169,126,.45);
+
+  backdrop-filter:blur(14px) saturate(2.2);
+
+  -webkit-backdrop-filter:blur(14px) saturate(2.2);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.25),
+
+    0 6px 20px rgba(0,0,0,.35);
+
+  transition:all .3s
+
+}
+
+.nav-btn:hover{
+
+  background:rgba(200,169,126,.25);
+
+  border-color:rgba(200,169,126,.70);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.35),
+
+    0 10px 28px rgba(0,0,0,.45);
+
+  transform:translateY(-2px)
+
+}
+
+.ham{
+
+  display:none;flex-direction:column;gap:5px;
+
+  background:none;border:none;cursor:pointer;padding:4px
+
+}
+
+.ham span{
+
+  display:block;width:22px;height:1.5px;
+
+  background:var(--white);
+
+  transition:all .3s var(--ease);border-radius:1px
+
+}
+
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+
+.ham.open span:nth-child(2){opacity:0;transform:translateX(-10px)}
+
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+
+.mob-menu{
+
+  position:fixed;inset:0;
+
+  background:rgba(8,7,6,0);
+
+  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+
+  z-index:9998;
+
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+
+  transform:translateX(100%);
+
+  transition:transform .6s var(--spring)
+
+}
+
+.mob-menu.open{transform:translateX(0)}
+
+.mob-link{
+
+  font-family:var(--f-display);font-size:30px;
+
+  color:rgba(255,255,255,.85);transition:color .3s
+
+}
+
+.mob-link:hover{color:var(--gold)}
+
+
+
+/* ================================================================
+
+   HERO STAGE    fixed, full-screen, scroll-jacked
+
+================================================================ */
+
+#hero{
+
+  position:fixed;inset:0;z-index:5000;
+
+  background:var(--black);
+
+  transition:opacity 1.4s var(--spring);
+
+}
+
+#hero.fade-out{opacity:0;pointer-events:none}
+
+#hero.gone{display:none}
+
+
+
+#hero-canvas{
+
+  position:absolute;inset:0;
+
+  width:100%;height:100%
+
+}
+
+
+
+/* Vignette   premium dark cinematic overlay */
+
+.hero-vignette{
+
+  position:absolute;inset:0;z-index:2;
+
+  background:
+
+    radial-gradient(ellipse 70% 70% at 50% 50%, rgba(4,4,4,0) 0%, rgba(4,4,4,.32) 100%),
+
+    linear-gradient(to bottom,
+
+      rgba(4,4,4,0) 0%,
+
+      rgba(4,4,4,0) 40%,
+
+      rgba(4,4,4,.06) 65%,
+
+      rgba(4,4,4,.68) 100%),
+
+    linear-gradient(to right, rgba(4,4,4,.18) 0%, transparent 22%, transparent 78%, rgba(4,4,4,.18) 100%)
+
+}
+
+
+
+/* Text block   stays visible through ALL frames */
+
+.hero-text{
+
+  position:absolute;inset:0;z-index:3;
+
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+
+  text-align:center;padding:0 40px;
+
+  pointer-events:none;
+
+  /* Text does NOT fade during animation   only during hero exit */
+
+  transition:opacity .8s ease,transform .8s ease;
+
+}
+
+
+
+/* Subtle frosted pill behind title to keep legibility at bright frames */
+
+.hero-pill{
+
+  border-radius:4px;
+
+  padding:40px 64px 44px;
+
+  display:inline-flex;flex-direction:column;align-items:center;gap:20px;
+
+  max-width:900px;
+
+}
+
+
+
+/* Eyebrow / subtitle / cta   JS-controlled reveal */
+
+.hero-eyebrow{
+
+  font-family:var(--f-body);
+
+  font-size:11px;font-weight:500;
+
+  font-style:normal;
+
+  letter-spacing:4px;
+
+  text-transform:uppercase;
+
+  color:#f0d490;
+
+  text-shadow:
+
+    0 0  16px rgba(0,0,0,1),
+
+    0 2px 32px rgba(0,0,0,1),
+
+    0 0  64px rgba(0,0,0,.9);
+
+  display:flex;align-items:center;gap:16px;
+
+  opacity:0;transform:translateY(14px);
+
+  transition:opacity .7s var(--spring),transform .7s var(--spring)
+
+}
+
+/* Decorative lines flanking the eyebrow text   solid gold, like reference */
+
+.hero-eyebrow::before,
+
+.hero-eyebrow::after{
+
+  content:'';
+
+  width:40px;height:1px;flex-shrink:0;
+
+  background:rgba(200,169,110,.75);
+
+}
+
+.hero-eyebrow.show{opacity:1;transform:none}
+
+
+
+/* Each word is individually revealed */
+
+/* Hero title also gets shadow for legibility */
+
+.hero-title{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(42px,5.8vw,82px);
+
+  font-weight:400;
+
+  line-height:.95;
+
+  letter-spacing:2px;
+
+  color:#f8f3ea;
+
+  text-transform:uppercase;
+
+  text-align:center;
+
+  text-shadow:
+
+    0 2px 0 rgba(0,0,0,.35),
+
+    0 6px 30px rgba(0,0,0,.7),
+
+    0 0 80px rgba(0,0,0,.4);
+
+  -webkit-text-stroke:0.5px rgba(255,255,255,.08)
+
+}
+
+.hero-title em{
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-style:italic;
+
+  font-weight:300;
+
+  font-size:1.05em;
+
+  color:rgba(200,169,110,.92);
+
+  letter-spacing:1px;
+
+  text-shadow:
+
+    0 2px 0 rgba(0,0,0,.3),
+
+    0 6px 24px rgba(0,0,0,.65)
+
+}
+
+
+
+/* ================================================================
+
+   CUSTOM CURSOR   letter "O" from OliveOak
+
+================================================================ */
+
+@media (pointer:fine) {
+
+  *{ cursor:none !important }
+
+  #olive-cursor{
+
+    position:fixed;top:0;left:0;
+
+    width:36px;height:36px;
+
+    border-radius:50%;
+
+    border:1.5px solid rgba(240,212,144,1);
+
+    box-shadow:
+
+      0 0 0 1px rgba(240,212,144,.25),
+
+      0 0 14px rgba(240,212,144,.5),
+
+      inset 0 0 6px rgba(240,212,144,.08);
+
+    display:flex;align-items:center;justify-content:center;
+
+    font-family:var(--f-display);
+
+    font-size:16px;font-weight:400;font-style:italic;
+
+    color:#f0d490;
+
+    text-shadow:0 0 8px rgba(240,212,144,.8);
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    transform:translate(-50%,-50%);
+
+    transition:width .18s var(--spring),height .18s var(--spring),
+
+               box-shadow .18s,border-color .18s;
+
+    will-change:top,left
+
+  }
+
+  #olive-cursor.hov{
+
+    width:50px;height:50px;
+
+    border-color:#f0d490;
+
+    box-shadow:
+
+      0 0 0 1px rgba(240,212,144,.4),
+
+      0 0 22px rgba(240,212,144,.7),
+
+      inset 0 0 12px rgba(240,212,144,.12);
+
+    background:rgba(240,212,144,.06)
+
+  }
+
+}
+
+
+
+/* ================================================================
+
+   WATER RIPPLE CURSOR EFFECT
+
+================================================================ */
+
+@media (pointer:fine) {
+
+  .c-ripple {
+
+    position:fixed;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99998;
+
+    transform:translate(-50%,-50%) scale(0);
+
+    opacity:0;
+
+    will-change:transform,opacity
+
+  }
+
+  .c-ripple.move {
+
+    width:28px;height:28px;
+
+    border:1px solid rgba(240,212,144,.55);
+
+    animation:rippleOut .75s cubic-bezier(.2,.6,.4,1) forwards
+
+  }
+
+  .c-ripple.click {
+
+    border:1.5px solid rgba(240,212,144,.8);
+
+    box-shadow:0 0 8px rgba(240,212,144,.25);
+
+    animation:rippleOut .9s cubic-bezier(.15,.7,.3,1) forwards
+
+  }
+
+  .c-dot {
+
+    position:fixed;
+
+    width:5px;height:5px;
+
+    border-radius:50%;
+
+    background:rgba(240,212,144,.9);
+
+    box-shadow:0 0 6px rgba(240,212,144,.7);
+
+    pointer-events:none;
+
+    z-index:100000;
+
+    transform:translate(-50%,-50%);
+
+    will-change:top,left
+
+  }
+
+  @keyframes rippleOut {
+
+    0%   { transform:translate(-50%,-50%) scale(0);   opacity:.85 }
+
+    60%  { opacity:.35 }
+
+    100% { transform:translate(-50%,-50%) scale(4.5); opacity:0   }
+
+  }
+
+}
+
+
+
+/* Individual word spans */
+
+.hw{
+
+  display:inline-block;
+
+  opacity:0;
+
+  transform:translateY(18px);
+
+  transition:opacity .65s var(--spring),transform .65s var(--spring);
+
+  margin-right:.22em;
+
+  /* Strong shadow so words pop on any frame brightness */
+
+  text-shadow:
+
+    0 2px 20px rgba(0,0,0,1),
+
+    0 0  40px rgba(0,0,0,.8),
+
+    0 4px  8px rgba(0,0,0,.9)
+
+}
+
+.hw:last-child{margin-right:0}
+
+.hw.show{opacity:1;transform:none}
+
+
+
+.hero-divider{
+
+  width:40px;height:1px;background:rgba(200,169,126,.5);
+
+  opacity:0;transform:scaleX(0);transform-origin:left;
+
+  transition:opacity .5s,transform .6s var(--spring)
+
+}
+
+.hero-divider.show{opacity:1;transform:scaleX(1)}
+
+
+
+.hero-sub{
+
+  font-family:var(--f-body);font-size:14px;font-weight:300;
+
+  color:rgba(255,255,255,.6);letter-spacing:.5px;
+
+  opacity:0;transform:translateY(12px);
+
+  transition:opacity .7s var(--spring),transform .7s var(--spring)
+
+}
+
+.hero-sub.show{opacity:1;transform:none}
+
+
+
+.hero-cta-row{
+
+  display:flex;gap:16px;pointer-events:all;
+
+  opacity:0;transform:translateY(12px);
+
+  transition:opacity .7s var(--spring),transform .7s var(--spring)
+
+}
+
+.hero-cta-row.show{opacity:1;transform:none;pointer-events:all}
+
+
+
+/* Progress strip */
+
+.hero-progress{
+
+  position:absolute;bottom:0;left:0;
+
+  height:2px;width:0%;
+
+  background:linear-gradient(90deg,var(--rust),var(--gold));
+
+  z-index:6;transition:width .08s linear
+
+}
+
+
+
+/* Scroll hint */
+
+.scroll-hint{
+
+  position:absolute;bottom:36px;left:50%;
+
+  transform:translateX(-50%);z-index:4;
+
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+
+  color:rgba(255,255,255,.4);
+
+  animation:hint 2.8s ease-in-out infinite;
+
+  transition:opacity .4s
+
+}
+
+.scroll-hint span{
+
+  font-family:var(--f-body);font-size:9px;
+
+  letter-spacing:4px;text-transform:uppercase
+
+}
+
+.scroll-hint-line{
+
+  width:1px;height:44px;
+
+  background:linear-gradient(to bottom,rgba(200,169,126,.6),transparent)
+
+}
+
+@keyframes hint{
+
+  0%,100%{opacity:.4;transform:translateX(-50%) translateY(0)}
+
+  50%{opacity:.9;transform:translateX(-50%) translateY(8px)}
+
+}
+
+
+
+/* Scroll-back ghost bar at top   appears in main-content when at top */
+
+#back-hint{
+
+  position:fixed;top:0;left:0;right:0;
+
+  height:3px;
+
+  background:linear-gradient(90deg,var(--gold),var(--rust));
+
+  z-index:4000;
+
+  transform:scaleX(0);transform-origin:left;
+
+  transition:transform .4s var(--ease);
+
+  pointer-events:none;
+
+}
+
+#back-hint.visible{transform:scaleX(1)}
+
+
+
+/* ================================================================
+
+   MAIN CONTENT   hidden until hero exits
+
+================================================================ */
+
+#main{
+
+  opacity:0;
+
+  transition:opacity 1.1s .5s var(--spring)
+
+}
+
+#main.visible{opacity:1}
+
+
+
+/* ================================================================
+
+   BUTTONS   Luminous Glass (Option D, enhanced)
+
+   backdrop-filter makes the ribbed bg visible through each button
+
+================================================================ */
+
+.btn{
+
+  font-family:var(--f-body);
+
+  font-size:11px;font-weight:500;
+
+  padding:13px 32px;
+
+  min-width:160px;justify-content:center;
+
+  border-radius:10px;
+
+  display:inline-flex;align-items:center;gap:8px;
+
+  white-space:nowrap;
+
+  cursor:pointer;
+
+  letter-spacing:2px;text-transform:uppercase;
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Glass base   applied to ALL buttons Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+  backdrop-filter:blur(14px) saturate(2.2);
+
+  -webkit-backdrop-filter:blur(14px) saturate(2.2);
+
+  transition:all .35s var(--ease)
+
+}
+
+
+
+/* Gold-tinted luminous glass */
+
+.btn-gold{
+
+  background:rgba(200,169,126,.18);
+
+  color:rgba(240,212,144,1);
+
+  border:1px solid rgba(200,169,126,.55);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.30),  /* bright top shine */
+
+    inset 0 -1px 0 rgba(200,169,126,.12),
+
+    0 10px 36px rgba(0,0,0,.50),
+
+    0 0 0 1px rgba(200,169,126,.08)          /* faint outer ring */
+
+}
+
+.btn-gold:hover{
+
+  background:rgba(200,169,126,.30);
+
+  border-color:rgba(200,169,126,.80);
+
+  transform:translateY(-3px);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.40),
+
+    0 16px 48px rgba(0,0,0,.55),
+
+    0 0 28px rgba(200,169,126,.22)
+
+}
+
+
+
+/* White luminous glass */
+
+.btn-ghost{
+
+  background:rgba(255,255,255,.09);
+
+  color:rgba(255,255,255,.92);
+
+  border:1px solid rgba(255,255,255,.28);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.28),
+
+    inset 0 -1px 0 rgba(255,255,255,.05),
+
+    0 10px 36px rgba(0,0,0,.45)
+
+}
+
+.btn-ghost:hover{
+
+  background:rgba(255,255,255,.16);
+
+  border-color:rgba(255,255,255,.50);
+
+  transform:translateY(-3px);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.40),
+
+    0 16px 48px rgba(0,0,0,.55)
+
+}
+
+
+
+/* Dark version for light backgrounds */
+
+.btn-ghost-dark{
+
+  background:rgba(8,7,6,.55);
+
+  color:var(--black);
+
+  border:1px solid rgba(0,0,0,.25);
+
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12)
+
+}
+
+.btn-ghost-dark:hover{background:rgba(8,7,6,.75);color:var(--white)}
+
+
+
+/* Rust accent glass */
+
+.btn-rust{
+
+  background:rgba(123,58,42,.30);
+
+  color:var(--white);
+
+  border:1px solid rgba(123,58,42,.55);
+
+  box-shadow:
+
+    inset 0 1.5px 0 rgba(255,255,255,.20),
+
+    0 10px 36px rgba(0,0,0,.45)
+
+}
+
+.btn-rust:hover{
+
+  background:rgba(123,58,42,.50);
+
+  transform:translateY(-3px);
+
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.28),0 16px 40px rgba(0,0,0,.5)
+
+}
+
+
+
+/* Arrow icon */
+
+.arr{
+
+  display:inline-flex;align-items:center;
+
+  transition:transform .3s
+
+}
+
+.btn:hover .arr{transform:translateX(4px)}
+
+
+
+/* ================================================================
+
+   SHARED REVEAL
+
+================================================================ */
+
+.rx{
+
+  opacity:0;
+
+  transition:opacity .9s var(--spring),transform .9s var(--spring);
+
+}
+
+.rx.from-bottom{transform:translateY(52px)}
+
+.rx.from-left{transform:translateX(-52px)}
+
+.rx.from-right{transform:translateX(52px)}
+
+.rx.from-scale{transform:scale(.94)}
+
+.rx.in{opacity:1;transform:none}
+
+
+
+/* ================================================================
+
+   DIVIDERS
+
+================================================================ */
+
+.gold-line{
+
+  height:1px;
+
+  background:linear-gradient(90deg,transparent,rgba(200,169,126,.4),transparent);
+
+}
+
+.section-no{
+
+  font-family:var(--f-display);
+
+  font-size:120px;font-weight:300;
+
+  color:rgba(200,169,126,.06);
+
+  line-height:1;position:absolute;
+
+  top:-20px;left:-10px;
+
+  pointer-events:none;letter-spacing:-4px;
+
+  user-select:none
+
+}
+
+
+
+/* ================================================================
+
+   LABEL / HEADING SYSTEM
+
+================================================================ */
+
+.label{
+
+  display:inline-flex;align-items:center;gap:12px;
+
+  font-family:var(--f-body);
+
+  font-size:10px;font-weight:500;
+
+  letter-spacing:4px;text-transform:uppercase;
+
+  color:var(--gold)
+
+}
+
+.label::before{
+
+  content:'';display:block;
+
+  width:32px;height:1px;background:var(--gold)
+
+}
+
+.label.dark{color:var(--gold-dk)}
+
+.label.dark::before{background:var(--gold-dk)}
+
+
+
+.display-h{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(40px,5vw,70px);
+
+  font-weight:300;line-height:1.05;
+
+  color:var(--white);letter-spacing:-.5px
+
+}
+
+.display-h em{font-style:italic;color:var(--gold)}
+
+.display-h.on-light{color:var(--black)}
+
+.display-h.on-light em{color:var(--rust)}
+
+
+
+.body-text{
+
+  font-family:var(--f-body);font-size:15px;
+
+  font-weight:300;line-height:1.9;
+
+  color:rgba(255,255,255,.5)
+
+}
+
+.body-text.on-light{color:rgba(0,0,0,.55)}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  ABOUT  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#about{
+
+  background:transparent;
+
+  position:relative;overflow:hidden
+
+}
+
+/* Soft gold shimmer in top-left corner */
+
+#about::before{
+
+  content:'';position:absolute;
+
+  top:-120px;left:-120px;
+
+  width:500px;height:500px;
+
+  background:radial-gradient(circle,rgba(200,169,126,.06) 0%,transparent 65%);
+
+  pointer-events:none
+
+}
+
+/* Warm wood-tone glow bottom-right */
+
+#about::after{
+
+  content:'';position:absolute;
+
+  bottom:-180px;right:-180px;
+
+  width:700px;height:700px;
+
+  background:radial-gradient(circle,rgba(92,61,30,.18) 0%,transparent 65%);
+
+  pointer-events:none
+
+}
+
+/* Glass surface line at the very top of the section */
+
+#about .about-wrap::before{
+
+  content:'';
+
+  position:absolute;top:0;left:60px;right:60px;
+
+  height:1px;
+
+  background:linear-gradient(90deg,transparent,rgba(200,169,126,.18) 30%,rgba(200,169,126,.18) 70%,transparent);
+
+}
+
+
+
+.about-wrap{
+
+  max-width:1280px;margin:0 auto;
+
+  padding:100px 60px 80px;
+
+  position:relative;
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Glass panel Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+  background:rgba(8,7,6,.38);
+
+  backdrop-filter:blur(24px) saturate(1.4);
+
+  -webkit-backdrop-filter:blur(24px) saturate(1.4);
+
+  border-top:1px solid rgba(200,169,126,.12);
+
+  border-bottom:1px solid rgba(255,255,255,.04);
+
+  box-shadow:
+
+    inset 0 1px 0 rgba(255,255,255,.07),  /* top inner shine */
+
+    0 24px 64px rgba(0,0,0,.55)           /* depth shadow */
+
+}
+
+
+
+/* Top row: fixed 50/50, fixed height, overflow-contained */
+
+.about-hero-row{
+
+  display:grid;
+
+  grid-template-columns:50% 50%;
+
+  gap:0;
+
+  min-height:580px;height:auto; /* auto so content never clips */
+
+  align-items:stretch;
+
+  margin-bottom:2px;
+
+  overflow:visible
+
+}
+
+.about-copy-col{
+
+  display:flex;flex-direction:column;justify-content:flex-start;
+
+  padding:56px 56px 56px 48px;
+
+  position:relative;overflow:hidden;
+
+  min-width:0;
+
+  /* Glass-black panel */
+
+  background:rgba(12,11,9,.72);
+
+  backdrop-filter:blur(18px);
+
+  -webkit-backdrop-filter:blur(18px);
+
+  border-radius:16px;
+
+  border:1px solid rgba(200,169,126,.10);
+
+  margin-right:20px;             /* gap between text and image */
+
+  box-shadow:inset 0 1px 0 rgba(200,169,126,.08),
+
+             0 24px 64px rgba(0,0,0,.45)
+
+}
+
+.about-copy-col .section-no{font-size:160px;top:-20px;left:-10px}
+
+.about-copy-col .label{margin-bottom:24px;position:relative;z-index:1}
+
+.about-h{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(36px,3.8vw,58px);
+
+  font-weight:300;line-height:1.08;
+
+  color:var(--white);letter-spacing:-.5px;
+
+  margin-bottom:24px;position:relative;z-index:1
+
+}
+
+.about-h em{font-style:italic;color:var(--gold)}
+
+.about-body{
+
+  font-family:var(--f-body);font-size:14px;
+
+  font-weight:300;line-height:1.85;
+
+  color:rgba(255,255,255,.48);
+
+  margin-bottom:32px;position:relative;z-index:1;
+
+  max-width:420px
+
+}
+
+
+
+/* Stats row */
+
+.stats-row{
+
+  display:flex;gap:0;margin-bottom:36px;position:relative;z-index:1
+
+}
+
+.stat{
+
+  padding:0 32px 0 0;
+
+  border-right:1px solid rgba(200,169,126,.12)
+
+}
+
+.stat:last-child{border-right:none;padding-left:32px;padding-right:0}
+
+.stat:first-child{padding-left:0}
+
+.stat-n{
+
+  font-family:var(--f-display);
+
+  font-size:44px;font-weight:300;
+
+  color:var(--gold);line-height:1;
+
+  letter-spacing:-1px
+
+}
+
+.stat-l{
+
+  font-family:var(--f-body);font-size:10px;
+
+  font-weight:400;color:rgba(255,255,255,.3);
+
+  letter-spacing:2px;text-transform:uppercase;
+
+  margin-top:4px
+
+}
+
+
+
+/* About image col   fully contained */
+
+.about-img-col{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:16px;            /* rounded edges */
+
+  min-width:0
+
+}
+
+.about-img-col img{
+
+  position:absolute;    /* fill parent exactly */
+
+  inset:0;
+
+  width:100%;height:100%;object-fit:cover;
+
+  filter:brightness(.88) saturate(.88)
+
+}
+
+/* Dark premium overlay on the about image */
+
+.about-img-col::before{
+
+  content:'';position:absolute;inset:0;
+
+  background:
+
+    linear-gradient(to bottom,
+
+      rgba(6,5,4,.28) 0%,
+
+      rgba(6,5,4,.10) 40%,
+
+      rgba(6,5,4,.42) 100%),
+
+    linear-gradient(to right,
+
+      rgba(6,5,4,.38) 0%,
+
+      transparent    35%);
+
+  z-index:1;pointer-events:none
+
+}
+
+.about-img-col::after{
+
+  content:'';position:absolute;
+
+  inset:16px;
+
+  border:1px solid rgba(200,169,126,.14);
+
+  pointer-events:none;z-index:2
+
+}
+
+
+
+/* ================================================================
+
+   ARRIVAL ANIMATIONS
+
+   Triggered when #main first gets .visible after hero exit
+
+================================================================ */
+
+
+
+/* Copy column slides in from the left */
+
+.arrive-left{
+
+  opacity:0;
+
+  transform:translateX(-50px);
+
+}
+
+#main.visible .arrive-left{
+
+  animation:arrLeft 1s var(--spring) .15s both;
+
+}
+
+@keyframes arrLeft{
+
+  to{opacity:1;transform:none}
+
+}
+
+
+
+/* Image column wipes in from the right (clip-path curtain) */
+
+.arrive-img{
+
+  clip-path:inset(0 100% 0 0);
+
+}
+
+#main.visible .arrive-img{
+
+  animation:arrImg 1.1s var(--spring) .35s both;
+
+}
+
+@keyframes arrImg{
+
+  to{clip-path:inset(0 0% 0 0)}
+
+}
+
+
+
+/* Mosaic cells fade + stagger up */
+
+.arrive-up{
+
+  opacity:0;
+
+  transform:translateY(36px);
+
+}
+
+#main.visible .arrive-up{
+
+  animation:arrUp .85s var(--spring) var(--d,0s) both;
+
+}
+
+@keyframes arrUp{
+
+  to{opacity:1;transform:none}
+
+}
+
+
+
+/* Quote bar fades in */
+
+.arrive-fade{
+
+  opacity:0;
+
+}
+
+#main.visible .arrive-fade{
+
+  animation:arrFade .9s ease var(--d,0s) both;
+
+}
+
+@keyframes arrFade{
+
+  to{opacity:1}
+
+}
+
+/* Year badge */
+
+.img-badge{
+
+  position:absolute;bottom:40px;left:40px;z-index:3;
+
+  background:rgba(8,8,8,.75);
+
+  backdrop-filter:blur(12px);
+
+  border:1px solid rgba(200,169,126,.2);
+
+  padding:20px 28px;
+
+  border-radius:14px              /* rounded */
+
+}
+
+.img-badge-num{
+
+  font-family:var(--f-display);
+
+  font-size:38px;font-weight:300;
+
+  color:var(--gold);line-height:1;letter-spacing:-1px
+
+}
+
+.img-badge-label{
+
+  font-family:var(--f-body);font-size:10px;
+
+  color:rgba(255,255,255,.4);
+
+  letter-spacing:2px;text-transform:uppercase;margin-top:4px
+
+}
+
+
+
+/* Mosaic row below */
+
+.about-mosaic-row{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:14px;           /* visible gap between images */
+
+  height:480px;
+
+  padding:20px 40px;  /* breathing room on sides */
+
+  margin-bottom:0
+
+}
+
+.mosaic-cell{
+
+  overflow:hidden;position:relative;cursor:pointer;
+
+  border-radius:14px;            /* rounded edges */
+
+  background:var(--charcoal)
+
+}
+
+.mosaic-cell img{
+
+  width:100%;height:100%;object-fit:cover;
+
+  transition:transform .8s var(--ease),filter .5s;
+
+  filter:brightness(.7) saturate(.8)
+
+}
+
+.mosaic-cell:hover img{transform:scale(1.06);filter:brightness(.9) saturate(1)}
+
+/* Hover label */
+
+.mosaic-cell-label{
+
+  position:absolute;bottom:0;left:0;right:0;
+
+  padding:24px;
+
+  background:linear-gradient(to top,rgba(8,8,8,.8) 0%,transparent 100%);
+
+  font-family:var(--f-display);font-size:18px;font-style:italic;
+
+  color:rgba(255,255,255,.7);
+
+  transform:translateY(4px);opacity:0;
+
+  transition:all .4s var(--ease)
+
+}
+
+.mosaic-cell:hover .mosaic-cell-label{transform:translateY(0);opacity:1}
+
+
+
+/* Quote bar */
+
+.about-quote-bar{
+
+  padding:80px 120px;
+
+  text-align:center;position:relative;
+
+  border-radius:20px;               /* rounded quote block */
+
+  background:rgba(8,7,6,.25);
+
+  margin:0 20px 0
+
+}
+
+.about-quote-bar::before{
+
+  content:'"';
+
+  position:absolute;top:40px;left:80px;
+
+  font-family:var(--f-display);
+
+  font-size:120px;color:rgba(200,169,126,.08);
+
+  line-height:1;font-style:italic
+
+}
+
+.about-quote-text{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(24px,2.5vw,36px);
+
+  font-style:italic;font-weight:300;
+
+  color:rgba(200,169,126,.7);
+
+  line-height:1.5;max-width:800px;margin:0 auto
+
+}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  PHILOSOPHY  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#philosophy{
+
+  background:transparent;
+
+  position:relative;overflow:hidden
+
+}
+
+#philosophy::after{
+
+  content:'';position:absolute;
+
+  top:-300px;left:-300px;
+
+  width:800px;height:800px;
+
+  background:radial-gradient(circle,rgba(92,61,30,.12) 0%,transparent 65%);
+
+  pointer-events:none
+
+}
+
+
+
+.phil-wrap{
+
+  max-width:1480px;margin:0 auto;
+
+  padding:120px 80px;
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Glass panel Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+  background:rgba(8,7,6,.38);
+
+  backdrop-filter:blur(24px) saturate(1.4);
+
+  -webkit-backdrop-filter:blur(24px) saturate(1.4);
+
+  border-top:1px solid rgba(200,169,126,.10);
+
+  border-bottom:1px solid rgba(255,255,255,.04);
+
+  box-shadow:
+
+    inset 0 1px 0 rgba(255,255,255,.06),
+
+    0 24px 64px rgba(0,0,0,.55)
+
+}
+
+.phil-header{
+
+  display:grid;grid-template-columns: 5fr 6fr;
+
+  gap:80px;align-items:end;
+
+  margin-bottom:100px
+
+}
+
+.phil-heading-col .display-h{margin-top:20px}
+
+.phil-sub-col{
+
+  display:flex;flex-direction:column;
+
+  justify-content:flex-end;padding-bottom:6px
+
+}
+
+.phil-body-text{
+
+  font-family:var(--f-body);font-size:15px;
+
+  font-weight:300;line-height:1.9;
+
+  color:rgba(255,255,255,.42);
+
+  margin-bottom:32px
+
+}
+
+
+
+/* Pillars   premium card design */
+
+.pillars-list{
+
+  display:grid;grid-template-columns:repeat(3,1fr);
+
+  gap:20px;                       /* visible gap between cards */
+
+  margin-bottom:20px
+
+}
+
+.pillar{
+
+  background:linear-gradient(135deg,rgba(200,169,126,.06) 0%,rgba(8,8,8,0) 100%);
+
+  border:1px solid rgba(200,169,126,.12);
+
+  border-left:2px solid var(--gold);
+
+  border-radius:16px;                  /* rounded corners */
+
+  padding:52px 44px 48px;
+
+  cursor:pointer;position:relative;
+
+  overflow:visible;
+
+  transition:background .45s,border-color .45s,transform .35s var(--spring),
+
+             box-shadow .35s
+
+}
+
+.pillar:hover{
+
+  background:linear-gradient(135deg,rgba(200,169,126,.1) 0%,rgba(8,8,8,0) 100%);
+
+  border-color:rgba(200,169,126,.35);
+
+  border-left-color:var(--gold-lt);
+
+  transform:translateY(-4px);
+
+  box-shadow:0 24px 48px rgba(0,0,0,.4)
+
+}
+
+.pillar-big-num{
+
+  font-family:var(--f-display);
+
+  font-size:72px;font-weight:300;
+
+  color:rgba(200,169,126,.12);
+
+  line-height:1;margin-bottom:20px;
+
+  letter-spacing:-3px;
+
+  transition:color .4s
+
+}
+
+.pillar:hover .pillar-big-num{color:rgba(200,169,126,.22)}
+
+.pillar-icon{
+
+  width:40px;height:40px;border-radius:50%;
+
+  border:1px solid rgba(200,169,126,.3);
+
+  display:flex;align-items:center;justify-content:center;
+
+  color:var(--gold);margin-bottom:20px;
+
+  transition:background .3s,border-color .3s
+
+}
+
+.pillar:hover .pillar-icon{
+
+  background:rgba(200,169,126,.1);
+
+  border-color:var(--gold)
+
+}
+
+.pillar-title{
+
+  font-family:var(--f-display);
+
+  font-size:26px;font-weight:400;
+
+  color:rgba(255,255,255,.9);
+
+  margin-bottom:14px;line-height:1.2;
+
+  transition:color .3s
+
+}
+
+.pillar:hover .pillar-title{color:var(--white)}
+
+.pillar-body{
+
+  font-family:var(--f-body);
+
+  font-size:13.5px;font-weight:300;
+
+  color:rgba(255,255,255,.45);line-height:1.85;
+
+  max-width:340px
+
+}
+
+
+
+/* Full-bleed split */
+
+.phil-split{
+
+  display:grid;grid-template-columns:1.2fr 1fr;
+
+  gap:16px;height:540px          /* add gap so rounded corners show */
+
+}
+
+.phil-img{
+
+  position:relative;overflow:hidden;cursor:pointer;
+
+  border-radius:16px;            /* rounded edges */
+
+  background:var(--charcoal)
+
+}
+
+.phil-img img{
+
+  width:100%;height:100%;object-fit:cover;
+
+  filter:brightness(.5) saturate(.7);
+
+  transition:transform .9s var(--ease),filter .6s
+
+}
+
+.phil-img:hover img{transform:scale(1.04);filter:brightness(.7) saturate(.9)}
+
+.phil-img-inner{
+
+  position:absolute;inset:0;z-index:2;
+
+  display:flex;flex-direction:column;justify-content:flex-end;
+
+  padding:48px
+
+}
+
+.phil-img-tag{
+
+  font-family:var(--f-body);font-size:10px;
+
+  letter-spacing:3px;text-transform:uppercase;
+
+  color:var(--gold);margin-bottom:10px
+
+}
+
+.phil-img-title{
+
+  font-family:var(--f-display);
+
+  font-size:38px;font-style:italic;font-weight:300;
+
+  color:var(--white);line-height:1.1
+
+}
+
+.phil-img-line{
+
+  width:40px;height:1px;background:var(--gold);
+
+  margin-top:16px;opacity:.6
+
+}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  PROJECTS  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#projects{background:transparent;position:relative}
+
+
+
+.proj-wrap{
+
+  max-width:1280px;margin:0 auto;
+
+  padding:120px 60px;
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Glass panel Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+  background:rgba(8,7,6,.38);
+
+  backdrop-filter:blur(24px) saturate(1.4);
+
+  -webkit-backdrop-filter:blur(24px) saturate(1.4);
+
+  border-top:1px solid rgba(200,169,126,.10);
+
+  border-bottom:1px solid rgba(255,255,255,.04);
+
+  box-shadow:
+
+    inset 0 1px 0 rgba(255,255,255,.06),
+
+    0 24px 64px rgba(0,0,0,.55)
+
+}
+
+.proj-header{
+
+  display:flex;justify-content:space-between;align-items:flex-end;
+
+  margin-bottom:64px
+
+}
+
+
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Symmetric 2-column top row Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+.proj-top-row{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;   /* perfectly equal */
+
+  gap:16px;
+
+  margin-bottom:16px
+
+}
+
+
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Symmetric 3-column bottom row Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+.proj-bottom-row{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr 1fr; /* perfectly equal */
+
+  gap:16px
+
+}
+
+
+
+/* Card base */
+
+.proj-card{
+
+  position:relative;overflow:hidden;
+
+  cursor:pointer;
+
+  background:var(--charcoal);
+
+  border-radius:16px             /* rounded edges */
+
+}
+
+
+
+/* Top row cards   taller */
+
+.proj-card-top{
+
+  height:min(56vh,480px)
+
+}
+
+
+
+/* Bottom row cards   shorter */
+
+.proj-card-bot{
+
+  height:min(38vh,320px)
+
+}
+
+
+
+.proj-card img{
+
+  position:absolute;inset:0;
+
+  width:100%;height:100%;object-fit:cover;
+
+  filter:brightness(.52) saturate(.75);
+
+  transition:transform .9s var(--ease),filter .6s
+
+}
+
+.proj-card:hover img{transform:scale(1.06);filter:brightness(.7) saturate(1)}
+
+
+
+.proj-card-inner{
+
+  position:absolute;inset:0;z-index:2;
+
+  display:flex;flex-direction:column;justify-content:flex-end;
+
+  padding:36px;
+
+  background:linear-gradient(to top,rgba(8,8,8,.88) 0%,rgba(8,8,8,.08) 55%,transparent 100%)
+
+}
+
+.proj-number{
+
+  font-family:var(--f-display);
+
+  font-size:10px;color:var(--gold);
+
+  letter-spacing:4px;text-transform:uppercase;
+
+  margin-bottom:10px
+
+}
+
+.proj-title{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(22px,2.4vw,36px);
+
+  font-weight:300;color:var(--white);
+
+  line-height:1.1;margin-bottom:6px
+
+}
+
+.proj-location{
+
+  font-family:var(--f-body);
+
+  font-size:11px;color:rgba(255,255,255,.4);
+
+  letter-spacing:1.5px;margin-bottom:20px
+
+}
+
+.proj-link{
+
+  display:inline-flex;align-items:center;gap:8px;
+
+  font-family:var(--f-body);font-size:10px;
+
+  font-weight:500;letter-spacing:3px;text-transform:uppercase;
+
+  color:var(--gold);
+
+  opacity:0;transform:translateX(-8px);
+
+  transition:opacity .4s,transform .4s
+
+}
+
+.proj-card:hover .proj-link{opacity:1;transform:translateX(0)}
+
+
+
+/* Projects nav dots */
+
+.proj-nav{
+
+  display:flex;gap:8px;margin-top:40px;
+
+  justify-content:center
+
+}
+
+.proj-dot{
+
+  width:32px;height:2px;background:rgba(255,255,255,.15);
+
+  border-radius:1px;cursor:pointer;
+
+  transition:background .3s,width .3s
+
+}
+
+.proj-dot.active{background:var(--gold);width:48px}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  SERVICES  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#services{
+
+    background:transparent;
+
+    position:relative;overflow:visible
+
+  }
+
+#services::before{
+
+  content:'';position:absolute;
+
+  top:50%;right:-200px;transform:translateY(-50%);
+
+  width:600px;height:600px;
+
+  background:radial-gradient(circle,rgba(92,61,30,.015) 0%,transparent 70%);
+
+  pointer-events:none
+
+}
+
+.svc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;}
+
+
+
+/* Left: sticky image */
+  .svc-img-wrap{
+    position:sticky; top:140px; width: 100%; aspect-ratio: 4/5; height: auto; overflow:hidden;
+    border-radius:16px;
+    border: 1px solid rgba(200,169,126,0.25);
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+
+.svc-img{
+
+  position:absolute;inset:0;
+
+  width:100%;height:100%;object-fit:cover;
+
+  opacity:0;transform:scale(1.04);
+
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+
+  filter:brightness(.8) saturate(.8)
+
+}
+
+.svc-img.on{opacity:1;transform:scale(1)}
+
+
+
+/* Gold corner accents */
+
+.svc-img-wrap::before,.svc-img-wrap::after{
+
+  content:'';position:absolute;z-index:2;
+
+  width:40px;height:40px;
+
+}
+
+.svc-img-wrap::before{
+
+  top:16px;left:16px;
+
+  border-top:1px solid rgba(200,169,126,.4);
+
+  border-left:1px solid rgba(200,169,126,.4)
+
+}
+
+.svc-img-wrap::after{
+
+  bottom:16px;right:16px;
+
+  border-bottom:1px solid rgba(200,169,126,.4);
+
+  border-right:1px solid rgba(200,169,126,.4)
+
+}
+
+
+
+/* Right: services list */
+
+.svc-right{padding-top:0; max-width: 100%; display: flex; flex-direction: column; justify-content: center;}
+
+.svc-header{margin-bottom:50px}
+
+.svc-heading{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(36px, 4vw, 52px);
+
+  font-weight:300;color:var(--white);
+
+  line-height:1.1;margin-top:16px;letter-spacing:-.5px
+
+}
+
+.svc-heading span{font-style:italic;color:var(--gold)}
+
+
+
+.svc-item{
+    display:flex;align-items:flex-start;gap:28px;
+    padding:36px 24px;
+    margin: 0 -24px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    border-left: 2px solid transparent;
+    cursor:pointer;
+    position:relative;
+    transition: all .5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+.svc-item:first-of-type{border-top:1px solid rgba(255,255,255,.05)}
+
+.svc-item:hover, .svc-item.on {
+    padding-left: 40px;
+    border-left: 2px solid var(--gold);
+    background: linear-gradient(90deg, rgba(200,169,126,0.07) 0%, transparent 100%);
+    box-shadow: inset 0 -1px 0 rgba(200,169,126,0.15);
+  }
+
+
+
+.svc-n{
+
+  font-family:var(--f-display);
+
+  font-size:11px;color:var(--gold-dk);
+
+  letter-spacing:2px;padding-top:5px;min-width:24px;
+
+  transition:color .3s
+
+}
+
+.svc-item.on .svc-n,.svc-item:hover .svc-n{color:var(--gold)}
+
+
+
+.svc-body{flex:1}
+
+.svc-name{
+    font-family:var(--f-display);
+    font-size:20px;font-weight:300;
+    letter-spacing: 0.5px;
+    color:rgba(255,255,255,.5);
+    margin-bottom:0;
+    transition:color .3s;
+  }
+
+.svc-item.on .svc-name,.svc-item:hover .svc-name{color:var(--white)}
+
+.svc-desc{
+    font-family:var(--f-body);font-size:14px;
+    color:rgba(255,255,255,.45);line-height:1.75;
+    max-height:0;overflow:hidden;
+    transition:max-height .5s,opacity .5s,margin-top .5s;
+    opacity:0;margin-top:0;
+  }
+
+.svc-item.on .svc-desc{max-height:160px;opacity:1;margin-top:12px}
+
+
+
+.svc-arrow{
+
+  color:rgba(200,169,126,.25);flex-shrink:0;
+
+  padding-top:6px;
+
+  transition:color .3s,transform .3s
+
+}
+
+.svc-item.on .svc-arrow,.svc-item:hover .svc-arrow{
+
+  color:var(--gold);transform:translateX(6px)
+
+}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  CTA  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#cta{
+
+  position:relative;height:600px;
+
+  display:flex;align-items:center;justify-content:center;
+
+  overflow:hidden
+
+}
+
+.cta-bg{
+
+  position:absolute;inset:0;
+
+  background:url('https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2400&q=80')
+
+    center/cover no-repeat;
+
+  filter:brightness(.25) saturate(.5);
+
+  transform:scale(1.05)
+
+}
+
+.cta-inner{
+
+  position:relative;z-index:2;
+
+  text-align:center;max-width:780px;padding:0 40px
+
+}
+
+.cta-eyebrow{
+
+  font-family:var(--f-body);font-size:10px;
+
+  letter-spacing:5px;text-transform:uppercase;
+
+  color:var(--gold);margin-bottom:24px
+
+}
+
+.cta-heading{
+
+  font-family:var(--f-display);
+
+  font-size:clamp(36px,4.5vw,62px);
+
+  font-weight:300;color:var(--white);
+
+  line-height:1.1;letter-spacing:-.5px;margin-bottom:40px
+
+}
+
+.cta-heading em{font-style:italic;color:var(--gold)}
+
+.cta-btns{display:flex;gap:16px;justify-content:center}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  BLOG  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#blog{background:transparent;position:relative}
+
+
+
+.blog-wrap{
+
+  max-width:1480px;margin:0 auto;
+
+  padding:120px 80px;
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Glass panel Ã¢â€â‚¬Ã¢â€â‚¬ */
+
+  background:rgba(8,7,6,.38);
+
+  backdrop-filter:blur(24px) saturate(1.4);
+
+  -webkit-backdrop-filter:blur(24px) saturate(1.4);
+
+  border-top:1px solid rgba(200,169,126,.10);
+
+  border-bottom:1px solid rgba(255,255,255,.04);
+
+  box-shadow:
+
+    inset 0 1px 0 rgba(255,255,255,.06),
+
+    0 24px 64px rgba(0,0,0,.55)
+
+}
+
+.blog-hdr{
+
+  display:flex;justify-content:space-between;align-items:flex-end;
+
+  margin-bottom:72px
+
+}
+
+
+
+.blog-grid{
+
+  display:grid;
+
+  grid-template-columns:1.4fr 1fr 1fr;
+
+  gap:2px
+
+}
+
+.blog-card{
+
+  background:var(--charcoal);
+
+  cursor:pointer;overflow:hidden;
+
+  display:flex;flex-direction:column;
+
+  border-radius:16px;            /* rounded edges */
+
+  transition:transform .4s var(--ease)
+
+}
+
+.blog-card:hover{transform:translateY(-6px)}
+
+
+
+.blog-img{overflow:hidden;border-radius:16px 16px 0 0}
+
+.blog-card:nth-child(1) .blog-img{height:280px}
+
+.blog-card:nth-child(2) .blog-img,
+
+.blog-card:nth-child(3) .blog-img{height:280px}
+
+.blog-img img{
+
+  width:100%;height:100%;object-fit:cover;
+
+  filter:brightness(.65) saturate(.7);
+
+  transition:transform .7s var(--ease),filter .5s
+
+}
+
+.blog-card:hover .blog-img img{transform:scale(1.05);filter:brightness(.85) saturate(.9)}
+
+
+
+.blog-body{padding:32px;flex:1;display:flex;flex-direction:column}
+
+.blog-tag{
+
+  font-family:var(--f-body);font-size:9px;
+
+  letter-spacing:3px;text-transform:uppercase;
+
+  color:var(--gold-dk);margin-bottom:14px
+
+}
+
+.blog-title{
+
+  font-family:var(--f-display);
+
+  font-size:22px;font-weight:400;
+
+  color:rgba(255,255,255,.8);line-height:1.3;
+
+  margin-bottom:12px;flex:1;
+
+  transition:color .3s
+
+}
+
+.blog-card:hover .blog-title{color:var(--gold)}
+
+.blog-excerpt{
+
+  font-family:var(--f-body);font-size:13px;
+
+  color:rgba(255,255,255,.32);line-height:1.7;
+
+  margin-bottom:24px
+
+}
+
+.blog-more{
+
+  display:inline-flex;align-items:center;gap:8px;
+
+  font-family:var(--f-body);font-size:10px;
+
+  font-weight:500;letter-spacing:3px;text-transform:uppercase;
+
+  color:var(--gold);margin-top:auto
+
+}
+
+
+
+/* ================================================================
+
+   Ã¢â€“Ë†Ã¢â€“Ë†  FOOTER  Ã¢â€“Ë†Ã¢â€“Ë†
+
+================================================================ */
+
+#footer{
+
+  background:rgba(4,4,3,.82);      /* more solid so content is visible */
+
+  backdrop-filter:blur(24px);
+
+  -webkit-backdrop-filter:blur(24px)
+
+}
+
+
+
+.foot-top{
+
+  max-width:1480px;margin:0 auto;
+
+  padding:90px 80px 72px;
+
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+
+  gap:60px;
+
+  border-bottom:1px solid rgba(255,255,255,.12)
+
+}
+
+
+
+.foot-logo{
+
+  font-family:var(--f-display);
+
+  font-size:30px;font-weight:400;
+
+  color:var(--white);letter-spacing:-.5px
+
+}
+
+.foot-logo-sub{
+
+  font-family:var(--f-body);font-size:9px;
+
+  color:var(--gold);letter-spacing:3px;
+
+  text-transform:uppercase;margin-top:4px
+
+}
+
+.foot-tagline{
+
+  font-family:var(--f-display);
+
+  font-size:14px;font-style:italic;
+
+  color:rgba(255,255,255,.25);
+
+  margin-top:20px;line-height:1.7;max-width:260px;
+
+  color:rgba(255,255,255,.65)        /* was .25   now readable */
+
+}
+
+.foot-socials{display:flex;gap:14px;margin-top:28px}
+
+.foot-social{
+
+  width:36px;height:36px;border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  display:flex;align-items:center;justify-content:center;
+
+  color:rgba(255,255,255,.35);
+
+  font-family:var(--f-body);font-size:11px;
+
+  transition:all .3s
+
+}
+
+.foot-social:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+
+
+
+.foot-col-title{
+
+  font-family:var(--f-body);font-size:9px;
+
+  font-weight:500;letter-spacing:3px;text-transform:uppercase;
+
+  color:rgba(255,255,255,.62);margin-bottom:24px  /* was .2 */
+
+}
+
+.foot-links{display:flex;flex-direction:column;gap:14px}
+
+.foot-link{
+
+  font-family:var(--f-body);font-size:13px;
+
+  color:rgba(255,255,255,.72);       /* was .4 */
+
+  transition:color .3s,transform .3s;display:inline-block
+
+}
+
+.foot-link:hover{color:var(--gold);transform:translateX(5px)}
+
+
+
+.foot-ci{display:flex;flex-direction:column;gap:3px;margin-bottom:16px}
+
+.foot-ci-label{
+
+  font-family:var(--f-body);font-size:9px;
+
+  color:rgba(255,255,255,.58);letter-spacing:2px;text-transform:uppercase  /* was .2 */
+
+}
+
+.foot-ci-val{
+
+  font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.80)  /* was .42 */
+
+}
+
+
+
+.foot-bottom{
+
+  max-width:1480px;margin:0 auto;
+
+  padding:22px 80px;
+
+  display:flex;justify-content:space-between;align-items:center
+
+}
+
+.foot-copy{
+
+  font-family:var(--f-body);font-size:11px;
+
+  color:rgba(255,255,255,.55)        /* was .18 */
+
+}
+
+.foot-bottom-links{display:flex;gap:24px}
+
+.foot-bottom-link{
+
+  font-family:var(--f-body);font-size:11px;
+
+  color:rgba(255,255,255,.55);transition:color .3s  /* was .18 */
+
+}
+
+.foot-bottom-link:hover{color:var(--gold)}
+
+
+
+/* Gold accent line */
+
+.foot-gold{
+
+  height:1px;margin:0 80px;
+
+  background:linear-gradient(90deg,transparent,rgba(200,169,126,.3),transparent)
+
+}
+
+
+
+/* WhatsApp */
+
+.wa{
+
+  position:fixed;bottom:28px;right:28px;
+
+  width:52px;height:52px;border-radius:50%;
+
+  background:rgba(200,169,126,1);
+
+  display:flex;align-items:center;justify-content:center;
+
+  z-index:8000;
+
+  box-shadow:0 6px 22px rgba(200,169,126,.40);
+
+  transition:transform .3s,box-shadow .3s
+
+}
+
+.wa:hover{transform:scale(1.1);box-shadow:0 10px 30px rgba(200,169,126,.55)}
+
+.wa svg{width:24px;height:24px;fill:white}
+
+
+
+/* ================================================================
+
+   RESPONSIVE
+
+================================================================ */
+
+@media(max-width:1200px){
+
+  .about-hero-row{grid-template-columns:1fr;height:auto}
+
+  .about-copy-col{padding:60px 0 48px;min-width:unset}
+
+  .about-img-col{height:480px;min-width:unset;position:relative}
+
+  .about-img-col img{position:absolute;inset:0}
+
+  .about-copy-col .section-no{display:none}
+
+  .phil-header{grid-template-columns:1fr;gap:40px}
+
+  .phil-split{grid-template-columns:1fr;height:auto}
+
+  .phil-img{height:320px}
+
+  .proj-card-xl{width:80vw}
+
+  .proj-card-lg{width:50vw}
+
+  .svc-wrap{grid-template-columns:1fr;gap:60px}
+
+  .svc-img-wrap{position:static;height:360px}
+
+  .foot-top{grid-template-columns:1fr 1fr;gap:48px}
+
+}
+
+@media(max-width:768px){
+
+  /* Fully transparent nav on mobile   no blur box */
+
+  .nav,.nav.solid{
+
+    backdrop-filter:none !important;
+
+    -webkit-backdrop-filter:none !important;
+
+    background:transparent !important;
+
+    border-bottom:none !important
+
+  }
+
+  .hero-vignette{
+
+    background:rgba(0,0,0,.40)
+
+  }
+
+
+
+  .nav-links,.nav-btn{display:none}
+
+  .ham{display:flex}
+
+  .nav{padding:0 24px}
+
+  .about-wrap,.phil-wrap,.blog-wrap{padding:80px 24px}
+
+  .about-h{font-size:24px !important;line-height:1.15;margin-bottom:16px;letter-spacing:-.3px}
+
+  .about-body{font-size:13px;margin-bottom:20px}
+
+  .proj-wrap{padding:80px 0 !important}
+
+  #projects{overflow:visible !important}
+
+  .proj-header{padding:0 24px;margin-bottom:40px}
+
+  .proj-top-row,.proj-bottom-row{
+
+    display:flex !important;flex-direction:column;
+
+    overflow-x:visible;gap:16px;padding:0 24px;
+
+    scrollbar-width:auto
+
+  }
+
+  .proj-top-row{margin-bottom:0}
+
+  .proj-card{width:100% !important;flex-shrink:1}
+
+  .proj-card-top{height:240px}
+
+  .proj-card-bot{height:200px}
+
+  .proj-card-inner{padding:20px}
+
+  .proj-title{font-size:20px}
+
+  .about-copy-col{text-align:left;padding-bottom:40px}
+
+  .about-body{max-width:100%;padding-right:8px}
+
+  .about-mosaic-row{grid-template-columns:1fr 1fr;height:auto}
+
+  .about-mosaic-row .mosaic-cell{height:200px}
+
+  .about-mosaic-row .mosaic-cell:last-child{display:none}
+
+  .about-quote-bar{padding:60px 24px}
+
+  .pillars-list{grid-template-columns:1fr}
+
+  .proj-small-row{grid-template-columns:1fr}
+
+  .blog-grid{grid-template-columns:1fr}
+
+  .blog-card:nth-child(1) .blog-img{height:240px}
+
+  .hero-pill{padding:28px 24px 32px}
+
+  .hero-eyebrow{font-size:8px;letter-spacing:2px;white-space:nowrap;gap:8px}
+
+  .hero-eyebrow::before,.hero-eyebrow::after{width:20px}
+
+  .stats-row{gap:0;flex-wrap:wrap}
+
+  .stat{padding:0 20px 0 0}
+
+  .stat:last-child{padding-left:20px}
+
+  .hero-cta-row{flex-direction:column;align-items:center}
+
+  .cta-btns{flex-direction:column;align-items:center}
+
+  .proj-header,.blog-hdr,.proj-header{flex-direction:column;align-items:flex-start;gap:20px}
+
+  .foot-top{grid-template-columns:1fr;padding:60px 24px 48px}
+
+  .foot-gold,.foot-bottom{padding-left:24px;padding-right:24px}
+
+  .svc-img-wrap{display:none !important}
+
+  .svc-wrap{display:block !important;padding:100px 0 !important}
+
+  #services{overflow:visible !important}
+
+  .svc-header{padding:0 24px;margin-bottom:40px}
+
+  #svc-list{
+
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+
+    gap:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+
+    padding:0 24px 4px;scroll-padding-left:24px
+
+  }
+
+  #svc-list::-webkit-scrollbar{display:none}
+
+  .svc-item{
+
+    scroll-snap-align:start;flex-shrink:0;
+
+    width:82vw;
+
+    border-radius:16px;overflow:hidden;min-height:400px;
+
+  }
+
+  .svc-body{position:relative;z-index:2}
+
+  .svc-name{color:#fff;font-size:20px;margin-bottom:6px;
+
+    text-shadow:0 2px 12px rgba(0,0,0,.9),0 0 30px rgba(0,0,0,.8)}
+
+  .svc-desc{
+
+    display:block !important;max-height:none !important;
+
+    opacity:1 !important;margin-top:8px !important;
+
+    color:rgba(255,255,255,.68);font-size:13px
+
+  }
+
+  .svc-arrow{display:none !important}
+
+  .svc-dots{
+
+    display:flex;justify-content:center;gap:8px;margin-top:24px
+
+  }
+
+  .svc-dot{
+
+    width:6px;height:6px;border-radius:50%;
+
+    background:rgba(200,169,110,.25);
+
+    transition:all .35s
+
+  }
+
+  .svc-dot.on{
+
+    background:rgba(200,169,110,.9);
+
+    width:22px;border-radius:3px
+
+  }
+
+  #cta{height:auto;padding:100px 24px}
+
+  .gold-line{margin:0 24px}
+
+}
+
+  
+
+@media(max-width:900px) {
+
+  /* Black tint on mobile as requested */
+
+  .page-header::after, .proj-hero-overlay::after, .about-img-col::after {
+
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.45);
+
+    z-index: 1;
+
+    pointer-events: none;
+
+  }
+
+  body {
+
+    background-color: #040404 !important;
+
+  }
+
+}
+
+
+
+  .svc-mob-img { display: none; width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 16px; margin-top: -16px; }
+
+  @media(max-width:768px){
+
+    .svc-mob-img { display: block; }
+
+    .svc-body { position: relative; z-index: 2; padding-top: 16px; }
+
+  }
+
+
+
+
+  .svc-mini-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px;
+    color: var(--gold);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    font-weight: 500; text-decoration: none;
+    border-bottom: 1px solid rgba(200,169,126,0.3);
+    padding-bottom: 2px;
+    transition: all .3s;
+  }
+  .svc-mini-cta:hover { border-bottom-color: var(--gold); transform: translateX(4px); }
+  .svc-mini-cta svg { width: 12px; height: 12px; }
+  
+  </style>
+
+
+
+
+
+<style>
+
+  img:not([src*="logo"]):not(.wa-icon) {
+
+    border-radius: 12px;
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- Floating background   imag1.jpeg with parallax breathing -->
+
+<div id="page-bg"></div>
+
+
+
+<!-- Custom "O" cursor (desktop only) -->
+
+<div id="olive-cursor">O</div>
+
+
+
+<!-- ===================================================
+
+     NAVBAR
+
+=================================================== -->
+
+<nav class="nav" id="nav">
+
+  <a href="index.html" class="nav-logo">
+
+    <div style="height:46px;overflow:hidden;display:flex;align-items:center">
+
+      <img src="logo.webp" alt="OliveOak" style="height:130px;margin-top:-2px;display:block;filter:brightness(1.2)">
+
+    </div>
+
+  </a>
+
+  <div class="nav-links">
+
+    <a href="about.html"   class="nav-link">About</a>
+
+    <a href="projects.html" class="nav-link">Projects</a>
+
+    <a href="services.html" class="nav-link">Services</a>
+
+    <a href="blog.html"     class="nav-link">Blog</a>
+
+    <a href="contact.html"   class="nav-link">Contact</a>
+
+  </div>
+
+  <a href="contact.html" class="nav-btn">Contact Us</a>
+
+  <button class="ham" id="ham" aria-label="Menu">
+
+    <span></span><span></span><span></span>
+
+  </button>
+
+</nav>
+
+
+
+<!-- Mobile menu -->
+
+<div class="mob-menu" id="mob">
+
+  <a href="about.html"    class="mob-link" onclick="closeMob()">About</a>
+
+  <a href="projects.html" class="mob-link" onclick="closeMob()">Projects</a>
+
+  <a href="services.html" class="mob-link" onclick="closeMob()">Services</a>
+
+  <a href="blog.html"     class="mob-link" onclick="closeMob()">Blog</a>
+
+  <a href="contact.html"   class="mob-link" onclick="closeMob()">Contact</a>
+
+</div>
+
+
+
+<!-- Scroll-back indicator bar (clickable) -->
+
+<div id="back-hint">
+
+  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+
+  <span>Scroll up to replay intro</span>
+
+  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+
+</div>
+
+
+
+
+
+<!-- ===================================================
+
+<!-- ===================================================
+
+     HERO STAGE (fixed, scroll-jacked)
+
+=================================================== -->
+
+<div id="hero">
+
+  <!-- Poster: visible instantly while canvas frames load -->
+
+  <img id="hero-poster" src="Frames-webp-pc/frame_0010.webp"
+
+       alt="" aria-hidden="true"
+
+       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1">
+
+  <canvas id="canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1"></canvas>
+
+  <!-- Slim non-blocking load progress bar at bottom of hero -->
+
+  
+
+  <div class="hero-vignette"></div>
+
+
+
+  <div class="hero-text" id="hero-text">
+
+    <div class="hero-pill">
+
+      <span class="hero-eyebrow">From Singapore, For India</span>
+
+      <h1 class="hero-title">
+
+        <span class="hw" data-t="0.05">Where Spaces<br><em>Inspire</em></span>
+
+      </h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-sub">Crafting interiors that move, inspire and endure</p>
+
+      <div class="hero-cta-row">
+
+        <a href="projects.html" class="btn btn-gold">
+
+          Explore Projects
+
+          <span class="arr">
+
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </span>
+
+        </a>
+
+        <a href="#footer" class="btn btn-ghost">Get In Touch</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="scroll-hint" id="scroll-hint">
+
+    <span>Scroll to Enter</span>
+
+    <div class="scroll-hint-line"></div>
+
+  </div>
+
+
+
+  <div class="hero-progress" id="hero-progress"></div>
+
+</div>
+
+
+
+
+
+<!-- ===================================================
+
+     MAIN CONTENT (hidden until hero completes)
+
+=================================================== -->
+
+<div id="main">
+
+
+
+  <!-- Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ ABOUT Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+
+  <section id="about">
+
+    <div class="about-wrap">
+
+
+
+      <!-- Hero row: text + image -->
+
+      <div class="about-hero-row" style="border-bottom:1px solid rgba(200,169,126,.08);">
+
+
+
+        <!-- Left: copy   arrival animation: slides in from left -->
+
+        <div class="about-copy-col arrive-left">
+
+          <div class="section-no">01</div>
+
+          <span class="label">About OliveOak</span>
+
+          <h2 class="about-h">
+
+            Where <em>Spaces Inspire</em>,<br>and Interior Design<br>Comes Alive
+
+          </h2>
+
+          <p class="about-body">
+
+            Olive Oak is the signature interior design identity of TEV Contractors, Singapore. With a strong heritage in construction and a clear vision for artistry, we deliver bespoke interior design solutions that embody elegance, functionality, and timeless sophistication.
+
+          </p>
+
+          <p class="about-body" style="margin-bottom:40px;">
+
+            Every interior design project we undertake is a narrative of refined living and purposeful design crafted for those who value distinction, quality, and enduring aesthetics.
+
+          </p>
+
+
+
+
+
+          <a href="projects.html" class="btn btn-gold" style="align-self:flex-start">
+
+            View Our Projects
+
+            <span class="arr"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Right: image   arrival animation: curtain wipe from right -->
+
+        <div class="about-img-col arrive-img">
+
+          <img
+
+            src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1400&q=80"
+
+            alt="OliveOak Luxury Interior"
+
+          >
+
+          <div class="img-badge">
+
+            <div class="img-badge-num">TEV</div>
+
+            <div class="img-badge-label">Contractors · SG</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div><!-- /about-wrap -->
+
+
+
+    <!-- Mosaic row: full width -->
+
+    <div class="about-mosaic-row">
+
+      <div class="mosaic-cell arrive-up" style="--d:.65s">
+
+        <img src="images/living-room.webp" alt="Living Room">
+
+        <div class="mosaic-cell-label">Living Spaces</div>
+
+      </div>
+
+      <div class="mosaic-cell arrive-up" style="--d:.8s">
+
+        <img src="https://framerusercontent.com/images/nYgQL26JA1Ioq4xVHJRlasIEC6Y.jpeg?scale-down-to=512" alt="Kitchen">
+
+        <div class="mosaic-cell-label">Kitchen Design</div>
+
+      </div>
+
+      <div class="mosaic-cell arrive-up" style="--d:.95s">
+
+        <img src="https://framerusercontent.com/images/rZjzFX7RCkgqdY9yyhbi4hs.jpeg?scale-down-to=1024" alt="Bedroom">
+
+        <div class="mosaic-cell-label">Bedroom Suites</div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Quote bar -->
+
+    <div class="about-quote-bar arrive-fade" style="--d:1.1s">
+
+      <p class="about-quote-text">
+
+        Transforming spaces with style, through OliveOak's exquisite interior design expertise.
+
+      </p>
+
+    </div>
+
+
+
+  </section>
+
+
+
+  <div class="gold-line"></div>
+
+
+
+
+
+  <!-- Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ PHILOSOPHY Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+
+  <section id="philosophy">
+
+    <div class="phil-wrap">
+
+
+
+      <div class="phil-header">
+
+        <div class="phil-heading-col">
+
+          <span class="label">Our Approach</span>
+
+          <h2 class="display-h rx from-bottom" style="margin-top:20px">
+
+            Design is not<br>decoration,<br>it is <em>intention</em>
+
+          </h2>
+
+        </div>
+
+        <div class="phil-sub-col rx from-right">
+
+          <p class="phil-body-text">
+
+            Born from decades of precision construction and a deep reverence for artistry, our philosophy is simple: every space must serve a purpose, tell a story, and endure through time. We don't follow trends   we set the standard.
+
+          </p>
+
+          <a href="#about" class="btn btn-ghost">Our Story
+
+            <span class="arr"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Pillars -->
+
+      <div class="pillars-list">
+
+        <div class="pillar rx from-bottom" style="transition-delay:.0s">
+
+          <div class="pillar-big-num">01</div>
+
+          <div class="pillar-icon">
+
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+
+            </svg>
+
+          </div>
+
+          <h3 class="pillar-title">Purposeful Spaces</h3>
+
+          <p class="pillar-body">Every room has a role. We design with intention   ensuring each corner serves your lifestyle with elegance, never imposing style over function.</p>
+
+        </div>
+
+        <div class="pillar rx from-bottom" style="transition-delay:.12s">
+
+          <div class="pillar-big-num">02</div>
+
+          <div class="pillar-icon">
+
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+
+              <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+
+            </svg>
+
+          </div>
+
+          <h3 class="pillar-title">Timeless Aesthetics</h3>
+
+          <p class="pillar-body">Trends fade   craftsmanship endures. We curate palettes and forms that transcend time, creating spaces beautiful decades into the future.</p>
+
+        </div>
+
+        <div class="pillar rx from-bottom" style="transition-delay:.24s">
+
+          <div class="pillar-big-num">03</div>
+
+          <div class="pillar-icon">
+
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+
+            </svg>
+
+          </div>
+
+          <h3 class="pillar-title">Singapore Precision</h3>
+
+          <p class="pillar-body">Born from TEV Contractors' heritage   every detail executed with the discipline and quality benchmarks that define world-class design and construction.</p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Split images -->
+
+      <div class="phil-split rx from-scale" style="margin-top:1px">
+
+        <div class="phil-img">
+
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80" alt="Residential">
+
+          <div class="phil-img-inner">
+
+            <div class="phil-img-tag">Residential</div>
+
+            <div class="phil-img-title">Crafted for Living</div>
+
+            <div class="phil-img-line"></div>
+
+          </div>
+
+        </div>
+
+        <div class="phil-img">
+
+          <img src="https://images.unsplash.com/photo-1497366858526-0766cadbe8fa?auto=format&fit=crop&w=1400&q=80" alt="Commercial">
+
+          <div class="phil-img-inner">
+
+            <div class="phil-img-tag">Commercial</div>
+
+            <div class="phil-img-title">Designed for Impact</div>
+
+            <div class="phil-img-line"></div>
+
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-bottom: 50px;">
+          <a href="#footer" class="btn btn-ghost" style="display:inline-flex; align-items:center; gap:8px;">
+            Book Consultation
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="gold-line"></div>
+
+
+
+
+
+  <!-- Ã¢â€ â‚¬Ã¢â€ â‚¬Ã¢â€ â‚¬ PROJECTS Ã¢â€ â‚¬Ã¢â€ â‚¬Ã¢â€ â‚¬ -->
+
+  <section id="projects">
+
+    <div class="proj-wrap">
+
+
+
+      <div class="proj-header">
+
+        <div class="rx from-left">
+
+          <span class="label">Featured Work</span>
+
+          <h2 class="display-h" style="margin-top:16px">Our <em>Projects</em></h2>
+
+        </div>
+
+        <a href="projects.html" class="btn btn-ghost rx from-right">
+
+          All Projects
+
+          <span class="arr"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+
+        </a>
+
+      </div>
+
+
+
+      <!-- Top two equal cards -->
+
+      <div class="proj-top-row">
+
+
+
+                <div class="proj-card proj-card-top rx from-left">
+          <img src="images/commercial/commercial-1.webp" alt="PSV PRECAST Corporate Office" loading="lazy" decoding="async">
+          <div class="proj-card-inner">
+            <div class="proj-number">01 / COMMERCIAL</div>
+            <h3 class="proj-title">PSV PRECAST Corporate Office</h3>
+            <p class="proj-location">Designed by OliveOak Interiors</p>
+            <a href="commercial-project-1.html" class="proj-link">
+              View Project
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card-top rx from-right">
+
+          <img src="images/projects/proj2_7.webp" alt="Olivara" loading="lazy" decoding="async">
+
+          <div class="proj-card-inner">
+
+            <div class="proj-number">02 / RESIDENTIAL</div>
+
+            <h3 class="proj-title">Olivara</h3>
+
+            <p class="proj-location">OliveOak Residences, Hyderabad</p>
+
+            <a href="project-2.html" class="proj-link">
+
+              View Project
+
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Bottom three equal cards -->
+
+      <div class="proj-bottom-row">
+
+
+
+        <div class="proj-card proj-card-bot rx from-bottom" style="transition-delay:0.0s">
+
+          <img src="images/projects/proj3_1.webp" alt="The Duskwood" loading="lazy" decoding="async">
+
+          <div class="proj-card-inner">
+
+            <div class="proj-number">03 / RESIDENTIAL</div>
+
+            <h3 class="proj-title">The Duskwood</h3>
+
+            <p class="proj-location">OliveOak Residences, Hyderabad</p>
+
+            <a href="project-3.html" class="proj-link">
+
+              View Project<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="proj-card proj-card-bot rx from-bottom" style="transition-delay:0.12s">
+
+          <img src="images/projects/proj4_10.webp" alt="The Walnut Crest" loading="lazy" decoding="async">
+
+          <div class="proj-card-inner">
+
+            <div class="proj-number">04 / RESIDENTIAL</div>
+
+            <h3 class="proj-title">The Walnut Crest</h3>
+
+            <p class="proj-location">OliveOak Residences, Hyderabad</p>
+
+            <a href="project-4.html" class="proj-link">
+
+              View Project<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="proj-card proj-card-bot rx from-bottom" style="transition-delay:0.24s">
+
+          <img src="images/projects/proj5_12.webp" alt="The Quiet Canopy" loading="lazy" decoding="async">
+
+          <div class="proj-card-inner">
+
+            <div class="proj-number">05 / RESIDENTIAL</div>
+
+            <h3 class="proj-title">The Quiet Canopy</h3>
+
+            <p class="proj-location">OliveOak Residences, Hyderabad</p>
+
+            <a href="project-5.html" class="proj-link">
+
+              View Project<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="gold-line"></div>
+
+
+
+
+
+  <!-- ─── SERVICES ─── -->
+
+  <section id="services">
+
+    <div class="svc-wrap">
+
+
+
+      <!-- Left: sticky image -->
+
+      <div class="svc-img-wrap rx from-left">
+
+        <img class="svc-img on" src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?auto=format&fit=crop&w=1000&q=80" alt="Complete Turnkey Projects" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80" alt="Residential Interiors" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="Commercial Interiors" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1000&q=80" alt="Premium Living Interiors" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80" alt="Design Services" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80" alt="Design Consultation" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1000&q=80" alt="Space Planning" loading="lazy" decoding="async">
+
+        <img class="svc-img" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Quality Consultation" loading="lazy" decoding="async">
+
+      </div>
+
+
+
+      <!-- Right: list -->
+
+      <div class="svc-right rx from-right">
+
+        <div class="svc-header">
+
+          <span class="label">Our Services</span>
+
+          <h2 class="svc-heading">
+
+            Curated for Every<br><span>Space &amp; Vision</span>
+
+          </h2>
+
+        </div>
+
+
+
+        <div id="svc-list">
+
+          <div class="svc-item on" data-i="0">
+
+            <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Complete Turnkey Projects</div>
+
+              <div class="svc-desc">From concept to completion   we manage every detail of your project so you can move in without the stress.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+          <div class="svc-item" data-i="1">
+
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Residential Interiors</div>
+
+              <div class="svc-desc">Elegant, functional home interiors crafted around your lifestyle   from apartments to independent villas across Hyderabad.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+          <div class="svc-item" data-i="2">
+
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Commercial Interiors</div>
+
+              <div class="svc-desc">Inspiring workspaces, retail environments, and hospitality interiors that reflect your brand and elevate the user experience.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+          <div class="svc-item" data-i="3">
+
+            <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Premium Living Interiors</div>
+
+              <div class="svc-desc">Luxury finishes, bespoke furniture, and curated aesthetics   designed for those who expect the extraordinary in every detail.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+          <div class="svc-item" data-i="4">
+
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Design Services</div>
+
+              <div class="svc-desc">Full-spectrum interior design   concept development, mood boards, material selection, 3D visualization, and execution oversight.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+                    <div class="svc-item" data-i="5">
+
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Design Consultation</div>
+
+              <div class="svc-desc">One-on-one sessions with our expert designers to clarify your vision, explore possibilities, and chart a clear design direction.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+          <div class="svc-item" data-i="6">
+
+            <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Space Planning</div>
+
+              <div class="svc-desc">Intelligent layouts that maximise flow, natural light, and usability   making every square foot of your home work beautifully.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+
+          <div class="svc-item" data-i="7">
+
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" class="svc-mob-img" loading="lazy" alt="Service Image">
+
+              <div class="svc-body">
+
+                <div class="svc-name">Quality Consultation</div>
+
+              <div class="svc-desc">Rigorous material and finish evaluation ensuring every element meets OliveOak's premium standards   beautiful and built to last.</div>
+
+            </div>
+
+            <svg class="svc-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="gold-line"></div>
+
+
+
+
+
+  <!-- Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ CTA Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+
+  <section id="cta">
+
+    <div class="cta-bg"></div>
+
+    <div class="cta-inner rx from-bottom">
+
+      <p class="cta-eyebrow">Ready to Begin?</p>
+
+      <h2 class="cta-heading">
+
+        Reimagine your space<br>with <em>OliveOak's</em> expertise
+
+      </h2>
+
+      <div class="cta-btns">
+
+        <a href="contact.html"   class="btn btn-gold">Begin Your Design Journey</a>
+
+        <a href="projects.html" class="btn btn-ghost">View Our Projects</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <div class="gold-line"></div>
+
+
+
+
+
+  <!-- Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ BLOG Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+
+  <section id="blog">
+
+    <div class="blog-wrap">
+
+      <div class="blog-hdr">
+
+        <div class="rx from-left">
+
+          <span class="label">Insights</span>
+
+          <h2 class="display-h" style="margin-top:16px">Design <em>Insights</em><br>& Inspiration</h2>
+
+        </div>
+
+        <a href="blog.html" class="btn btn-ghost rx from-right">
+
+          All Articles
+
+          <span class="arr"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+
+        </a>
+
+      </div>
+
+
+
+      <div class="blog-grid">
+
+        <article class="blog-card rx from-bottom" style="transition-delay:.0s">
+
+          <div class="blog-img">
+
+            <img src="https://images.unsplash.com/photo-1556020685-ae41abfc9365?auto=format&fit=crop&w=800&q=80" alt="">
+
+          </div>
+
+          <div class="blog-body">
+
+            <p class="blog-tag">• Blogs</p>
+
+            <h3 class="blog-title">Best Interior Design Ideas for Homes in Hyderabad</h3>
+
+            <p class="blog-excerpt">Hyderabad homes today are a beautiful mix of modern lifestyles and cultural elegance. From compact apartments to spacious villas…</p>
+
+            <a href="best-interior-design-ideas.html" class="blog-more">
+
+              Read More <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+
+        </article>
+
+        <article class="blog-card rx from-bottom" style="transition-delay:.12s">
+
+          <div class="blog-img">
+
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80" alt="">
+
+          </div>
+
+          <div class="blog-body">
+
+            <p class="blog-tag">• Blogs</p>
+
+            <h3 class="blog-title">3BHK Interior Design in Hyderabad for Modern Homes</h3>
+
+            <p class="blog-excerpt">A 3BHK home offers the perfect space for comfortable living, whether you have a growing family…</p>
+
+            <a href="3bhk-interior-design-hyderabad.html" class="blog-more">
+
+              Read More <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+
+        </article>
+
+        <article class="blog-card rx from-bottom" style="transition-delay:.24s">
+
+          <div class="blog-img">
+
+            <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=600&q=80" alt="">
+
+          </div>
+
+          <div class="blog-body">
+
+            <p class="blog-tag">• Blogs</p>
+
+            <h3 class="blog-title">2BHK Interior Design   Stylish, Functional & Modern</h3>
+
+            <p class="blog-excerpt">2BHK interior design in Hyderabad is the perfect choice for small families and working professionals…</p>
+
+            <a href="2bhk-interior-design-hyderabad.html" class="blog-more">
+
+              Read More <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <div class="gold-line"></div>
+
+
+
+
+
+  <!-- Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ FOOTER Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+
+  <footer id="footer">
+
+    <div class="foot-top">
+
+      <div>
+
+        <div class="foot-logo">OliveOak</div>
+
+        <div class="foot-logo-sub">By TEV Contractors · Singapore</div>
+
+        <p class="foot-tagline">Transforming spaces with style, through exquisite interior design expertise.</p>
+
+        <div class="foot-socials">
+
+          <a href="https://www.facebook.com/share/1FmNWiu74T/" class="foot-social" target="_blank">f</a>
+
+          <a href="https://www.instagram.com/oliveoak.in" class="foot-social" target="_blank">ig</a>
+
+          <a href="https://oliveoak.in" class="foot-social" target="_blank">in</a>
+
+          <a href="https://oliveoak.in" class="foot-social" target="_blank">tw</a>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <p class="foot-col-title">Sitemap</p>
+
+        <div class="foot-links">
+
+          <a href="#about"    class="foot-link">About Us</a>
+
+          <a href="#projects" class="foot-link">Projects</a>
+
+          <a href="services.html" class="foot-link">Services</a>
+
+          <a href="blog.html"     class="foot-link">Blog</a>
+
+          <a href="#footer"   class="foot-link">Contact</a>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <p class="foot-col-title">Services</p>
+
+        <div class="foot-links">
+
+          <a href="services.html" class="foot-link">Custom Furniture</a>
+
+          <a href="services.html" class="foot-link">Room Styling</a>
+
+          <a href="services.html" class="foot-link">Space Planning</a>
+
+          <a href="services.html" class="foot-link">Renovations</a>
+
+          <a href="services.html" class="foot-link">Lighting Design</a>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <p class="foot-col-title">Contact</p>
+
+        <div class="foot-ci">
+
+          <span class="foot-ci-label">Phone</span>
+
+          <a href="tel:+918187094428" class="foot-ci-val foot-link">+91 77801 96804</a>
+
+        </div>
+
+        <div class="foot-ci">
+
+          <span class="foot-ci-label">Email</span>
+
+          <a href="mailto:hello@oliveoak.in" class="foot-ci-val foot-link">hello@oliveoak.in</a>
+
+        </div>
+
+        <div class="foot-ci">
+
+          <span class="foot-ci-label">Website</span>
+
+          <a href="https://oliveoak.in" class="foot-ci-val foot-link" target="_blank">oliveoak.in</a>
+
+        </div>
+
+        <div class="foot-ci">
+
+          <span class="foot-ci-label">Base</span>
+
+          <span class="foot-ci-val">Singapore / Hyderabad</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="foot-gold"></div>
+
+
+
+    <div class="foot-bottom">
+
+      <p class="foot-copy">© 2026 OliveOak by TEV Contractors. All rights reserved.</p>
+
+      <div class="foot-bottom-links">
+
+        <a href="contact.html" class="foot-bottom-link">Privacy</a>
+
+        <a href="contact.html" class="foot-bottom-link">Terms</a>
+
+        <a href="contact.html" class="foot-bottom-link">Cookies</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+</div><!-- /#main -->
+
+
+
+
+
+<!-- WhatsApp -->
+
+<a href="https://wa.me/918187094428" class="wa" target="_blank" aria-label="WhatsApp">
+
+  <svg viewBox="0 0 24 24">
+
+    <path d="M12.031 2a9.965 9.965 0 0 0-9.969 9.97c0 3.14 1.455 5.937 3.737 7.794L4.793 22l2.316-.76a9.923 9.923 0 0 0 4.922 1.3c5.503 0 9.969-4.467 9.969-9.97C22 6.467 17.534 2 12.031 2zm4.568 13.91c-.242.684-1.2 1.258-1.644 1.306-.444.048-.824.238-2.825-.56-2.553-1.02-4.135-3.565-4.262-3.736-.128-.172-1.04-1.393-1.04-2.658 0-1.264.646-1.884.873-2.13.227-.246.496-.308.662-.308.165 0 .33.003.475.01.155.006.358-.06.56.444.208.52.71 1.745.772 1.874.062.13.104.28.017.447-.087.168-.13.27-.26.425-.13.155-.27.347-.386.465-.13.13-.264.27-.114.53.15.26.664 1.102 1.42 1.78.975.873 1.795 1.144 2.052 1.274.258.13.413.108.568-.07.155-.18.663-.778.84-1.044.178-.266.35-.224.59-.136.24.088 1.52.72 1.785.854.265.134.44.202.503.31.062.11.062.635-.18 1.32z"/>
+
+  </svg>
+
+</a>
+
+
+
+
+
+<script>
+
+/* ==============================================================
+
+   CONFIG
+
+============================================================== */
+
+const IS_MOBILE = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
+const OFFSET  = IS_MOBILE ? 0 : 9;           // skip first 9 wide-angle frames on desktop
+
+const TOTAL   = IS_MOBILE ? 121 : 80;        // 168 - 9 = 159 usable frames
+
+const RANGE   = IS_MOBILE ? 1800 : 6000;
+
+const FP      = n => {
+
+  let actualFrame = n * 2 - 1;
+
+  return IS_MOBILE
+
+  ? `Frames-webp-mobile/ezgif-frame-${String(actualFrame).padStart(3,'0')}.webp`
+
+  : `Frames-webp-pc/frame_${String(actualFrame + OFFSET).padStart(4,'0')}.webp`;
+
+};
+
+
+
+/* ==============================================================
+
+   ELEMENTS
+
+============================================================== */
+
+const canvas   = document.getElementById('canvas');
+
+const ctx      = canvas.getContext('2d');
+
+const hero     = document.getElementById('hero');
+
+const heroText = document.getElementById('hero-text');
+
+const hint     = document.getElementById('scroll-hint');
+
+const progress = document.getElementById('hero-progress');
+
+const main     = document.getElementById('main');
+
+const nav      = document.getElementById('nav');
+
+const backHint = document.getElementById('back-hint');
+
+
+
+/* ==============================================================
+
+   STATE
+
+============================================================== */
+
+let imgs    = new Array(TOTAL);
+
+let loaded  = 0;
+
+let frame   = 0;
+
+let vDelta  = 0;      // virtual scroll delta
+
+let done    = false;  // hero animation finished
+
+let busy    = false;  // mid-transition (lock re-entry)
+
+let observer = null;
+
+
+
+/* ==============================================================
+
+   CANVAS
+
+============================================================== */
+
+function resize() {
+
+  canvas.width  = window.innerWidth;
+
+  canvas.height = window.innerHeight;
+
+  paint(frame);
+
+}
+
+
+
+function paint(i) {
+
+  const img = imgs[i];
+
+  if (!img?.complete || !img.naturalWidth) return;
+
+  const cw=canvas.width, ch=canvas.height, iw=img.naturalWidth, ih=img.naturalHeight;
+
+  const zoom = IS_MOBILE ? 1.15 : 1.0;
+
+  const s = Math.max(cw/iw, ch/ih) * zoom;
+
+  ctx.imageSmoothingEnabled = true;
+
+  ctx.imageSmoothingQuality = 'high';
+
+  ctx.clearRect(0,0,cw,ch);
+
+  ctx.drawImage(img, (cw-iw*s)/2, (ch-ih*s)/2, iw*s, ih*s);
+
+  // Hide poster once canvas has painted — seamless handoff
+
+  const poster = document.getElementById('hero-poster');
+
+  if (poster) poster.style.opacity = '0';
+
+}
+
+
+
+/* ==============================================================
+
+   PRELOAD  — slim non-blocking progress bar at hero bottom
+
+============================================================== */
+
+const heroLoadBar = document.getElementById('hero-load-bar');
+
+
+
+function updateLoader() {
+
+  const pct = Math.round((loaded / TOTAL) * 100);
+
+  if (heroLoadBar) {
+
+    heroLoadBar.style.width = pct + '%';
+
+    const pctText = document.getElementById('loader-pct');
+
+    if (pctText) pctText.innerText = pct + '%';
+
+    
+
+    
+
+  }
+
+}
+
+
+
+function preload() {
+
+2
+
+  const PRIORITY = Math.min(30, TOTAL);
+
+
+
+  // Phase 1: first 30 frames — high priority
+
+  for (let i = 1; i <= PRIORITY; i++) {
+
+    const img = new Image();
+
+    img.src = FP(i);
+
+    img.onerror = () => { loaded++; updateLoader(); };
+
+    img.onload = () => {
+
+      loaded++;
+
+      updateLoader();
+
+      if (i === 1) paint(0);
+
+    };
+
+    imgs[i-1] = img;
+
+  }
+
+
+
+  // Phase 2: remaining frames — after 300ms so priority frames get bandwidth first
+
+  setTimeout(() => {
+
+    for (let i = PRIORITY + 1; i <= TOTAL; i++) {
+
+      const img = new Image();
+
+      img.src = FP(i);
+
+      img.onerror = () => { loaded++; updateLoader(); };
+
+    img.onerror = () => { loaded++; updateLoader(); }; img.onload = () => { loaded++; updateLoader(); };
+
+      imgs[i-1] = img;
+
+    }
+
+  }, 300);
+
+}
+
+
+
+
+
+/* ==============================================================
+
+   TICK   update frame + UI from vDelta
+
+============================================================== */
+
+/* Word reveal schedule: [elementId/class, progress threshold] */
+
+const REVEALS = [
+
+  { el: '.hero-eyebrow',       t: 0.04 },
+
+  { el: '.hw[data-t="0.05"]', t: 0.05 },
+
+  { el: '.hw[data-t="0.09"]', t: 0.09 },
+
+  { el: '.hw[data-t="0.14"]', t: 0.14 },
+
+  { el: '.hero-divider',       t: 0.20 },
+
+  { el: '.hero-sub',           t: 0.26 },
+
+  { el: '.hero-cta-row',       t: 0.32 },
+
+];
+
+
+
+/* Cache the DOM elements once */
+
+const revEls = REVEALS.map(r => ({ node: document.querySelector(r.el), t: r.t }));
+
+
+
+function tick() {
+
+  const p  = Math.min(Math.max(vDelta/RANGE, 0), 1);
+
+  const fi = Math.min(Math.floor(p * TOTAL), TOTAL-1);
+
+
+
+  if (fi !== frame) { frame=fi; paint(frame); }
+
+
+
+  /* Progress bar */
+
+  progress.style.width = (p*100) + '%';
+
+
+
+  /* Word-by-word reveal   bidirectional (forward + reverse scroll) */
+
+  revEls.forEach(({ node, t }) => {
+
+    if (!node) return;
+
+    node.classList.toggle('show', p >= t);
+
+  });
+
+
+
+  /* Scroll hint fades quickly at start */
+
+  hint.style.opacity = Math.max(0, 1 - p * 8);
+
+
+
+  /* Trigger exit when we reach the end */
+
+  if (p >= 1 && !done && !busy) {
+
+    exitHero();
+
+  }
+
+}
+
+
+
+/* ==============================================================
+
+   HERO EXIT   forward transition
+
+============================================================== */
+
+function exitHero() {
+
+  busy = true;
+
+
+
+  /* Pause on last frame   but cancel if user scrolled back */
+
+  setTimeout(() => {
+
+    if (vDelta < RANGE * 0.98) {   /* user scrolled back during delay */
+
+      busy = false;
+
+      return;
+
+    }
+
+    window.scrollTo(0, 0);
+
+    hero.classList.add('fade-out');
+
+    main.classList.add('visible');
+
+
+
+    setTimeout(() => {
+
+      hero.classList.add('gone');
+
+      document.body.classList.add('unlocked');
+
+      window.scrollTo(0, 0);
+
+      done = true;
+
+      busy = false;
+
+      startObserver();
+
+      nav.classList.toggle('solid', false);
+
+    }, 1400);
+
+  }, 400);
+
+}
+
+
+
+/* ==============================================================
+
+   HERO RE-ENTRY   scroll back to top triggers reverse
+
+============================================================== */
+
+function reEnterHero() {
+
+  if (busy) return;
+
+  busy = true;
+
+
+
+  /* Reset to BEGINNING   user scrolls down to replay forward */
+
+  done   = false;
+
+  vDelta = 0;          /* frame 1, p = 0 */
+
+
+
+  /* Hide scroll-back hint */
+
+  backHint.classList.remove('visible');
+
+
+
+  /* Clear all word reveals so they animate in fresh */
+
+  revEls.forEach(({ node }) => { if (node) node.classList.remove('show'); });
+
+
+
+  /* Reset progress bar and paint frame 1 */
+
+  progress.style.width = '0%';
+
+  paint(0);
+
+
+
+  /* Re-show scroll hint */
+
+  hint.style.opacity = '1';
+
+
+
+  /* Re-show hero (fade in from black) */
+
+  hero.classList.remove('gone');
+
+  hero.classList.remove('fade-out');
+
+  hero.style.opacity    = '0';
+
+  hero.style.transition = 'none';
+
+
+
+  /* Fade main out */
+
+  main.classList.remove('visible');
+
+  document.body.classList.remove('unlocked');
+
+  document.body.style.overflow = 'hidden';
+
+
+
+  requestAnimationFrame(() => {
+
+    hero.style.transition = 'opacity .6s ease';
+
+    hero.style.opacity    = '1';
+
+
+
+    setTimeout(() => {
+
+      hero.style.transition = '';
+
+      hero.style.opacity    = '';
+
+      busy = false;
+
+    }, 650);
+
+  });
+
+}
+
+
+
+/* ==============================================================
+
+   WHEEL   drives animation (both directions)
+
+============================================================== */
+
+/* RAF batching   one canvas paint per animation frame */
+
+let rafPending = false;
+
+function scheduleRaf() {
+
+  if (rafPending) return;
+
+  rafPending = true;
+
+  requestAnimationFrame(() => { rafPending = false; tick(); });
+
+}
+
+
+
+let atTop = false;  /* reliable "at page top" flag set by scroll event */
+
+
+
+window.addEventListener('wheel', e => {
+
+  if (done) {
+
+    /* In main content   re-enter hero when at top + scroll up */
+
+    if (atTop && e.deltaY < 0) {
+
+      e.preventDefault();
+
+      reEnterHero();
+
+    }
+
+    return;
+
+  }
+
+  e.preventDefault();
+
+  vDelta = Math.min(Math.max(vDelta + e.deltaY * 0.72, 0), RANGE);
+
+  scheduleRaf();
+
+}, { passive: false });
+
+
+
+/* ==============================================================
+
+   TOUCH   full mobile support (swipe up/down drives animation)
+
+============================================================== */
+
+let ty       = null;
+
+let touchDir = 0;  /* track direction for re-entry */
+
+
+
+window.addEventListener('touchstart', e => {
+
+  ty = e.touches[0].clientY;
+
+  touchDir = 0;
+
+  /* Don't call preventDefault here so page can still scroll in main */
+
+}, { passive: true });
+
+
+
+window.addEventListener('touchmove', e => {
+
+  if (ty === null) return;
+
+  const dy = ty - e.touches[0].clientY;
+
+  touchDir = dy;
+
+  ty = e.touches[0].clientY;
+
+
+
+  if (done) {
+
+    /* swipe down at top triggers re-entry */
+
+    if (atTop && dy < -4) {
+
+      e.preventDefault();
+
+      reEnterHero();
+
+    }
+
+    return;
+
+  }
+
+
+
+  e.preventDefault();
+
+  vDelta = Math.min(Math.max(vDelta + dy * 4.5, 0), RANGE);
+
+  scheduleRaf();
+
+}, { passive: false });
+
+
+
+window.addEventListener('touchend', () => { ty = null; }, { passive: true });
+
+
+
+/* ==============================================================
+
+   SCROLL   track atTop, nav solid, back hint
+
+============================================================== */
+
+window.addEventListener('scroll', () => {
+
+  atTop = window.scrollY < 8;          /* reliable top flag with small threshold */
+
+  nav.classList.toggle('solid', window.scrollY > 60);
+
+
+
+  if (done) {
+
+    backHint.classList.toggle('visible', atTop);
+
+  }
+
+}, { passive: true });
+
+
+
+/* Click on the back-hint button to re-enter hero */
+
+backHint.addEventListener('click', () => {
+
+  if (done && !busy) reEnterHero();
+
+});
+
+
+
+/* ==============================================================
+
+   INTERSECTION OBSERVER   reveal animations
+
+============================================================== */
+
+function startObserver() {
+
+  if (observer) return;
+
+  observer = new IntersectionObserver(entries => {
+
+    entries.forEach(e => {
+
+      if (e.isIntersecting) {
+
+        e.target.classList.add('in');
+
+        observer.unobserve(e.target);
+
+      }
+
+    });
+
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+
+
+  document.querySelectorAll('.rx').forEach(el => observer.observe(el));
+
+}
+
+
+
+/* ==============================================================
+
+   NAVBAR
+
+============================================================== */
+
+nav.addEventListener('click', e => {
+
+  /* smooth-scroll anchors */
+
+  const a = e.target.closest('a[href^="#"]');
+
+  if (a) {
+
+    const t = document.querySelector(a.getAttribute('href'));
+
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth' }); }
+
+  }
+
+});
+
+
+
+/* ==============================================================
+
+   MOBILE MENU
+
+============================================================== */
+
+const ham = document.getElementById('ham');
+
+const mob = document.getElementById('mob');
+
+
+
+function closeMob() {
+
+  ham.classList.remove('open');
+
+  mob.classList.remove('open');
+
+}
+
+
+
+ham.addEventListener('click', () => {
+
+  ham.classList.toggle('open');
+
+  mob.classList.toggle('open');
+
+});
+
+
+
+/* ==============================================================
+
+   SERVICES   desktop click-switch / mobile swipe cards
+
+============================================================== */
+
+const svcImgSrcs = [...document.querySelectorAll('.svc-img')].map(img => img.src);
+
+const svcItemEls = [...document.querySelectorAll('.svc-item')];
+
+
+
+if (IS_MOBILE) {
+
+  /* Assign each card its own background image */
+
+  svcItemEls.forEach((item, i) => {
+
+    if (svcImgSrcs[i]) item.style.backgroundImage = `url('${svcImgSrcs[i]}')`;
+
+  });
+
+
+
+  /* Build dot indicators */
+
+  const svcList = document.getElementById('svc-list');
+
+  const dotsWrap = document.createElement('div');
+
+  dotsWrap.className = 'svc-dots';
+
+  svcItemEls.forEach((_, i) => {
+
+    const dot = document.createElement('div');
+
+    dot.className = 'svc-dot' + (i === 0 ? ' on' : '');
+
+    dotsWrap.appendChild(dot);
+
+  });
+
+  svcList.after(dotsWrap);
+
+
+
+  /* Update active dot on scroll */
+
+  const dots = [...dotsWrap.children];
+
+  svcList.addEventListener('scroll', () => {
+
+    const snapW = (svcItemEls[0]?.offsetWidth || 0) + 16;
+
+    const idx = Math.min(Math.round(svcList.scrollLeft / snapW), svcItemEls.length - 1);
+
+    dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+
+  }, { passive: true });
+
+
+
+} else {
+
+  /* Desktop: click to switch sticky image */
+
+  svcItemEls.forEach(item => {
+
+    item.addEventListener('click', () => {
+
+      const i = +item.dataset.i;
+
+      svcItemEls.forEach(x => x.classList.remove('on'));
+
+      document.querySelectorAll('.svc-img').forEach(x => x.classList.remove('on'));
+
+      item.classList.add('on');
+
+      document.querySelectorAll('.svc-img')[i].classList.add('on');
+
+    });
+
+  });
+
+}
+
+
+
+/* ==============================================================
+
+   INIT
+
+============================================================== */
+
+window.addEventListener('resize', resize);
+
+resize();
+
+preload();
+
+
+
+/* ==============================================================
+
+   CUSTOM "O" CURSOR   follows mouse, grows on interactive elements
+
+============================================================== */
+
+(function(){
+
+  const cur = document.getElementById('olive-cursor');
+
+  if (!cur) return;
+
+  /* Only active on devices with a fine pointer (mouse) */
+
+  if (!window.matchMedia('(pointer:fine)').matches) {
+
+    cur.style.display = 'none';
+
+    return;
+
+  }
+
+
+
+  let mx = -100, my = -100;
+
+  let cx = -100, cy = -100;
+
+  let hovering = false;
+
+
+
+  /* Track raw position */
+
+  document.addEventListener('mousemove', e => {
+
+    mx = e.clientX;
+
+    my = e.clientY;
+
+  }, { passive: true });
+
+
+
+  /* Detect interactive elements */
+
+  document.addEventListener('mouseover', e => {
+
+    hovering = !!(e.target.closest('a,button,.proj-card,.pillar,.mosaic-cell,.svc-item'));
+
+    cur.classList.toggle('hov', hovering);
+
+  }, { passive: true });
+
+
+
+  /* Smooth follow using rAF */
+
+  function animCursor() {
+
+    /* Lerp for smooth trailing effect */
+
+    cx += (mx - cx) * 0.18;
+
+    cy += (my - cy) * 0.18;
+
+    cur.style.left = cx + 'px';
+
+    cur.style.top  = cy + 'px';
+
+    requestAnimationFrame(animCursor);
+
+  }
+
+  animCursor();
+
+})();
+
+
+
+/* ==============================================================
+
+   WATER RIPPLE CURSOR EFFECT   matches the glass texture bg
+
+============================================================== */
+
+(function(){
+
+  if (!window.matchMedia('(pointer:fine)').matches) return;
+
+
+
+  /* Tiny precision dot that follows mouse exactly */
+
+  const dot = document.createElement('div');
+
+  dot.className = 'c-dot';
+
+  document.body.appendChild(dot);
+
+
+
+  let mx = 0, my = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive:true });
+
+
+
+  /* Instant dot position */
+
+  function moveDot() {
+
+    dot.style.left = mx + 'px';
+
+    dot.style.top  = my + 'px';
+
+    requestAnimationFrame(moveDot);
+
+  }
+
+  moveDot();
+
+
+
+  /* Spawn a ripple ring at (x, y) */
+
+  function spawnRipple(x, y, type, size, delay) {
+
+    const r = document.createElement('div');
+
+    r.className = 'c-ripple ' + type;
+
+    if (size) { r.style.width = size + 'px'; r.style.height = size + 'px'; }
+
+    if (delay) r.style.animationDelay = delay + 'ms';
+
+    r.style.left = x + 'px';
+
+    r.style.top  = y + 'px';
+
+    document.body.appendChild(r);
+
+    const dur = type === 'click' ? 950 : 780;
+
+    setTimeout(() => r.remove(), dur + (delay || 0));
+
+  }
+
+
+
+  /* Move ripples   throttled every 90ms */
+
+  let last = 0;
+
+  document.addEventListener('mousemove', e => {
+
+    const now = Date.now();
+
+    if (now - last < 90) return;
+
+    last = now;
+
+    spawnRipple(e.clientX, e.clientY, 'move', null, 0);
+
+  }, { passive:true });
+
+
+
+  /* Click burst   3 staggered rings expanding */
+
+  document.addEventListener('click', e => {
+
+    spawnRipple(e.clientX, e.clientY, 'click', 20,  0);
+
+    spawnRipple(e.clientX, e.clientY, 'click', 36, 90);
+
+    spawnRipple(e.clientX, e.clientY, 'click', 52,180);
+
+  });
+
+})();
+
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load recent projects
+  const projGrid = document.getElementById('dyn-index-projects');
+  if (projGrid) {
+    try {
+      const res = await fetch('/data/projects.json');
+      const projects = await res.json();
+      const published = projects.filter(p => p.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
+      
+      projGrid.innerHTML = published.map((p, i) => {
+        const img = p.featuredImage || (p.images && p.images[0]) || '';
+        const cl = i === 0 ? 'p-card-large' : 'p-card-small'; // based on their masonry style
+        return `
+          <a href="project.html?id=${p.slug}" class="p-card ${cl} reveal" style="display:block;border-radius:12px;overflow:hidden;position:relative;margin-bottom:24px;background:#111;">
+            <img src="${img}" alt="${p.title}" style="width:100%;height:${i===0?'500px':'300px'};object-fit:cover;transition:transform 0.5s;">
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);">
+              <div style="font-size:10px;text-transform:uppercase;color:var(--gold);letter-spacing:2px;margin-bottom:8px;">${p.category}</div>
+              <h3 style="font-family:var(--f-display);font-size:24px;color:var(--white);">${p.title}</h3>
+            </div>
+          </a>
+        `;
+      }).join('');
+    } catch(e) {
+      projGrid.innerHTML = '';
+    }
+  }
+
+  // Load recent blogs if there's a blog section
+  // Assuming there's a blog grid, but if not it's safe
+  const blogGrid = document.getElementById('dyn-index-blogs');
+  if (blogGrid) {
+    try {
+      const res = await fetch('/data/blogs.json');
+      const blogs = await res.json();
+      const published = blogs.filter(b => b.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
+      
+      blogGrid.innerHTML = published.map(b => {
+        const img = b.featuredImage || '';
+        return `
+          <a href="blog-post.html?id=${b.slug}" class="blog-card reveal" style="display:block;border:1px solid rgba(200,169,126,0.15);border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.02);margin-bottom:24px;">
+            ${img ? `<img src="${img}" alt="${b.title}" style="width:100%;height:200px;object-fit:cover;">` : ''}
+            <div style="padding:24px;">
+              <h3 style="font-family:var(--f-display);font-size:20px;color:var(--white);margin-bottom:12px;">${b.title}</h3>
+              <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:16px;">${b.excerpt}</p>
+              <div style="font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Read &rarr;</div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    } catch(e) {
+      blogGrid.innerHTML = '';
+    }
+  }
+
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }, 200);
+});
+</script>
+
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+

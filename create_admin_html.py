@@ -1,0 +1,623 @@
+﻿import os
+
+admin_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Portal | OliveOak CMS</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080706;--gold:#c8a97e;--white:#f8f3ea;--dim:rgba(248,243,234,.5);
+  --glass:rgba(255,255,255,.04);--border:rgba(200,169,126,.15);
+  --red:#e05252;--green:#52c08a;
+  --f-display:'Cormorant Garamond',serif;--f-body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-height:100vh;}
+.hidden { display: none !important; }
+
+/* Login */
+#login-screen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(8,7,6,.96);backdrop-filter:blur(20px)}
+.login-box{background:var(--glass);border:1px solid var(--border);border-radius:24px;padding:56px 48px;width:100%;max-width:420px;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.login-logo{font-family:var(--f-display);font-size:32px;font-weight:300;color:var(--gold);letter-spacing:3px;margin-bottom:6px}
+.login-sub{font-size:11px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px}
+.login-input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:15px;color:var(--white);margin-bottom:20px;outline:none;}
+.login-btn{width:100%;padding:15px;background:var(--gold);border:none;border-radius:10px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#0a0806;font-weight:600;cursor:pointer;}
+.login-error{margin-top:14px;font-size:13px;color:var(--red);display:none}
+
+/* Dashboard */
+.admin-nav{position:sticky;top:0;z-index:100;background:rgba(8,7,6,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.admin-brand{font-family:var(--f-display);font-size:22px;color:var(--gold);letter-spacing:2px}
+.admin-brand span{font-size:11px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:-4px;font-family:var(--f-body)}
+.btn-nav{background:transparent;border:1px solid var(--border);border-radius:8px;padding:8px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);cursor:pointer;}
+.btn-nav:hover{border-color:var(--gold);color:var(--gold)}
+
+.container{max-width:1200px;margin:0 auto;padding:40px}
+
+/* Tabs */
+.tab-bar{display:flex;gap:10px;margin-bottom:30px;border-bottom:1px solid var(--border);padding-bottom:20px;}
+.tab-btn{background:transparent;border:none;color:var(--dim);font-size:14px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:10px 20px;}
+.tab-btn.active{color:var(--gold);border-bottom:2px solid var(--gold);font-weight:600;}
+
+/* Data Table */
+.data-table{width:100%;border-collapse:collapse;background:var(--glass);border-radius:12px;overflow:hidden;}
+.data-table th, .data-table td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--border);}
+.data-table th{font-size:11px;text-transform:uppercase;color:var(--dim);letter-spacing:1px;}
+.data-table td{font-size:14px;}
+.status-badge{padding:4px 8px;border-radius:4px;font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+.status-published{background:rgba(82,192,138,.1);color:var(--green);border:1px solid rgba(82,192,138,.2);}
+.status-draft{background:rgba(200,169,126,.1);color:var(--gold);border:1px solid rgba(200,169,126,.2);}
+.action-btn{background:transparent;border:1px solid var(--border);color:var(--white);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;margin-right:8px;}
+.action-btn.del{border-color:var(--red);color:var(--red);}
+
+/* Forms */
+.form-panel{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:40px;}
+.form-title{font-family:var(--f-display);font-size:28px;color:var(--gold);margin-bottom:30px;border-bottom:1px solid var(--border);padding-bottom:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
+.form-input, .form-select, .form-textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--white);font-family:var(--f-body);font-size:14px;outline:none;}
+.form-input:focus{border-color:var(--gold);}
+.form-textarea{min-height:150px;resize:vertical;}
+.btn-primary{background:var(--gold);color:#000;border:none;padding:16px 32px;border-radius:10px;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:opacity .3s;}
+.btn-primary:hover{opacity:.8;}
+
+/* Image Upload */
+.img-upload-area{border:2px dashed var(--border);border-radius:12px;padding:40px;text-align:center;cursor:pointer;margin-bottom:20px;}
+.img-upload-area:hover{border-color:var(--gold);background:rgba(200,169,126,.05);}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px;margin-bottom:20px;}
+.img-card{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);aspect-ratio:1;}
+.img-card img{width:100%;height:100%;object-fit:cover;}
+.img-card .del-img{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);color:var(--red);border:1px solid var(--red);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;}
+.img-card .star-img{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.7);color:var(--dim);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:10px;cursor:pointer;}
+.img-card.is-featured{border-color:var(--gold);border-width:2px;}
+.img-card.is-featured .star-img{color:var(--gold);border-color:var(--gold);}
+
+/* Toast */
+#toast{position:fixed;bottom:32px;right:32px;z-index:9999;padding:16px 28px;border-radius:12px;font-size:14px;box-shadow:0 8px 32px rgba(0,0,0,.4);transform:translateY(80px);opacity:0;transition:all .4s;max-width:360px;}
+#toast.show{transform:translateY(0);opacity:1}
+#toast.success{background:#1a3a2a;border:1px solid #52c08a;color:#7fffc4}
+#toast.error{background:#3a1a1a;border:1px solid var(--red);color:#ffb3b3}
+#toast.info{background:#1a2a3a;border:1px solid var(--gold);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">OliveOak</div>
+    <div class="login-sub">GitHub CMS Admin</div>
+    <input class="login-input" type="password" id="adminPwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()" id="loginBtn">Sign In →</button>
+    <div class="login-error" id="loginErr">❌ Incorrect password.</div>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" class="hidden">
+  <nav class="admin-nav">
+    <div class="admin-brand">OliveOak <span>Content Manager</span></div>
+    <div>
+      <button class="btn-nav" onclick="location.href='/'">View Site</button>
+      <button class="btn-nav" onclick="doLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showTab('list-projects')" id="tab-list-projects">Projects</button>
+      <button class="tab-btn" onclick="showTab('list-blogs')" id="tab-list-blogs">Blogs</button>
+      <button class="tab-btn" onclick="showTab('form-project')" id="tab-form-project">+ New Project</button>
+      <button class="tab-btn" onclick="showTab('form-blog')" id="tab-form-blog">+ New Blog</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="hidden" style="text-align:center;padding:50px;color:var(--gold);font-style:italic;">
+      Loading data from GitHub...
+    </div>
+
+    <!-- Projects List -->
+    <div id="list-projects" class="tab-content">
+      <table class="data-table">
+        <thead>
+          <tr><th>Image</th><th>Project Name</th><th>Category</th><th>Status</th><th>Last Updated</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="projects-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Blogs List -->
+    <div id="list-blogs" class="tab-content hidden">
+      <table class="data-table">
+        <thead>
+          <tr><th>Image</th><th>Blog Title</th><th>Category</th><th>Status</th><th>Last Updated</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="blogs-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Project Form -->
+    <div id="form-project" class="tab-content form-panel hidden">
+      <h2 class="form-title" id="proj-form-title">Create Project</h2>
+      <input type="hidden" id="proj-id">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Project Title</label>
+          <input type="text" class="form-input" id="proj-title" oninput="document.getElementById('proj-slug').value = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Slug (URL)</label>
+          <input type="text" class="form-input" id="proj-slug">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="proj-category">
+            <option value="Residential">Residential</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Architecture">Architecture</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="proj-status">
+            <option value="draft">Draft (Hidden)</option>
+            <option value="published">Published (Live)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Technologies (Comma separated)</label>
+        <input type="text" class="form-input" id="proj-tech" placeholder="e.g. Marble, Wood, Brass">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-textarea" id="proj-desc"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Images (Max 7, drag & drop or click)</label>
+        <div class="img-upload-area" onclick="document.getElementById('proj-file-input').click()">
+          <span style="font-size:24px;display:block;margin-bottom:8px">📸</span>
+          Click to upload images (Will auto-compress to WebP)
+          <input type="file" id="proj-file-input" multiple accept="image/*" class="hidden" onchange="handleImageUpload(this.files, 'project')">
+        </div>
+        <div class="img-grid" id="proj-img-grid"></div>
+        <input type="hidden" id="proj-featured-image">
+      </div>
+
+      <button class="btn-primary" onclick="saveProject()" id="btn-save-proj">Save Project</button>
+      <button class="btn-nav" onclick="showTab('list-projects')" style="margin-left:16px;padding:16px;">Cancel</button>
+    </div>
+
+    <!-- Blog Form -->
+    <div id="form-blog" class="tab-content form-panel hidden">
+      <h2 class="form-title" id="blog-form-title">Create Blog Post</h2>
+      <input type="hidden" id="blog-id">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Blog Title</label>
+          <input type="text" class="form-input" id="blog-title" oninput="document.getElementById('blog-slug').value = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Slug (URL)</label>
+          <input type="text" class="form-input" id="blog-slug">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="blog-category">
+            <option value="Design Trends">Design Trends</option>
+            <option value="Case Study">Case Study</option>
+            <option value="Tips & Tricks">Tips & Tricks</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="blog-status">
+            <option value="draft">Draft (Hidden)</option>
+            <option value="published">Published (Live)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Excerpt (Short summary)</label>
+        <textarea class="form-textarea" id="blog-excerpt" style="min-height:80px"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Content (HTML allowed)</label>
+        <textarea class="form-textarea" id="blog-content" style="min-height:300px"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Featured Image</label>
+        <div class="img-upload-area" onclick="document.getElementById('blog-file-input').click()">
+          <span style="font-size:24px;display:block;margin-bottom:8px">🖼️</span>
+          Click to upload cover image (Will auto-compress to WebP)
+          <input type="file" id="blog-file-input" accept="image/*" class="hidden" onchange="handleImageUpload(this.files, 'blog')">
+        </div>
+        <div class="img-grid" id="blog-img-grid"></div>
+        <input type="hidden" id="blog-featured-image">
+      </div>
+
+      <button class="btn-primary" onclick="saveBlog()" id="btn-save-blog">Save Blog Post</button>
+      <button class="btn-nav" onclick="showTab('list-blogs')" style="margin-left:16px;padding:16px;">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let token = sessionStorage.getItem('admin_token');
+let dataCache = { projects: [], blogs: [] };
+let uploadedImages = []; // Temp state for current form
+
+// Initialize
+if (token) {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  fetchData();
+}
+
+async function doLogin() {
+  const pwd = document.getElementById('adminPwd').value;
+  const btn = document.getElementById('loginBtn');
+  btn.textContent = "Verifying...";
+  try {
+    const res = await fetch('/api/auth', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({password:pwd})
+    });
+    if(res.ok) {
+      const {token:t} = await res.json();
+      token = t;
+      sessionStorage.setItem('admin_token', t);
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      fetchData();
+    } else {
+      document.getElementById('loginErr').style.display='block';
+    }
+  } catch(e) {
+    document.getElementById('loginErr').textContent = 'Network error.';
+    document.getElementById('loginErr').style.display='block';
+  }
+  btn.textContent = "Sign In →";
+}
+
+function doLogout() {
+  sessionStorage.removeItem('admin_token');
+  location.reload();
+}
+
+function showToast(msg, type='info') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `show ${type}`;
+  setTimeout(() => t.className='', 4000);
+}
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(e => e.classList.add('hidden'));
+  document.querySelectorAll('.tab-btn').forEach(e => e.classList.remove('active'));
+  document.getElementById(tabId).classList.remove('hidden');
+  document.getElementById(`tab-${tabId}`).classList.add('active');
+
+  if(tabId === 'form-project' && !document.getElementById('proj-id').value) resetProjForm();
+  if(tabId === 'form-blog' && !document.getElementById('blog-id').value) resetBlogForm();
+}
+
+async function apiCall(endpoint, method='GET', body=null) {
+  const opts = { method, headers:{'Authorization': `Bearer ${token}`} };
+  if(body) { opts.headers['Content-Type']='application/json'; opts.body=JSON.stringify(body); }
+  const res = await fetch(`/api/${endpoint}`, opts);
+  if(res.status === 401 || res.status === 403) { doLogout(); return null; }
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+async function fetchData() {
+  document.getElementById('loading').classList.remove('hidden');
+  document.getElementById('list-projects').classList.add('hidden');
+  document.getElementById('list-blogs').classList.add('hidden');
+  try {
+    const [p, b] = await Promise.all([apiCall('projects'), apiCall('blogs')]);
+    dataCache.projects = p || [];
+    dataCache.blogs = b || [];
+    renderProjects();
+    renderBlogs();
+  } catch(e) {
+    showToast('Failed to fetch data: ' + e.message, 'error');
+  }
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('list-projects').classList.remove('hidden');
+}
+
+function renderProjects() {
+  const tb = document.getElementById('projects-tbody');
+  tb.innerHTML = dataCache.projects.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).map(p => `
+    <tr>
+      <td><img src="${p.featuredImage||p.images[0]||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
+      <td><strong>${p.title}</strong><br><small style="color:var(--dim)">/${p.slug}</small></td>
+      <td>${p.category}</td>
+      <td><span class="status-badge status-${p.status}">${p.status}</span></td>
+      <td>${new Date(p.updatedAt).toLocaleDateString()}</td>
+      <td>
+        <button class="action-btn" onclick="editProject('${p.id}')">Edit</button>
+        <button class="action-btn del" onclick="deleteProject('${p.id}')">Delete</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderBlogs() {
+  const tb = document.getElementById('blogs-tbody');
+  tb.innerHTML = dataCache.blogs.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).map(b => `
+    <tr>
+      <td><img src="${b.featuredImage||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
+      <td><strong>${b.title}</strong><br><small style="color:var(--dim)">/${b.slug}</small></td>
+      <td>${b.category}</td>
+      <td><span class="status-badge status-${b.status}">${b.status}</span></td>
+      <td>${new Date(b.updatedAt).toLocaleDateString()}</td>
+      <td>
+        <button class="action-btn" onclick="editBlog('${b.id}')">Edit</button>
+        <button class="action-btn del" onclick="deleteBlog('${b.id}')">Delete</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ===== PROJECT CRUD =====
+function resetProjForm() {
+  document.getElementById('proj-form-title').textContent = 'Create Project';
+  document.getElementById('proj-id').value = '';
+  document.getElementById('proj-title').value = '';
+  document.getElementById('proj-slug').value = '';
+  document.getElementById('proj-category').value = 'Residential';
+  document.getElementById('proj-status').value = 'published';
+  document.getElementById('proj-tech').value = '';
+  document.getElementById('proj-desc').value = '';
+  document.getElementById('proj-featured-image').value = '';
+  uploadedImages = [];
+  renderImageGrid('proj');
+}
+
+function editProject(id) {
+  const p = dataCache.projects.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('proj-form-title').textContent = 'Edit Project';
+  document.getElementById('proj-id').value = p.id;
+  document.getElementById('proj-title').value = p.title;
+  document.getElementById('proj-slug').value = p.slug;
+  document.getElementById('proj-category').value = p.category || 'Residential';
+  document.getElementById('proj-status').value = p.status || 'published';
+  document.getElementById('proj-tech').value = (p.technologies||[]).join(', ');
+  document.getElementById('proj-desc').value = p.description || '';
+  document.getElementById('proj-featured-image').value = p.featuredImage || (p.images&&p.images[0]) || '';
+  uploadedImages = p.images ? [...p.images] : [];
+  renderImageGrid('proj');
+  showTab('form-project');
+}
+
+async function saveProject() {
+  const btn = document.getElementById('btn-save-proj');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  
+  const id = document.getElementById('proj-id').value;
+  const p = {
+    title: document.getElementById('proj-title').value,
+    slug: document.getElementById('proj-slug').value,
+    category: document.getElementById('proj-category').value,
+    status: document.getElementById('proj-status').value,
+    technologies: document.getElementById('proj-tech').value.split(',').map(s=>s.trim()).filter(Boolean),
+    description: document.getElementById('proj-desc').value,
+    images: uploadedImages,
+    featuredImage: document.getElementById('proj-featured-image').value || uploadedImages[0] || ''
+  };
+  if(id) p.id = id;
+
+  try {
+    const res = await apiCall('projects', id ? 'PUT' : 'POST', p);
+    if(id) {
+      const idx = dataCache.projects.findIndex(x=>x.id===id);
+      dataCache.projects[idx] = res;
+    } else {
+      dataCache.projects.push(res);
+    }
+    showToast('Project saved successfully!', 'success');
+    renderProjects();
+    showTab('list-projects');
+  } catch(e) {
+    showToast('Error saving: '+e.message, 'error');
+  }
+  btn.textContent = 'Save Project'; btn.disabled = false;
+}
+
+async function deleteProject(id) {
+  if(!confirm('Are you sure you want to delete this project?')) return;
+  try {
+    await apiCall(`projects?id=${id}`, 'DELETE');
+    dataCache.projects = dataCache.projects.filter(p => p.id !== id);
+    renderProjects();
+    showToast('Deleted successfully', 'success');
+  } catch(e) { showToast('Error: '+e.message, 'error'); }
+}
+
+// ===== BLOG CRUD =====
+function resetBlogForm() {
+  document.getElementById('blog-form-title').textContent = 'Create Blog Post';
+  document.getElementById('blog-id').value = '';
+  document.getElementById('blog-title').value = '';
+  document.getElementById('blog-slug').value = '';
+  document.getElementById('blog-category').value = 'Design Trends';
+  document.getElementById('blog-status').value = 'draft';
+  document.getElementById('blog-excerpt').value = '';
+  document.getElementById('blog-content').value = '';
+  document.getElementById('blog-featured-image').value = '';
+  uploadedImages = [];
+  renderImageGrid('blog');
+}
+
+function editBlog(id) {
+  const b = dataCache.blogs.find(x => x.id === id);
+  if(!b) return;
+  document.getElementById('blog-form-title').textContent = 'Edit Blog Post';
+  document.getElementById('blog-id').value = b.id;
+  document.getElementById('blog-title').value = b.title;
+  document.getElementById('blog-slug').value = b.slug;
+  document.getElementById('blog-category').value = b.category || 'Design Trends';
+  document.getElementById('blog-status').value = b.status || 'draft';
+  document.getElementById('blog-excerpt').value = b.excerpt || '';
+  document.getElementById('blog-content').value = b.content || '';
+  document.getElementById('blog-featured-image').value = b.featuredImage || '';
+  uploadedImages = b.featuredImage ? [b.featuredImage] : [];
+  renderImageGrid('blog');
+  showTab('form-blog');
+}
+
+async function saveBlog() {
+  const btn = document.getElementById('btn-save-blog');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  
+  const id = document.getElementById('blog-id').value;
+  const b = {
+    title: document.getElementById('blog-title').value,
+    slug: document.getElementById('blog-slug').value,
+    category: document.getElementById('blog-category').value,
+    status: document.getElementById('blog-status').value,
+    excerpt: document.getElementById('blog-excerpt').value,
+    content: document.getElementById('blog-content').value,
+    featuredImage: document.getElementById('blog-featured-image').value || uploadedImages[0] || ''
+  };
+  if(id) b.id = id;
+
+  try {
+    const res = await apiCall('blogs', id ? 'PUT' : 'POST', b);
+    if(id) {
+      const idx = dataCache.blogs.findIndex(x=>x.id===id);
+      dataCache.blogs[idx] = res;
+    } else {
+      dataCache.blogs.push(res);
+    }
+    showToast('Blog saved successfully!', 'success');
+    renderBlogs();
+    showTab('list-blogs');
+  } catch(e) {
+    showToast('Error saving: '+e.message, 'error');
+  }
+  btn.textContent = 'Save Blog Post'; btn.disabled = false;
+}
+
+async function deleteBlog(id) {
+  if(!confirm('Are you sure you want to delete this blog post?')) return;
+  try {
+    await apiCall(`blogs?id=${id}`, 'DELETE');
+    dataCache.blogs = dataCache.blogs.filter(b => b.id !== id);
+    renderBlogs();
+    showToast('Deleted successfully', 'success');
+  } catch(e) { showToast('Error: '+e.message, 'error'); }
+}
+
+// ===== CLIENT-SIDE WEBP COMPRESSOR & UPLOAD =====
+async function handleImageUpload(files, type) {
+  if(type === 'project' && uploadedImages.length + files.length > 7) {
+    return showToast('Maximum 7 images allowed per project', 'error');
+  }
+  
+  showToast('Compressing and uploading images...', 'info');
+  for(let file of files) {
+    try {
+      const base64Str = await compressImageToWebP(file);
+      const filename = `${Date.now()}-${Math.floor(Math.random()*1000)}.webp`;
+      const res = await apiCall('upload', 'POST', {
+        type, filename, base64: base64Str
+      });
+      if(res.url) {
+        if(type==='blog') {
+          uploadedImages = [res.url]; // Replace for blog
+          document.getElementById('blog-featured-image').value = res.url;
+        } else {
+          uploadedImages.push(res.url);
+          if(uploadedImages.length===1) document.getElementById('proj-featured-image').value = res.url;
+        }
+      }
+    } catch(e) {
+      console.error(e);
+      showToast('Upload failed: ' + e.message, 'error');
+    }
+  }
+  renderImageGrid(type);
+  showToast('Upload complete', 'success');
+}
+
+function compressImageToWebP(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const canvas = document.createElement('canvas');
+      let width = img.width;
+      let height = img.height;
+      const MAX_SIZE = 1920; // 1080p max edge
+      if(width > height && width > MAX_SIZE) { height *= MAX_SIZE/width; width = MAX_SIZE; }
+      else if(height > MAX_SIZE) { width *= MAX_SIZE/height; height = MAX_SIZE; }
+      
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      
+      const dataUrl = canvas.toDataURL('image/webp', 0.85); // 85% quality WebP
+      // strip "data:image/webp;base64,"
+      resolve(dataUrl.split(',')[1]);
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+function renderImageGrid(type) {
+  const grid = document.getElementById(`${type}-img-grid`);
+  const featInput = document.getElementById(`${type}-featured-image`);
+  grid.innerHTML = uploadedImages.map((url, i) => {
+    const isFeat = featInput.value === url;
+    return `
+      <div class="img-card ${isFeat ? 'is-featured' : ''}">
+        <img src="${url}">
+        <div class="del-img" onclick="removeImage('${type}', ${i})">✕</div>
+        ${type==='project' ? `<div class="star-img" onclick="setFeatured('${type}', '${url}')">${isFeat?'★ Featured':'☆ Set Cover'}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function removeImage(type, idx) {
+  const url = uploadedImages[idx];
+  uploadedImages.splice(idx, 1);
+  const featInput = document.getElementById(`${type}-featured-image`);
+  if(featInput.value === url) featInput.value = uploadedImages[0] || '';
+  renderImageGrid(type);
+  // Optionally call DELETE /api/upload here to remove from github immediately
+}
+
+function setFeatured(type, url) {
+  document.getElementById(`${type}-featured-image`).value = url;
+  renderImageGrid(type);
+}
+</script>
+</body>
+</html>
+"""
+
+with open(r'c:\tmp\Oliveoakk\admin.html', 'w', encoding='utf-8') as f:
+    f.write(admin_html)
+
+print("Created admin.html")

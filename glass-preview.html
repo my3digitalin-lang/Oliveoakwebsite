@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glass Button Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    min-height:100vh;
+    background:url('imag4.webp') center/cover no-repeat fixed;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:60px;font-family:'Jost',sans-serif;
+    padding:60px 40px;
+  }
+  /* Dark overlay so it matches the actual site */
+  body::before{
+    content:'';position:fixed;inset:0;
+    background:rgba(6,5,4,.45);
+    z-index:0
+  }
+  .row{
+    position:relative;z-index:1;
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+    width:100%;max-width:500px
+  }
+  .label{
+    font-family:'Jost',sans-serif;font-size:11px;
+    letter-spacing:3px;text-transform:uppercase;
+    color:rgba(255,255,255,.45);margin-bottom:6px
+  }
+  /* BASE button shape shared by all */
+  .btn{
+    width:260px;padding:14px 36px;
+    border-radius:10px;
+    font-family:'Jost',sans-serif;
+    font-size:11px;font-weight:500;
+    letter-spacing:2px;text-transform:uppercase;
+    cursor:pointer;display:inline-flex;align-items:center;
+    justify-content:center;gap:10px;
+    transition:all .3s ease;
+    text-decoration:none;color:rgba(255,255,255,.9)
+  }
+
+  /* ─── A: Minimal Frost ─────────────────────── */
+  .btn-a{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.12)
+  }
+  .btn-a:hover{
+    background:rgba(255,255,255,.10);
+    border-color:rgba(255,255,255,.22)
+  }
+
+  /* ─── B: Gold-Tinted Glass ─────────────────── */
+  .btn-b{
+    background:rgba(200,169,126,.10);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(200,169,126,.32);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    color:rgba(240,212,144,.95)
+  }
+  .btn-b:hover{
+    background:rgba(200,169,126,.18);
+    border-color:rgba(200,169,126,.55);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 24px rgba(200,169,126,.18)
+  }
+
+  /* ─── C: Deep Dark Glass ───────────────────── */
+  .btn-c{
+    background:rgba(8,7,6,.62);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 24px rgba(0,0,0,.4)
+  }
+  .btn-c:hover{
+    background:rgba(20,18,15,.70);
+    border-color:rgba(255,255,255,.18);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 12px 32px rgba(0,0,0,.5)
+  }
+
+  /* ─── D: Luminous Glass (Most Premium) ─────── */
+  .btn-d{
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(12px) saturate(1.6);
+    -webkit-backdrop-filter:blur(12px) saturate(1.6);
+    border:1px solid rgba(255,255,255,.20);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.16),
+      0 8px 32px rgba(0,0,0,.35)
+  }
+  .btn-d:hover{
+    background:rgba(255,255,255,.12);
+    border-color:rgba(255,255,255,.32);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.22),
+      0 12px 40px rgba(0,0,0,.45)
+  }
+
+  .divider{
+    position:relative;z-index:1;
+    width:100%;max-width:500px;
+    height:1px;background:rgba(255,255,255,.08)
+  }
+  h2{
+    position:relative;z-index:1;
+    font-family:'Yeseva One',serif;
+    font-size:18px;color:rgba(255,255,255,.35);
+    letter-spacing:4px;text-transform:uppercase;font-weight:400;
+    margin-bottom:-20px
+  }
+
+@media(max-width:900px) {
+  /* Black tint on mobile as requested */
+  .page-header::after, .proj-hero-overlay::after, .about-img-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+    pointer-events: none;
+  }
+  body {
+    background-color: #040404 !important;
+  }
+}
+</style>
+
+
+<style>
+  img:not([src*="logo"]):not(.wa-icon) {
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+
+  <h2>Glass Button Preview</h2>
+
+  <div class="row">
+    <span class="label">A   Minimal Frost</span>
+    <a class="btn btn-a">Book Consultation →</a>
+    <a class="btn btn-a">Explore Projects →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row">
+    <span class="label">B   Gold-Tinted Glass</span>
+    <a class="btn btn-b">Book Consultation →</a>
+    <a class="btn btn-b">Explore Projects →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row">
+    <span class="label">C   Deep Dark Glass</span>
+    <a class="btn btn-c">Book Consultation →</a>
+    <a class="btn btn-c">Explore Projects →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row">
+    <span class="label">D   Luminous Glass (Most Premium)</span>
+    <a class="btn btn-d">Book Consultation →</a>
+    <a class="btn btn-d">Explore Projects →</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+﻿node_modules/
+.vercel/
+laptop/
+framesformobile/
+Frames/
+Pc_frames/
+Desktopframes/
+Frames_pc2/
+Frames_pc/
+Frames-webp-pc/
+Frames-webp/
+Frames-webp-mobile/
+*.log

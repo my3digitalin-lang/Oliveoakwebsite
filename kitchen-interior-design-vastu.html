@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitchen Interior Design as Per Vastu Shastra | OliveOak Interiors Hyderabad</title>
+<meta name="description" content="Kitchen interior design as per Vastu Shastra for Hyderabad homes. Learn Vastu-compliant kitchen layouts, colours, and placements for health, prosperity and harmony by OliveOak Interiors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--f-display:'Yeseva One',serif;--f-serif:'Cormorant Garamond',serif;--f-body:'Outfit',sans-serif;--gold:#c8a97e;--gold-l:#e8d5a3;--white:#f8f3ea;--bg:#080706;--spring:cubic-bezier(.22,1,.36,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--bg);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+@media (pointer:fine) {
+  *{ cursor:none !important }
+  #olive-cursor{
+    position:fixed;top:0;left:0;
+    width:36px;height:36px;
+    border-radius:50%;
+    border:1.5px solid rgba(240,212,144,1);
+    box-shadow:
+      0 0 0 1px rgba(240,212,144,.25),
+      0 0 14px rgba(240,212,144,.5),
+      inset 0 0 6px rgba(240,212,144,.08);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--f-display);
+    font-size:16px;font-weight:400;font-style:italic;
+    color:#f0d490;
+    text-shadow:0 0 8px rgba(240,212,144,.8);
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    transition:width .18s var(--spring),height .18s var(--spring),
+               box-shadow .18s,border-color .18s;
+    will-change:top,left
+  }
+  #olive-cursor.hov{
+    width:50px;height:50px;
+    border-color:#f0d490;
+    box-shadow:
+      0 0 0 1px rgba(240,212,144,.4),
+      0 0 22px rgba(240,212,144,.7),
+      inset 0 0 12px rgba(240,212,144,.12);
+    background:rgba(240,212,144,.06)
+  }
+}
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-l));z-index:99999;transition:width .08s linear}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:0 64px;height:72px;background:rgba(8,7,6,.3);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,169,126,.1);transition:background .5s}
+.nav.solid{background:rgba(8,7,6,.95)}
+.nav-logo{height:46px;overflow:hidden;display:flex;align-items:center}
+.nav-logo img{height:130px;margin-top:-2px;filter:brightness(1.2)}
+.nav-links{display:flex;gap:40px}
+.nav-link{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.65);transition:color .3s}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-btn{font-family:var(--f-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:4px;border:1px solid rgba(200,169,126,.5);color:var(--gold);transition:background .3s,color .3s}
+.nav-btn:hover{background:var(--gold);color:#080706}
+.ham{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer}
+.ham span{display:block;width:24px;height:1.5px;background:var(--white)}
+.mob-nav{display:none;position:fixed;inset:0;z-index:8000;background:rgba(8,7,6,.97);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mob-nav.open{display:flex}
+.mob-link{font-family:var(--f-display);font-size:30px;color:rgba(255,255,255,.85);transition:color .3s}
+.mob-link:hover,.mob-link.active{color:var(--gold)}
+.mob-close{position:absolute;top:24px;right:24px;font-size:28px;background:none;border:none;color:var(--white);cursor:pointer;padding:8px}
+.wa{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;z-index:8000;box-shadow:0 6px 22px rgba(200,169,126,.4);transition:transform .3s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:26px;height:26px;fill:white}
+.post-hero{position:relative;height:88vh;min-height:540px;display:flex;align-items:flex-end;overflow:hidden;margin-top:72px}
+.post-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.4);transition:transform 2s var(--spring)}
+.post-hero-img.loaded{transform:scale(1)}
+.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,6,1) 0%,rgba(8,7,6,.5) 45%,rgba(8,7,6,.1) 100%)}
+.post-hero-content{position:relative;z-index:2;padding:0 100px 64px;max-width:1200px}
+.post-hero-meta{display:flex;align-items:center;gap:20px;margin-bottom:20px}
+.post-hero-cat{font-family:var(--f-body);font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,126,.3);padding:5px 14px;border-radius:20px;background:rgba(200,169,126,.07)}
+.post-hero-date{font-family:var(--f-body);font-size:11px;color:rgba(255,255,255,.35);letter-spacing:1px}
+.post-hero-date::before{content:'  '}
+.post-h1{font-family:var(--f-display);font-size:clamp(30px,4.5vw,68px);color:var(--white);line-height:1.06;max-width:780px;margin-bottom:20px;opacity:0;transform:translateY(24px);transition:opacity .9s var(--spring),transform .9s var(--spring)}
+.post-h1.show{opacity:1;transform:none}
+.post-hero-read{font-family:var(--f-body);font-size:11px;color:rgba(255,255,255,.35);letter-spacing:2px;display:flex;align-items:center;gap:8px}
+.post-hero-read::before{content:'';width:32px;height:1px;background:rgba(200,169,126,.35)}
+.article-outer{max-width:760px;margin:0 auto;padding:72px 40px 80px}
+.article-lead{font-family:var(--f-serif);font-size:22px;font-weight:300;font-style:italic;color:rgba(200,169,126,.85);line-height:1.8;margin-bottom:52px;padding-bottom:44px;border-bottom:1px solid rgba(200,169,126,.12)}
+.article-lead::first-letter{font-family:var(--f-display);font-size:84px;line-height:.72;float:left;margin:10px 14px 0 0;color:var(--gold)}
+.article-body p{font-family:var(--f-serif);font-size:19px;font-weight:300;line-height:1.95;color:rgba(240,235,224,.68);margin-bottom:26px}
+.article-body strong{font-weight:600;color:rgba(255,255,255,.9)}
+.article-body h2{font-family:var(--f-display);font-size:clamp(22px,2.4vw,32px);color:var(--white);margin:56px 0 18px;display:flex;align-items:center;gap:16px}
+.article-body h2::before{content:'';width:28px;height:2px;background:var(--gold);display:block;flex-shrink:0}
+.article-body h3{font-family:var(--f-display);font-size:clamp(17px,1.8vw,22px);color:var(--gold-l);margin:28px 0 12px;opacity:.88}
+.article-body ul{list-style:none;margin:16px 0 28px}
+.article-body ul li{font-family:var(--f-serif);font-size:18px;font-weight:300;color:rgba(240,235,224,.62);padding:7px 0 7px 28px;position:relative;line-height:1.75}
+.article-body ul li::before{content:'';position:absolute;left:0;top:17px;width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.7}
+.article-img-full{margin:44px -120px;border-radius:4px;overflow:hidden;position:relative}
+.article-img-full img{width:100%;height:480px;object-fit:cover;filter:brightness(.75)}
+.article-img-full .img-caption{position:absolute;bottom:16px;right:20px;font-family:var(--f-body);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(200,169,126,.5)}
+.article-img-inline{margin:36px 0;border-radius:12px;overflow:hidden;border:1px solid rgba(200,169,126,.1)}
+.article-img-inline img{width:100%;height:360px;object-fit:cover;filter:brightness(.75)}
+.article-img-inline .img-cap{font-family:var(--f-body);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(200,169,126,.4);padding:12px 16px;text-align:right}
+.article-img-duo{margin:40px -60px;display:grid;grid-template-columns:1fr 1fr;gap:12px;border-radius:8px;overflow:hidden}
+.article-img-duo img{width:100%;height:300px;object-fit:cover;filter:brightness(.7)}
+.article-pullquote{margin:48px 0;padding:32px 40px;border-left:3px solid var(--gold);background:rgba(200,169,126,.04)}
+.article-pullquote p{font-family:var(--f-serif);font-size:24px;font-style:italic;font-weight:300;color:var(--gold-l);line-height:1.55;margin:0}
+.article-pullquote cite{display:block;margin-top:10px;font-family:var(--f-body);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(200,169,126,.4)}
+.article-divider{display:flex;align-items:center;gap:16px;margin:48px 0}
+.article-divider::before,.article-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,126,.2),transparent)}
+.article-divider span{font-family:var(--f-serif);font-size:18px;color:rgba(200,169,126,.3)}
+.article-cta{margin:52px 0;padding:44px 48px;background:rgba(14,12,9,.85);border:1px solid rgba(200,169,126,.15);border-radius:16px;position:relative;overflow:hidden}
+.article-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.article-cta h3{font-family:var(--f-display);font-size:24px;color:var(--white);margin-bottom:12px}
+.article-cta p{font-family:var(--f-serif);font-size:17px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:24px}
+.cta-btn{display:inline-block;font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:13px 30px;border-radius:6px;border:1px solid rgba(200,169,126,.5);color:var(--gold);background:rgba(200,169,126,.08);transition:background .3s}
+.cta-btn:hover{background:rgba(200,169,126,.2)}
+.social-btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.social-btn{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border-radius:6px;border:1px solid rgba(200,169,126,.25);color:rgba(200,169,126,.7);transition:border-color .3s,color .3s}
+.social-btn:hover{border-color:var(--gold);color:var(--gold)}
+.next-section{max-width:1280px;margin:0 auto;padding:80px 80px 100px}
+.next-eyebrow{font-family:var(--f-body);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.next-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.next-h2{font-family:var(--f-display);font-size:clamp(24px,3vw,40px);color:var(--white);margin-bottom:44px}
+.next-h2 em{font-family:var(--f-serif);font-style:italic;color:var(--gold)}
+.next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.next-card{border-radius:16px;overflow:hidden;border:1px solid rgba(200,169,126,.08);background:rgba(14,12,9,.7);transition:border-color .3s,transform .4s,box-shadow .4s}
+.next-card:hover{border-color:rgba(200,169,126,.25);transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,.5)}
+.next-card-img{aspect-ratio:16/9;overflow:hidden}
+.next-card-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.65);transition:transform .6s var(--spring),filter .4s}
+.next-card:hover .next-card-img img{transform:scale(1.06);filter:brightness(.8)}
+.next-card-body{padding:24px}
+.next-card-date{font-family:var(--f-body);font-size:10px;color:rgba(200,169,126,.45);margin-bottom:10px}
+.next-card-title{font-family:var(--f-display);font-size:17px;color:var(--white);line-height:1.35;margin-bottom:14px;transition:color .3s}
+.next-card:hover .next-card-title{color:var(--gold)}
+.next-card-link{font-family:var(--f-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px;transition:gap .3s}
+.next-card:hover .next-card-link{gap:12px}
+.view-all-wrap{text-align:center;margin-top:48px}
+.view-all-btn{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,126,.35);padding:13px 36px;border-radius:6px;display:inline-block;transition:background .3s}
+.view-all-btn:hover{background:rgba(200,169,126,.1)}
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,126,.15),transparent)}
+footer{background:rgba(6,5,4,.97);border-top:1px solid rgba(200,169,126,.08);padding:80px 80px 40px}
+.foot-top{display:grid;grid-template-columns:1fr auto auto auto;gap:60px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.05)}
+.foot-logo{font-family:var(--f-display);font-size:28px;color:var(--white)}
+.foot-logo span{color:var(--gold)}
+.foot-logo-sub{font-family:var(--f-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px}
+.foot-tagline{font-family:var(--f-serif);font-size:16px;font-style:italic;color:rgba(255,255,255,.3);margin-top:16px;max-width:280px;line-height:1.6}
+.foot-col h4{font-family:var(--f-body);font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.foot-col a{display:block;font-family:var(--f-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:10px;transition:color .3s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:32px;flex-wrap:wrap;gap:12px}
+.foot-copy{font-family:var(--f-body);font-size:11px;color:rgba(255,255,255,.2)}
+.foot-copy span{color:rgba(200,169,126,.4)}
+@media(max-width:900px){.nav{padding:0 20px;background:rgba(8,7,6,.92)!important}.nav-links,.nav-btn{display:none}.ham{display:flex}.post-hero{height:70vh;min-height:420px}.post-hero-content{padding:0 24px 48px}.post-h1{font-size:clamp(26px,7vw,44px)}.article-outer{padding:48px 20px 60px}.article-lead{font-size:18px}.article-body p{font-size:17px}.article-body h2{font-size:clamp(20px,5vw,26px);margin:40px 0 14px}.article-img-full{margin:36px -20px}.article-img-full img{height:300px}.article-img-duo{margin:32px 0;grid-template-columns:1fr}.article-img-duo img{height:220px}.article-img-inline img{height:260px}.article-pullquote{padding:24px;margin:36px 0}.article-pullquote p{font-size:20px}.article-cta{padding:32px 24px}.next-section{padding:48px 20px 60px}.next-grid{grid-template-columns:1fr;gap:16px}footer{padding:48px 20px 28px}.foot-top{grid-template-columns:1fr;gap:32px}.foot-bottom{flex-direction:column}}
+
+@media(max-width:900px) {
+  /* Black tint on mobile as requested */
+  .page-header::after, .proj-hero-overlay::after, .about-img-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+    pointer-events: none;
+  }
+  body {
+    background-color: #040404 !important;
+  }
+}
+</style>
+
+
+<style>
+  img:not([src*="logo"]):not(.wa-icon) {
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="olive-cursor">O</div>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><img src="logo.webp" alt="OliveOak Interiors"></a>
+  <div class="nav-links">
+    <a href="about.html" class="nav-link">About</a>
+    <a href="projects.html" class="nav-link">Projects</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="blog.html" class="nav-link active">Blog</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-btn">Contact Us</a>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="about.html" class="mob-link" onclick="closeMob()">About</a>
+  <a href="projects.html" class="mob-link" onclick="closeMob()">Projects</a>
+  <a href="services.html" class="mob-link" onclick="closeMob()">Services</a>
+  <a href="blog.html" class="mob-link active" onclick="closeMob()">Blog</a>
+  <a href="contact.html" class="mob-link" onclick="closeMob()">Contact</a>
+</div>
+
+<a href="https://wa.me/918187094428" class="wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<section class="post-hero">
+  <img class="post-hero-img" id="heroImg" src="images/kitchen-vastu.webp" alt="Kitchen Interior Design as per Vastu Shastra" fetchpriority="high" decoding="async">
+  <div class="post-hero-overlay"></div>
+  <div class="post-hero-content">
+    <div class="post-hero-meta">
+      <span class="post-hero-cat">Kitchen Design</span>
+      <span class="post-hero-date">January 30, 2026</span>
+    </div>
+    <h1 class="post-h1" id="postH1">Kitchen Interior Design as Per<br>Vastu Shastra</h1>
+    <div class="post-hero-read">6 min read</div>
+  </div>
+</section>
+
+<article class="article-outer">
+
+  <p class="article-lead">In Indian homes, the kitchen is not just a place for cooking   it is governed by the ancient principles of <strong>Vastu Shastra</strong>, which guide the placement, layout, and design of the kitchen to promote health, prosperity, and positive energy within the home.</p>
+
+  <div class="article-body">
+
+    <div class="article-img-full">
+      <img src="images/kitchen-vastu.webp" alt="Vastu-compliant kitchen interior design Hyderabad" loading="lazy" decoding="async">
+      <span class="img-caption">Vastu Kitchen Design · OliveOak Interiors · Hyderabad 2026</span>
+    </div>
+
+    <h2>Ideal Kitchen Placement as Per Vastu</h2>
+    <p>According to Vastu Shastra, the <strong>southeast corner of the home</strong> is the most auspicious location for the kitchen, as it is governed by Agni (the fire element). The north or northwest are acceptable alternatives.</p>
+    <ul>
+      <li>Southeast corner: Most auspicious   the Agni corner</li>
+      <li>Northwest: Acceptable as a secondary option</li>
+      <li>North or East: Can work with Vastu remedies</li>
+      <li>Avoid: Northeast and southwest corners for kitchens</li>
+    </ul>
+
+    <div class="article-pullquote">
+      <p>"A Vastu-aligned kitchen is one where fire, air, water and earth exist in harmony   creating not just beautiful food, but beautiful energy."</p>
+      <cite>  OliveOak Design Team</cite>
+    </div>
+
+    <div class="article-img-inline">
+      <img src="images/living-room-and-kitchen.webp" alt="Modern Vastu kitchen design Hyderabad" loading="lazy" decoding="async">
+      <div class="img-cap">Vastu-Compliant Kitchen · OliveOak Interiors · 2026</div>
+    </div>
+
+    <h2>Cooking Direction as Per Vastu</h2>
+    <p>Vastu Shastra specifies the direction the cook should face while preparing meals. The <strong>most auspicious direction is east</strong>, as this aligns the cook with the rising sun and positive solar energy.</p>
+    <ul>
+      <li>Cook facing east: Most auspicious, promotes health and positivity</li>
+      <li>Cook facing north: Acceptable alternative</li>
+      <li>Avoid: Cooking while facing south or west</li>
+      <li>The stove/hob should be placed accordingly</li>
+    </ul>
+
+    <div class="article-divider"><span>✦</span></div>
+
+    <div class="article-img-duo">
+      <img src="images/kitchen-vastu.webp" alt="Vastu kitchen sink placement" loading="lazy" decoding="async">
+      <img src="images/living-room.webp" alt="Vastu kitchen colours" loading="lazy" decoding="async">
+    </div>
+
+    <h2>Sink Placement & Water Elements</h2>
+    <p>In Vastu, water and fire are opposing elements and should never be placed adjacent to each other. The <strong>sink, dishwasher, and refrigerator</strong> (water element) should be placed away from the stove.</p>
+    <ul>
+      <li>Sink: Best placed in the northeast corner of the kitchen</li>
+      <li>Refrigerator: Southeast or southwest corners are ideal</li>
+      <li>Never place the sink and stove directly adjacent or opposite</li>
+      <li>Water purifier: Place in the northeast for positive energy</li>
+    </ul>
+
+    <h2>Vastu-Compliant Kitchen Colours</h2>
+    <p>Colour choices in the kitchen profoundly affect the energy of the space. <strong>Vastu recommends warm, positive colours</strong> that align with the fire element and stimulate appetite and positivity.</p>
+    <ul>
+      <li>Yellow, orange, and golden tones: Ideal for kitchens</li>
+      <li>Green: Excellent for promoting health and vitality</li>
+      <li>White and cream: Clean, pure, universally auspicious</li>
+      <li>Avoid: Dark, heavy colours like black, grey, or dark blue</li>
+    </ul>
+
+    <div class="article-img-full">
+      <img src="images/pexels-artbovich-8089185.webp" alt="Vastu kitchen colour palette and design" loading="lazy" decoding="async">
+      <span class="img-caption">Vastu Colour Palette · OliveOak Interiors · 2026</span>
+    </div>
+
+    <h2>Storage & Organisation as Per Vastu</h2>
+    <p>A well-organised kitchen aligned with Vastu principles promotes <strong>positive energy flow and abundance</strong>. Cluttered kitchens block the flow of positive prana (life force).</p>
+    <ul>
+      <li>Grain and staple storage: South or west walls</li>
+      <li>Heavy appliances and cookware: Southwest cabinets</li>
+      <li>Keep the kitchen clean, clutter-free, and well-ventilated</li>
+      <li>Never store medicines in the kitchen   maintain its purity</li>
+    </ul>
+
+    <div class="article-pullquote">
+      <p>"When a kitchen is designed with both Vastu wisdom and modern functionality, it becomes the true heart of a home   nourishing body and spirit."</p>
+      <cite>  OliveOak Design Team</cite>
+    </div>
+
+    <div class="article-cta">
+      <h3>Design Your Vastu-Compliant Kitchen with OliveOak Interiors</h3>
+      <p>At <strong>OliveOak Interiors</strong>, we seamlessly integrate <strong>Vastu Shastra principles</strong> with modern kitchen design in Hyderabad. Our expert designers create beautiful, functional kitchens that honor both ancient wisdom and contemporary aesthetics.</p>
+      <a href="contact.html" class="cta-btn">Book a Consultation →</a>
+      <div class="social-btns">
+        <a href="https://www.facebook.com/share/1FmNWiu74T/?mibextid=wwXIfr" target="_blank" class="social-btn">Facebook</a>
+        <a href="https://www.instagram.com/oliveoak.in?igsh=MXJkMzk2MDNjbm94&utm_source=qr" target="_blank" class="social-btn">Instagram</a>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<div class="gold-line"></div>
+
+<section class="next-section">
+  <div class="next-eyebrow">Continue Reading</div>
+  <h2 class="next-h2">More Design <em>Stories</em></h2>
+  <div class="next-grid">
+    <a href="modular-kitchen-cost-hyderabad.html" class="next-card">
+      <div class="next-card-img"><img src="images/kitchen-vastu.webp" alt="Modular Kitchen Cost" loading="lazy" decoding="async"></div>
+      <div class="next-card-body">
+        <div class="next-card-date">January 29, 2026</div>
+        <div class="next-card-title">Modular Kitchen Cost in Hyderabad   Complete Price Guide</div>
+        <div class="next-card-link">Read More <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+    </a>
+    <a href="3bhk-interior-design-hyderabad.html" class="next-card">
+      <div class="next-card-img"><img src="images/living-room.webp" alt="3BHK Interior Design" loading="lazy" decoding="async"></div>
+      <div class="next-card-body">
+        <div class="next-card-date">January 30, 2026</div>
+        <div class="next-card-title">3BHK Interior Design in Hyderabad for Modern Homes</div>
+        <div class="next-card-link">Read More <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+    </a>
+    <a href="best-interior-design-ideas.html" class="next-card">
+      <div class="next-card-img"><img src="images/living-room-and-kitchen.webp" alt="Best Interior Design" loading="lazy" decoding="async"></div>
+      <div class="next-card-body">
+        <div class="next-card-date">February 5, 2026</div>
+        <div class="next-card-title">Best Interior Design Ideas for Homes in Hyderabad</div>
+        <div class="next-card-link">Read More <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+    </a>
+  </div>
+  <div class="view-all-wrap"><a href="blog.html" class="view-all-btn">View All Articles</a></div>
+</section>
+
+<div class="gold-line"></div>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">Olive<span>Oak</span></div>
+      <div class="foot-logo-sub">By TEV Contractors · Singapore</div>
+      <p class="foot-tagline">Where spaces inspire, and interior design comes alive.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Sitemap</h4>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Socials</h4>
+      <a href="https://www.facebook.com/share/1FmNWiu74T/?mibextid=wwXIfr" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/oliveoak.in?igsh=MXJkMzk2MDNjbm94&utm_source=qr" target="_blank">Instagram</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="tel:+918187094428">+91 77801 96804</a>
+      <a href="mailto:info@oliveoak.in">info@oliveoak.in</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="foot-copy">© 2026 <span>OliveOak Interiors</span>. All rights reserved.</span>
+    <span class="foot-copy">Designed with precision in Hyderabad</span>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>60),{passive:true});
+document.getElementById('ham').addEventListener('click',()=>document.getElementById('mobNav').classList.add('open'));
+document.getElementById('mobClose').addEventListener('click',()=>document.getElementById('mobNav').classList.remove('open'));
+function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress-bar').style.width=(scrollY/h*100)+'%';},{passive:true});
+requestAnimationFrame(()=>{document.getElementById('heroImg').classList.add('loaded');setTimeout(()=>document.getElementById('postH1').classList.add('show'),300);});
+const cur=document.getElementById('olive-cursor');
+if(cur&&window.matchMedia('(pointer:fine)').matches){let cx=0,cy=0,mx=0,my=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});(function loop(){cx+=(mx-cx)*.15;cy+=(my-cy)*.15;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop);})();document.addEventListener('mouseover',e=>{cur.classList.toggle('hov',!!e.target.closest('a,button'));},{passive:true});const dot=document.createElement('div');dot.className='c-dot';document.body.appendChild(dot);let dmx=0,dmy=0;document.addEventListener('mousemove',e=>{dmx=e.clientX;dmy=e.clientY;dot.style.left=dmx+'px';dot.style.top=dmy+'px';},{passive:true});}
+</script>
+</body>
+</html>
+
+
+
+

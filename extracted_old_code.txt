@@ -1,0 +1,56 @@
+Created At: 2026-06-11T07:31:37Z
+Completed At: 2026-06-11T07:31:39Z
+
+				The command completed successfully.
+				Output:
+				        </div>
+        <div class="foot-ci">
+          <span class="foot-ci-label">Base</span>
+          <span class="foot-ci-val">Singapore / Hyderabad</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-gold"></div>
+
+    <div class="foot-bottom">
+      <p class="foot-copy">Ac 2026 OliveOak by TEV Contractors. All rights reserved.</p>
+      <div class="foot-bottom-links">
+        <a href="contact.html" class="foot-bottom-link">Privacy</a>
+        <a href="contact.html" class="foot-bottom-link">Terms</a>
+const TOTAL   = IS_MOBILE ? 121 : 80; // reduced by 50% for speed        // 168 - 9 = 159 usable frames
+const RANGE   = IS_MOBILE ? 1800 : 6000;
+const FP      = n => {
+  let actualFrame = n * 2 - 1;
+  return IS_MOBILE
+  ? Frames-webp-mobile/ezgif-frame-.webp
+  : Frames-webp-pc/frame_.webp;
+};
+
+/* ==============================================================
+   ELEMENTS
+============================================================== */
+const canvas   = document.getElementById('canvas');
+const ctx      = canvas.getContext('2d');
+const hero     = document.getElementById('hero');
+const heroText = document.getElementById('hero-text');
+const hint     = document.getElementById('scroll-hint');
+const progress = document.getElementById('hero-progress');
+const main     = document.getElementById('main');
+const nav      = document.getElementById('nav');
+const backHint = document.getElementById('back-hint');
+
+/* ==============================================================
+   STATE
+============================================================== */
+let imgs    = new Array(TOTAL);
+let loaded  = 0;
+let frame   = 0;
+let vDelta  = 0;      // virtual scroll delta
+let done    = false;  // hero animation finished
+let busy    = false;  // mid-transition (lock re-entry)
+let observer = null;
+
+/* ==============================================================
+   CANVAS
+

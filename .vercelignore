@@ -1,0 +1,28 @@
+# Source PNG frame folders (WebP versions in Frames-webp-pc/ and Frames-webp-mobile/ are used)
+Frames/
+framesformobile/
+Frames_pc/
+Frames_pc2/
+Pc_frames/
+Desktopframes/
+Laptop/
+Frames-webp/
+
+# Root-level original images (WebP versions already exist)
+imag1.jpeg
+imag2.jpeg
+imag3.jpeg
+imag4.jpeg
+bg-texture.jpg
+logo.PNG
+
+# Development/preview files
+convert_to_webp.py
+convert_frames.py
+blog-listing-preview.html
+blog-design-preview.html
+design-preview.html
+glass-preview.html
+blog2.html
+blog3.html
+blog4.html
