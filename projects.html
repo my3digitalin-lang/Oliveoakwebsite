@@ -722,7 +722,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       let num = startNum;
 
       list.forEach(d => {
-        const images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
+        let images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
+        // Filter out bathroom/washroom images from the main projects page
+        images = images.filter(img => {
+          const lowerImg = img.toLowerCase();
+          return !lowerImg.includes('bath') && !lowerImg.includes('washroom') && !lowerImg.includes('toilet');
+        });
+        
+        // If everything was filtered out somehow, fallback to featuredImage or first original image
+        if (images.length === 0) {
+          images = [d.featuredImage || (d.images && d.images[0]) || ''];
+        }
+
         const noStr = String(num).padStart(2, '0');
         const slug = d.slug || d.id;
         const subtitle = d.category === 'Commercial' ? 'OliveOak Commercial — Hyderabad' : 'OliveOak Residences — Hyderabad';
