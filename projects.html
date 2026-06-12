@@ -609,19 +609,8 @@ footer{background:var(--bg2);padding:72px 60px 40px}
     <button class="tab-btn" onclick="showTab('commercial')">Commercial</button>
   </div>
 
-  <div id="tab-residential">
-
-  <div class="project-header" id="label-proj1">
-    <div class="proj-info-left">
-      <span class="p-no">01</span>
-      <h3 class="p-name">The Linden Court</h3>
-      <span class="p-type">OliveOak Residences — Hyderabad</span>
-    </div>
-    <a href="project-1.html" class="btn-ghost">View Full Project</a>
-  </div>
-  <div class="masonry-grid" id="dyn-projects-grid">
-  <div style="color:var(--gold);padding:40px;text-align:center;">Loading projects...</div>
-</div>
+  <div id="tab-residential"></div>
+  <div id="tab-commercial" style="display:none"></div>
 </section>
 
 <!-- ══════ FOOTER ══════ -->
@@ -670,6 +659,14 @@ document.getElementById('ham').onclick = () => document.getElementById('mobNav')
 document.getElementById('mobClose').onclick = () => document.getElementById('mobNav').classList.remove('open');
 function closeMob(){document.getElementById('mobNav').classList.remove('open')}
 
+/* ── TAB SWITCHING ────────────────────────── */
+function showTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-residential').style.display = tab === 'residential' ? '' : 'none';
+  document.getElementById('tab-commercial').style.display = tab === 'commercial' ? '' : 'none';
+}
+
 /* ── OLIVE CURSOR ────────────────────────── */
 if(window.matchMedia('(pointer:fine)').matches){
   const cur = document.getElementById('olive-cursor');
@@ -697,96 +694,103 @@ if(window.matchMedia('(pointer:fine)').matches){
   })();
 }
 
-
-
 /* ── SCROLL PROGRESS ─────────────────────── */
 const sp = document.getElementById('scroll-progress');
 window.addEventListener('scroll',()=>{
   const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
   sp.style.height = pct + '%';
 },{passive:true});
-
-/* Zero scroll-triggered JS — all items visible by default */
-
-/* ── RIPPLE on PORTAL ITEMS ────── */
-document.querySelectorAll('.portal:not(.cta-cell)').forEach(el=>{
-  el.addEventListener('click',function(e){
-    const r = this.getBoundingClientRect();
-    const rip = document.createElement('div');
-    rip.className = 'bento-ripple';
-    const size = Math.max(r.width,r.height);
-    rip.style.cssText = `
-      width:${size}px;height:${size}px;
-      left:${e.clientX-r.left-size/2}px;
-      top:${e.clientY-r.top-size/2}px;
-    `;
-    this.appendChild(rip);
-    setTimeout(()=>rip.remove(),700);
-  });
-});
 </script>
 
-
+<!-- ── DYNAMIC PROJECT LOADER ────────────── -->
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.getElementById('firebase-grids') || document.querySelector('.container') || document.body;
-  
-  // Clear container if it has "firebase-grids" to start fresh
-  if(container.id === 'firebase-grids') container.innerHTML = '';
-
   try {
     const res = await fetch('/data/projects.json');
     const projects = await res.json();
-    const published = projects.filter(p => p.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-    
-    let htmlStr = '';
-    let projNum = 1;
-    
-    published.forEach((d) => {
-      const images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
-      const noStr = String(projNum).padStart(2,'0');
-      const gridId = `gh-grid-${d.id}`;
-      const layoutClasses = ['hero','left','right','sm','sm','sm cta-cell'];
-      
-      let labelHTML = `
-        <div class="project-label" style="margin-top:80px;margin-bottom:16px;">
-          <span class="project-label-no" style="font-size:12px;color:var(--gold);margin-right:12px;">${noStr}</span>
-          <span class="project-label-name" style="font-size:24px;font-family:var(--f-display);">${d.title}</span>
-          <span class="project-label-type" style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-left:16px;">${d.category}</span>
-        </div>`;
+    const published = projects.filter(p => p.status === 'published');
 
-      let itemsHTML = '';
-      images.slice(0,5).forEach((img,i)=>{
-        const cls = layoutClasses[i]||'sm';
-        itemsHTML += `
-          <a class="bento-item ${cls} portal" href="project.html?id=${d.slug}">
-            <div class="bento-inner">
-              <img src="${img}" alt="${d.title}" loading="lazy">
+    const residential = published.filter(p => (p.category||'').toLowerCase() === 'residential')
+                                 .sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
+    const commercial  = published.filter(p => (p.category||'').toLowerCase() === 'commercial')
+                                 .sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    function renderProjects(list, containerId, startNum) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      let html = '';
+      let num = startNum;
+
+      list.forEach(d => {
+        const images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
+        const noStr = String(num).padStart(2, '0');
+        const slug = d.slug || d.id;
+        const subtitle = d.category === 'Commercial' ? 'OliveOak Commercial — Hyderabad' : 'OliveOak Residences — Hyderabad';
+
+        // Project header
+        html += `
+          <div class="project-header">
+            <div class="proj-info-left">
+              <span class="p-no">${noStr}</span>
+              <h3 class="p-name">${d.title}</h3>
+              <span class="p-type">${subtitle}</span>
             </div>
-            <div class="bento-overlay">
-              <span class="bento-project">${d.title}</span>
-            </div>
-          </a>`;
+            <a href="project.html?id=${slug}" class="btn-ghost">View Full Project</a>
+          </div>`;
+
+        // Bento grid with original layout classes
+        html += `<div class="bento-grid">`;
+
+        images.forEach((img, i) => {
+          let cls = 'sm';
+          if (i === 0) cls = 'hero';
+          else if (i === 1) cls = 'left';
+          else if (i === 2) cls = 'right';
+
+          html += `
+            <a class="bento-item ${cls} portal" href="project.html?id=${slug}">
+              <div class="bento-inner">
+                <img src="${img}" alt="${d.title}" loading="lazy">
+              </div>
+              <div class="bento-overlay">
+                <span class="bento-project">${d.title}</span>
+              </div>
+            </a>`;
+        });
+
+        // CTA cell
+        html += `
+            <a class="bento-item sm cta-cell portal" href="project.html?id=${slug}">
+              <span class="cta-cell-no">${noStr}</span>
+              <span class="cta-cell-name">${d.title}</span>
+              <span class="cta-cell-link">View Full Project &rarr;</span>
+            </a>`;
+
+        html += `</div>`;
+        num++;
       });
 
-      if(images.length < 6){
-        itemsHTML += `
-          <a class="bento-item sm cta-cell portal" href="project.html?id=${d.slug}">
-            <span class="cta-cell-no">${noStr}</span>
-            <span class="cta-cell-name">${d.title}</span>
-            <span class="cta-cell-link">View Full Project &rarr;</span>
-          </a>`;
-      }
+      container.innerHTML = html;
+    }
 
-      htmlStr += labelHTML + `<div class="bento-grid" id="${gridId}">${itemsHTML}</div>`;
-      projNum++;
+    renderProjects(residential, 'tab-residential', 1);
+    renderProjects(commercial, 'tab-commercial', residential.length + 1);
+
+    // Re-bind ripple effects on dynamically created portals
+    document.querySelectorAll('.portal:not(.cta-cell)').forEach(el => {
+      el.addEventListener('click', function(e) {
+        const r = this.getBoundingClientRect();
+        const rip = document.createElement('div');
+        rip.className = 'bento-ripple';
+        const size = Math.max(r.width, r.height);
+        rip.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;`;
+        this.appendChild(rip);
+        setTimeout(() => rip.remove(), 700);
+      });
     });
-    
-    // Inject at the bottom before footer or append to container
-    container.innerHTML += htmlStr;
-    
+
   } catch(e) {
-    console.error(e);
+    console.error('Failed to load projects:', e);
   }
 });
 </script>
