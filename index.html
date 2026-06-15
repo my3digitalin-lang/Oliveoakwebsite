@@ -5206,8 +5206,10 @@ if (IS_MOBILE) {
 
 
   /* Build dot indicators */
-
   const svcList = document.getElementById('svc-list');
+  if (svcList) {
+
+
 
   const dotsWrap = document.createElement('div');
 
@@ -5245,6 +5247,7 @@ if (IS_MOBILE) {
   }, 3000);
   
   svcList.addEventListener('touchstart', () => clearInterval(svcAutoplay), {passive: true});
+  }
 
 
 
