@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interior Design Projects | Portfolio – OliveOak Interiors</title>
-<meta name="description" content="Explore OliveOak Interiors' curated portfolio of luxury residential projects in Hyderabad — spaces crafted with restraint, warmth, and timeless elegance.">
+<title>Interior Design Projects | Portfolio ΓÇô OliveOak Interiors</title>
+<meta name="description" content="Explore OliveOak Interiors' curated portfolio of luxury residential projects in Hyderabad ΓÇö spaces crafted with restraint, warmth, and timeless elegance.">
 <link rel="canonical" href="https://oliveoak-site.vercel.app/projects.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ───────────────────────────────── */
+/* ΓöÇΓöÇ TOKENS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 :root{
   --f-display:'Yeseva One',serif;
   --f-serif:'Cormorant Garamond',serif;
@@ -21,11 +21,11 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--f-body);background:#000;color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--f-body);background:var(--bg) url('bg-texture.webp') center/cover fixed;color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;object-fit:cover}
 a{text-decoration:none;color:inherit}
 
-/* ── NOISE GRAIN ─────────────────────────── */
+/* ΓöÇΓöÇ NOISE GRAIN ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .noise-overlay{
   position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -41,13 +41,13 @@ a{text-decoration:none;color:inherit}
   100%{transform:translate(5%,0)}
 }
 
-/* ── SCROLL PROGRESS ─────────────────────── */
+/* ΓöÇΓöÇ SCROLL PROGRESS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 #scroll-progress{
   position:fixed;top:0;right:0;width:2px;height:0;
   background:var(--gold);z-index:100;transition:height .05s ease-out;
 }
 
-/* ── OLIVE CURSOR ────────────────────────── */
+/* ΓöÇΓöÇ OLIVE CURSOR ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 @media (pointer:fine) {
   *{ cursor:none !important }
   #olive-cursor{
@@ -117,7 +117,7 @@ a{text-decoration:none;color:inherit}
   }
 }
 
-/* ── NAV ─────────────────────────────────── */
+/* ΓöÇΓöÇ NAV ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .nav{position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;z-index:9000;background:transparent;border-bottom:1px solid transparent;transition:background .6s,border-color .6s,backdrop-filter .6s}
 .nav.solid{background:rgba(8,7,6,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom-color:rgba(200,169,126,.1)}
 .nav-logo{height:44px;overflow:hidden;display:flex;align-items:center}
@@ -135,19 +135,19 @@ a{text-decoration:none;color:inherit}
 .mob-link:hover,.mob-link.active{color:var(--gold)}
 .mob-close{position:absolute;top:22px;right:22px;font-size:26px;background:none;border:none;color:var(--white);padding:8px;cursor:pointer}
 
-/* ── WHATSAPP FAB ────────────────────────── */
+/* ΓöÇΓöÇ WHATSAPP FAB ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .wa{position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;z-index:8000;box-shadow:0 6px 24px rgba(200,169,126,.3);transition:transform .3s}
 .wa:hover{transform:scale(1.1)}
 .wa svg{width:24px;height:24px;fill:white}
 
-/* ── PAGE HEADER ─────────────────────────── */
+/* ΓöÇΓöÇ PAGE HEADER ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .page-header{
   padding-top:68px;
   min-height:38vh;
   display:flex;align-items:flex-end;
   position:relative;
   overflow:hidden;
-  background:#000;
+  background:var(--bg);
 }
 .page-header::before{
   content:'';position:absolute;inset:0;
@@ -172,13 +172,13 @@ a{text-decoration:none;color:inherit}
   color:rgba(248,243,234,.45);letter-spacing:.3px;
 }
 
-/* ── GALLERY SECTION ─────────────────────── */
+/* ΓöÇΓöÇ GALLERY SECTION ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .gallery-section{
   padding:0 4px;
-  background:#000;
+  background:var(--bg);
 }
 
-/* ── PROJECT LABEL ───────────────────────── */
+/* ΓöÇΓöÇ PROJECT LABEL ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .project-label{
   display:flex;align-items:baseline;gap:18px;
   padding:36px 60px 16px;
@@ -194,7 +194,7 @@ a{text-decoration:none;color:inherit}
   color:rgba(248,243,234,.3);margin-left:auto;
 }
 
-/* ── BENTO GRID ──────────────────────────── */
+/* ΓöÇΓöÇ BENTO GRID ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .bento-grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
@@ -202,12 +202,12 @@ a{text-decoration:none;color:inherit}
   padding-bottom:4px;
 }
 
-/* Row 1 — Full width hero */
+/* Row 1 ΓÇö Full width hero */
 .bento-item.hero{
   grid-column:1 / -1;
   height:75vh;
 }
-/* Row 2 — 5/12 + 7/12 */
+/* Row 2 ΓÇö 5/12 + 7/12 */
 .bento-item.left{
   grid-column:1 / 6;
   height:55vh;
@@ -216,17 +216,17 @@ a{text-decoration:none;color:inherit}
   grid-column:6 / -1;
   height:55vh;
 }
-/* Row 3 — three equal */
+/* Row 3 ΓÇö three equal */
 .bento-item.sm{
   grid-column:span 4;
   height:38vh;
 }
 
-/* ── BENTO ITEM BASE ─────────────────────── */
+/* ΓöÇΓöÇ BENTO ITEM BASE ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .bento-item{
   position:relative;overflow:hidden;display:block;
   background:var(--bg2);
-  /* Visible immediately — no scroll reveal */
+  /* Visible immediately ΓÇö no scroll reveal */
 }
 /* Hero items get a single CSS load animation only */
 .bento-item.hero{
@@ -313,11 +313,11 @@ a{text-decoration:none;color:inherit}
 }
 @keyframes bentorip{to{transform:scale(4);opacity:0}}
 
-/* ── DIVIDER ─────────────────────────────── */
+/* ΓöÇΓöÇ DIVIDER ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,126,.3),transparent);margin:0}
-.section-gap{height:80px;background:#000}
+.section-gap{height:80px;background:var(--bg)}
 
-/* ── CTA SECTION ─────────────────────────── */
+/* ΓöÇΓöÇ CTA SECTION ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .cta-section{
   padding:100px 60px;max-width:1400px;margin:0 auto;
   text-align:center;
@@ -333,7 +333,7 @@ a{text-decoration:none;color:inherit}
 .btn-ghost{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;padding:14px 34px;border:1px solid rgba(200,169,126,.4);color:var(--gold);border-radius:3px;transition:background .3s,border-color .3s,transform .2s}
 .btn-ghost:hover{background:rgba(200,169,126,.08);transform:translateY(-2px)}
 
-/* ── FOOTER ──────────────────────────────── */
+/* ΓöÇΓöÇ FOOTER ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 footer{background:var(--bg2);padding:72px 60px 40px}
 .foot-top{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid rgba(200,169,126,.08)}
 .foot-logo{font-family:var(--f-display);font-size:28px;color:var(--white)}
@@ -348,12 +348,12 @@ footer{background:var(--bg2);padding:72px 60px 40px}
 .foot-copy{font-family:var(--f-body);font-size:11px;color:rgba(248,243,234,.25);letter-spacing:1px}
 .foot-copy span{color:var(--gold)}
 
-/* ── REVEAL ANIMATION ────────────────────── */
+/* ΓöÇΓöÇ REVEAL ANIMATION ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .reveal-up{
-  /* No scroll animation — visible immediately */
+  /* No scroll animation ΓÇö visible immediately */
 }
 
-/* ── RESPONSIVE ──────────────────────────── */
+/* ΓöÇΓöÇ RESPONSIVE ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 @media(max-width:900px){
   .nav{padding:0 24px}
   .nav-links,.nav-btn{display:none}
@@ -544,16 +544,6 @@ footer{background:var(--bg2);padding:72px 60px 40px}
     color: var(--bg);
     border-color: var(--gold);
   }
-  @media(max-width: 900px) {
-    .desktop-project-view { display: none !important; }
-    .mobile-project-card { display: block !important; margin: 0 24px 40px 24px; }
-  }
-  @media(max-width: 480px) {
-    .mobile-project-card { margin: 0 16px 32px 16px; }
-  }
-  @media(min-width: 901px) {
-    .mobile-project-card { display: none !important; }
-  }
   </style>
 </head>
 <body>
@@ -571,7 +561,7 @@ footer{background:var(--bg2);padding:72px 60px 40px}
 
 <!-- Mobile Nav -->
 <div class="mob-nav" id="mobNav">
-  <button class="mob-close" id="mobClose">✕</button>
+  <button class="mob-close" id="mobClose">Γ£ò</button>
   <a href="about.html"    class="mob-link" onclick="closeMob()">About</a>
   <a href="projects.html" class="mob-link active" onclick="closeMob()">Projects</a>
   <a href="services.html" class="mob-link" onclick="closeMob()">Services</a>
@@ -601,9 +591,9 @@ footer{background:var(--bg2);padding:72px 60px 40px}
 </a>
 
 <!-- SEO H1 -->
-<h1 style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden">Interior Design Projects Portfolio — OliveOak Interiors</h1>
+<h1 style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden">Interior Design Projects Portfolio ΓÇö OliveOak Interiors</h1>
 
-<!-- ══════ PAGE HEADER ══════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ PAGE HEADER ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <div class="page-header">
   <div class="page-header-inner">
     <span class="eyebrow-label">Portfolio</span>
@@ -612,18 +602,29 @@ footer{background:var(--bg2);padding:72px 60px 40px}
   </div>
 </div>
 
-<!-- ══════ GALLERY SECTION ══════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ GALLERY SECTION ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <section class="gallery-section" id="gallerySection">
   <div class="projects-tabs">
     <button class="tab-btn active" onclick="showTab('residential')">Residential</button>
     <button class="tab-btn" onclick="showTab('commercial')">Commercial</button>
   </div>
 
-  <div id="tab-residential"></div>
-  <div id="tab-commercial" style="display:none"></div>
+  <div id="tab-residential">
+
+  <div class="project-header" id="label-proj1">
+    <div class="proj-info-left">
+      <span class="p-no">01</span>
+      <h3 class="p-name">The Linden Court</h3>
+      <span class="p-type">OliveOak Residences ΓÇö Hyderabad</span>
+    </div>
+    <a href="project-1.html" class="btn-ghost">View Full Project</a>
+  </div>
+  <div class="masonry-grid" id="dyn-projects-grid">
+  <div style="color:var(--gold);padding:40px;text-align:center;">Loading projects...</div>
+</div>
 </section>
 
-<!-- ══════ FOOTER ══════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ FOOTER ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <div class="gold-line"></div>
 <footer>
   <div class="foot-top">
@@ -655,29 +656,21 @@ footer{background:var(--bg2);padding:72px 60px 40px}
     </div>
   </div>
   <div class="foot-bottom">
-    <p class="foot-copy">© 2026 <span>OliveOak Interiors</span>. All rights reserved.</p>
+    <p class="foot-copy">┬⌐ 2026 <span>OliveOak Interiors</span>. All rights reserved.</p>
     <p class="foot-copy">Crafted with <span>&#9654;</span> in Hyderabad</p>
   </div>
 </footer>
 
-<!-- ══════ SCRIPTS ══════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SCRIPTS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <script>
-/* ── NAV ─────────────────────────────────── */
+/* ΓöÇΓöÇ NAV ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), {passive:true});
 document.getElementById('ham').onclick = () => document.getElementById('mobNav').classList.add('open');
 document.getElementById('mobClose').onclick = () => document.getElementById('mobNav').classList.remove('open');
 function closeMob(){document.getElementById('mobNav').classList.remove('open')}
 
-/* ── TAB SWITCHING ────────────────────────── */
-function showTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById('tab-residential').style.display = tab === 'residential' ? '' : 'none';
-  document.getElementById('tab-commercial').style.display = tab === 'commercial' ? '' : 'none';
-}
-
-/* ── OLIVE CURSOR ────────────────────────── */
+/* ΓöÇΓöÇ OLIVE CURSOR ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 if(window.matchMedia('(pointer:fine)').matches){
   const cur = document.getElementById('olive-cursor');
   const dot  = document.getElementById('cDot');
@@ -704,153 +697,103 @@ if(window.matchMedia('(pointer:fine)').matches){
   })();
 }
 
-/* ── SCROLL PROGRESS ─────────────────────── */
+
+
+/* ΓöÇΓöÇ SCROLL PROGRESS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 const sp = document.getElementById('scroll-progress');
 window.addEventListener('scroll',()=>{
   const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
   sp.style.height = pct + '%';
 },{passive:true});
+
+/* Zero scroll-triggered JS ΓÇö all items visible by default */
+
+/* ΓöÇΓöÇ RIPPLE on PORTAL ITEMS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+document.querySelectorAll('.portal:not(.cta-cell)').forEach(el=>{
+  el.addEventListener('click',function(e){
+    const r = this.getBoundingClientRect();
+    const rip = document.createElement('div');
+    rip.className = 'bento-ripple';
+    const size = Math.max(r.width,r.height);
+    rip.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${e.clientX-r.left-size/2}px;
+      top:${e.clientY-r.top-size/2}px;
+    `;
+    this.appendChild(rip);
+    setTimeout(()=>rip.remove(),700);
+  });
+});
 </script>
 
-<!-- ── DYNAMIC PROJECT LOADER ────────────── -->
+
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('firebase-grids') || document.querySelector('.container') || document.body;
+  
+  // Clear container if it has "firebase-grids" to start fresh
+  if(container.id === 'firebase-grids') container.innerHTML = '';
+
   try {
     const res = await fetch('/data/projects.json');
     const projects = await res.json();
-    const published = projects.filter(p => p.status === 'published');
+    const published = projects.filter(p => p.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+    
+    let htmlStr = '';
+    let projNum = 1;
+    
+    published.forEach((d) => {
+      const images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
+      const noStr = String(projNum).padStart(2,'0');
+      const gridId = `gh-grid-${d.id}`;
+      const layoutClasses = ['hero','left','right','sm','sm','sm cta-cell'];
+      
+      let labelHTML = `
+        <div class="project-label" style="margin-top:80px;margin-bottom:16px;">
+          <span class="project-label-no" style="font-size:12px;color:var(--gold);margin-right:12px;">${noStr}</span>
+          <span class="project-label-name" style="font-size:24px;font-family:var(--f-display);">${d.title}</span>
+          <span class="project-label-type" style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-left:16px;">${d.category}</span>
+        </div>`;
 
-    const residential = published.filter(p => (p.category||'').toLowerCase() === 'residential')
-                                 .sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
-    const commercial  = published.filter(p => (p.category||'').toLowerCase() === 'commercial')
-                                 .sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
-
-    function renderProjects(list, containerId, startNum) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      let html = '';
-      let num = startNum;
-
-      list.forEach(d => {
-        let images = (d.images && d.images.length) ? d.images.filter(i=>i) : [d.featuredImage];
-        
-        // Move bathroom/washroom images to the end of the gallery instead of removing them
-        images.sort((a, b) => {
-          const isBathA = a.toLowerCase().includes('bath') || a.toLowerCase().includes('washroom') || a.toLowerCase().includes('toilet');
-          const isBathB = b.toLowerCase().includes('bath') || b.toLowerCase().includes('washroom') || b.toLowerCase().includes('toilet');
-          if (isBathA && !isBathB) return 1;
-          if (!isBathA && isBathB) return -1;
-          return 0;
-        });
-
-        // Fallback
-        if (images.length === 0) {
-          images = [d.featuredImage || ''];
-        }
-
-        const noStr = String(num).padStart(2, '0');
-        const slug = d.slug || d.id;
-        const subtitle = d.category === 'Commercial' ? 'OliveOak Commercial — Hyderabad' : 'OliveOak Residences — Hyderabad';
-
-        html += `<div class="project-wrapper">`;
-        
-        // --- Desktop View ---
-        html += `<div class="desktop-project-view">`;
-        // Project header
-        html += `
-          <div class="project-header" style="margin-top: 60px; margin-bottom: 24px;">
-            <div class="proj-info-left">
-              <span class="p-no" style="font-family:var(--f-body);font-size:12px;color:var(--gold);margin-right:12px;">${noStr}</span>
-              <h3 class="p-name" style="font-family:var(--f-display);font-size:clamp(22px,3vw,36px);color:var(--white);display:inline-block;">${d.title}</h3>
-              <span class="p-type" style="display:block;font-family:var(--f-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(248,243,234,.3);margin-top:8px;">${subtitle}</span>
+      let itemsHTML = '';
+      images.slice(0,5).forEach((img,i)=>{
+        const cls = layoutClasses[i]||'sm';
+        itemsHTML += `
+          <a class="bento-item ${cls} portal" href="project.html?id=${d.slug}">
+            <div class="bento-inner">
+              <img src="${img}" alt="${d.title}" loading="lazy">
             </div>
-            <a href="project.html?id=${slug}" class="btn-ghost" style="display:inline-block;margin-top:16px;font-family:var(--f-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,126,0.4);padding:10px 20px;border-radius:3px;">View Full Project</a>
-          </div>`;
-
-        // Masonry grid
-        html += `<div class="masonry-grid" style="column-count: 3; column-gap: 16px;">`;
-
-        images.slice(0, 5).forEach((img, i) => {
-          html += `
-            <div class="masonry-item" style="break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; position: relative;">
-              <a href="project.html?id=${slug}" class="portal" style="display: block;">
-                <img src="${img}" alt="${d.title}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 12px; transition: filter 0.3s ease;">
-                <div class="bento-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(8,7,6,0.85), transparent); opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="bento-project" style="font-family: var(--f-serif); font-size: 16px; color: white; font-style: italic;">${d.title}</span>
-                </div>
-              </a>
-            </div>`;
-        });
-
-        // CTA cell
-        html += `
-            <div class="masonry-item" style="break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; position: relative; background: var(--gold); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; min-height: 240px; transition: background 0.3s ease;">
-              <a class="portal" href="project.html?id=${slug}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 40px 20px;">
-                <span style="font-family: var(--f-display); font-size: 48px; color: rgba(8,7,6,0.2); line-height: 1;">${noStr}</span>
-                <span style="font-family: var(--f-display); font-size: 18px; color: #080706; letter-spacing: 0.5px; margin: 16px 0;">${d.title}</span>
-                <span style="font-family: var(--f-body); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #080706; border-bottom: 1px solid rgba(8,7,6,0.2); padding-bottom: 4px;">View Full Project &rarr;</span>
-              </a>
-            </div>`;
-
-        html += `</div>`;
-        html += `</div>`; // .desktop-project-view
-
-        // --- Mobile View ---
-        html += `
-          <div class="mobile-project-card portal" style="display:none; position: relative;">
-            <a href="project.html?id=${slug}" style="display: block; position: relative; border-radius: 16px; overflow: hidden; background: var(--bg2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-              <img src="${images[0]}" alt="${d.title}" style="width: 100%; height: 65vw; min-height: 320px; object-fit: cover; display: block; border-radius: 16px; margin: 0 !important;">
-              <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 24px; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%); z-index: 2;">
-                <span style="display:none;font-family:var(--f-body);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">${noStr} • ${(d.category || 'Interior').toUpperCase()}</span>
-                <span style="display:block;font-family:var(--f-display);font-size:28px;color:white;line-height:1.15;">${d.title}</span>
-              </div>
-            </a>
-          </div>
-        `;
-        html += `</div>`; // .project-wrapper
-        num++;
+            <div class="bento-overlay">
+              <span class="bento-project">${d.title}</span>
+            </div>
+          </a>`;
       });
 
-      container.innerHTML = html;
-    }
+      if(images.length < 6){
+        itemsHTML += `
+          <a class="bento-item sm cta-cell portal" href="project.html?id=${d.slug}">
+            <span class="cta-cell-no">${noStr}</span>
+            <span class="cta-cell-name">${d.title}</span>
+            <span class="cta-cell-link">View Full Project &rarr;</span>
+          </a>`;
+      }
 
-    renderProjects(residential, 'tab-residential', 1);
-    renderProjects(commercial, 'tab-commercial', residential.length + 1);
-
-    // Re-bind ripple effects on dynamically created portals
-    document.querySelectorAll('.portal:not(.cta-cell)').forEach(el => {
-      el.addEventListener('click', function(e) {
-        const r = this.getBoundingClientRect();
-        const rip = document.createElement('div');
-        rip.className = 'bento-ripple';
-        const size = Math.max(r.width, r.height);
-        rip.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;`;
-        this.appendChild(rip);
-        setTimeout(() => rip.remove(), 700);
-      });
-      // Add simple hover effect for the overlay since hover logic is usually in CSS
-      el.addEventListener('mouseenter', function() {
-        const overlay = this.querySelector('.bento-overlay');
-        if(overlay) overlay.style.opacity = '1';
-        const img = this.querySelector('img');
-        if(img) img.style.filter = 'brightness(0.8)';
-      });
-      el.addEventListener('mouseleave', function() {
-        const overlay = this.querySelector('.bento-overlay');
-        if(overlay) overlay.style.opacity = '0';
-        const img = this.querySelector('img');
-        if(img) img.style.filter = 'none';
-      });
+      htmlStr += labelHTML + `<div class="bento-grid" id="${gridId}">${itemsHTML}</div>`;
+      projNum++;
     });
-
+    
+    // Inject at the bottom before footer or append to container
+    container.innerHTML += htmlStr;
+    
   } catch(e) {
-    console.error('Failed to load projects:', e);
+    console.error(e);
   }
 });
 </script>
 
 </body>
 </html>
+
 
 
 

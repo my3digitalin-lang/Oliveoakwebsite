@@ -2,9 +2,9 @@
   {
     "id": "proj-linden-court",
     "slug": "linden-court",
-    "title": "Linden Court Residences",
+    "title": "Linden Court",
     "category": "Residential",
-    "description": "A luxurious residential project featuring elegant interiors with modern design sensibilities. Every space has been thoughtfully curated to blend comfort with sophistication.",
+    "description": "Some homes are built to be lived in. Others are built to be remembered.\n\nDesigned with warmth, character, and a deep sense of belonging, this residence creates an atmosphere that feels familiar from the very first moment. Thoughtfully crafted spaces encourage connection, comfort, and togetherness, transforming everyday experiences into cherished memories that last for generations.",
     "featuredImage": "/images/projects/linden-court-living.webp",
     "images": [
       "/images/projects/linden-court-living.webp",
@@ -15,14 +15,15 @@
     ],
     "status": "published",
     "createdAt": "2025-01-15T10:00:00Z",
-    "updatedAt": "2025-01-15T10:00:00Z"
+    "updatedAt": "2025-01-15T10:00:00Z",
+    "order": 1
   },
   {
     "id": "proj-residence-01",
     "slug": "residence-01",
-    "title": "Modern Luxury Residence",
+    "title": "Olivara",
     "category": "Residential",
-    "description": "A contemporary residence that seamlessly blends modern aesthetics with functional living spaces. Clean lines, natural materials, and thoughtful lighting create an atmosphere of refined comfort.",
+    "description": "In a world that rarely slows down, home should feel like a pause.\n\nThis residence is designed to bring balance, calm, and quiet sophistication into everyday life. Through thoughtful planning, refined materials, and effortless flow, each space offers a sense of ease, allowing its residents to slow down, reconnect, and truly feel at home.",
     "featuredImage": "/images/projects/proj2_1.webp",
     "images": [
       "/images/projects/proj2_1.webp",
@@ -35,14 +36,15 @@
     ],
     "status": "published",
     "createdAt": "2025-02-10T10:00:00Z",
-    "updatedAt": "2025-02-10T10:00:00Z"
+    "updatedAt": "2025-02-10T10:00:00Z",
+    "order": 2
   },
   {
     "id": "proj-residence-02",
     "slug": "residence-02",
-    "title": "Elegant Family Home",
+    "title": "The Duskwood",
     "category": "Residential",
-    "description": "Designed for a growing family, this home features warm tones, inviting textures, and spaces that encourage togetherness while offering private retreats for each family member.",
+    "description": "A home should enrich not only the way you live, but the way you feel.\n\nFilled with warmth, natural light, and timeless design, this residence creates an environment that feels peaceful and uplifting. Every detail has been carefully considered to foster connection, comfort, and a deeper appreciation for the simple moments that make life meaningful.",
     "featuredImage": "/images/projects/proj3_1.webp",
     "images": [
       "/images/projects/proj3_1.webp",
@@ -55,14 +57,15 @@
     ],
     "status": "published",
     "createdAt": "2025-03-20T10:00:00Z",
-    "updatedAt": "2025-03-20T10:00:00Z"
+    "updatedAt": "2025-03-20T10:00:00Z",
+    "order": 3
   },
   {
     "id": "proj-residence-03",
     "slug": "residence-03",
-    "title": "Contemporary Urban Living",
+    "title": "The Walnut Crest",
     "category": "Residential",
-    "description": "An urban apartment transformed into a sophisticated living space. Strategic use of space, premium materials, and artful design elements create an experience of luxury in every corner.",
+    "description": "True luxury is not about excess\u2014it is about intention.\n\nCrafted with meticulous attention to detail, this residence combines elegance, depth, and sophistication in every corner. Rich materials, layered textures, and refined craftsmanship create an immersive living experience that feels both distinctive and deeply personal.",
     "featuredImage": "/images/projects/proj4_1.webp",
     "images": [
       "/images/projects/proj4_1.webp",
@@ -75,14 +78,15 @@
     ],
     "status": "published",
     "createdAt": "2025-04-05T10:00:00Z",
-    "updatedAt": "2025-04-05T10:00:00Z"
+    "updatedAt": "2025-04-05T10:00:00Z",
+    "order": 4
   },
   {
     "id": "proj-residence-04",
     "slug": "residence-04",
-    "title": "Minimalist Haven",
+    "title": "The Quiet Canopy",
     "category": "Residential",
-    "description": "A celebration of minimalism where every element serves a purpose. Clean aesthetics, neutral palettes, and carefully selected furnishings create a serene sanctuary from the outside world.",
+    "description": "The most beautiful homes are those that live in harmony with their surroundings.\n\nDesigned to embrace light, openness, and nature, this residence offers a sense of tranquility that flows throughout every space. Blurring the boundaries between indoors and outdoors, it creates an atmosphere where comfort, beauty, and everyday living come together effortlessly.",
     "featuredImage": "/images/projects/proj5_1.webp",
     "images": [
       "/images/projects/proj5_1.webp",
@@ -95,14 +99,15 @@
     ],
     "status": "published",
     "createdAt": "2025-05-18T10:00:00Z",
-    "updatedAt": "2025-05-18T10:00:00Z"
+    "updatedAt": "2025-05-18T10:00:00Z",
+    "order": 5
   },
   {
     "id": "proj-psv-precast",
     "slug": "psv-precast-corporate-office",
     "title": "PSV Precast Corporate Office",
     "category": "Commercial",
-    "description": "Designed by OliveOak Interiors. Designed to reflect PSV Precast's commitment to strength, precision, and progress, this workspace blends functionality with refined elegance. Thoughtfully planned work zones, warm material palettes, and biophilic elements come together to create an environment that fosters collaboration, focus, and growth.",
+    "description": "PSV PRECAST Corporate Office  \n Designed by OliveOak Interiors\n\nDesigned to reflect PSV Precast\u2019s commitment to strength, precision, and progress, this workspace blends functionality with refined elegance. Thoughtfully planned work zones, warm material palettes, and biophilic elements come together to create an environment that fosters collaboration, focus, and growth.\n\nA workplace designed not just for work, but for the people shaping the future of PSV Precast.",
     "featuredImage": "/images/commercial/commercial-1.webp",
     "images": [
       "/images/commercial/commercial-1.webp",
@@ -115,6 +120,7 @@
     ],
     "status": "published",
     "createdAt": "2025-07-10T10:00:00Z",
-    "updatedAt": "2025-07-10T10:00:00Z"
+    "updatedAt": "2025-07-10T10:00:00Z",
+    "order": 6
   }
 ]

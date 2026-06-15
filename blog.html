@@ -239,6 +239,15 @@ body::before {
 }
 /* .mc-featured title size removed */
 .mc:hover .mc-title { color: var(--gold); }
+.mc-meta {
+  font-family: var(--f-body);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(200,169,126,.8);
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
 .mc-excerpt {
   font-family: var(--f-serif);
   font-size: 13.5px; font-weight: 300;
@@ -600,7 +609,16 @@ footer {
   .mc-cat, .mc-featured-badge, .mc-num { display: none !important; }
 
   @media(max-width:768px){
-    .mc-excerpt { display: block !important; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px !important; margin-bottom: 12px; }
+    .mc-meta {
+  font-family: var(--f-body);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(200,169,126,.8);
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+.mc-excerpt { display: block !important; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px !important; margin-bottom: 12px; }
   }
 </style>
 
@@ -613,7 +631,16 @@ footer {
   .mc-cat, .mc-featured-badge, .mc-num { display: none !important; }
 
   @media(max-width:768px){
-    .mc-excerpt { display: block !important; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px !important; margin-bottom: 12px; }
+    .mc-meta {
+  font-family: var(--f-body);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(200,169,126,.8);
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+.mc-excerpt { display: block !important; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px !important; margin-bottom: 12px; }
   }
 </style>
 </head>
@@ -679,9 +706,8 @@ footer {
       <span class="mc-featured-badge">Featured</span>
       <div class="mc-num">01</div>
       <div class="mc-body">
-        <div class="mc-date" style="display:none">February 5, 2026</div>
         <div class="mc-title">Best Interior Design Ideas for Homes in Hyderabad</div>
-        <div class="mc-excerpt">From compact Gachibowli apartments to spacious Jubilee Hills villas   a blend of modern lifestyles and cultural elegance.</div>
+        <div class="mc-meta">Interior Design • February 5, 2026</div>
         <div class="mc-read">Read Article
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
         </div>
@@ -694,9 +720,8 @@ footer {
       <div class="mc-overlay"></div>
       <span class="mc-cat">Living Room</span>
       <div class="mc-body">
-        <div class="mc-date" style="display:none">January 30, 2026</div>
         <div class="mc-title">3BHK Interior Design in Hyderabad for Modern Homes</div>
-        <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">A 3BHK home offers the perfect space for comfortable living, blending style and functionality.</div>
+        <div class="mc-meta">Living Room • January 30, 2026</div>
         <div class="mc-read">Read Article →</div>
       </div>
     </a>
@@ -707,9 +732,8 @@ footer {
       <div class="mc-overlay"></div>
       <span class="mc-cat">2BHK</span>
       <div class="mc-body">
-        <div class="mc-date" style="display:none">January 30, 2026</div>
         <div class="mc-title">2BHK Interior Design   Stylish, Functional &amp; Modern</div>
-        <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">2BHK interior design in Hyderabad is the perfect choice for small families and working professionals.</div>
+        <div class="mc-meta">2BHK • January 30, 2026</div>
         <div class="mc-read">Read Article →</div>
       </div>
     </a>
@@ -720,9 +744,8 @@ footer {
       <div class="mc-overlay"></div>
       <span class="mc-cat">Bedroom</span>
       <div class="mc-body">
-        <div class="mc-date" style="display:none">January 30, 2026</div>
         <div class="mc-title">Top Bedroom Interior Design Trends</div>
-        <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">Create a serene escape with the top bedroom design trends tailored for ultimate relaxation.</div>
+        <div class="mc-meta">Bedroom • January 30, 2026</div>
         <div class="mc-read">Read Article →</div>
       </div>
     </a>
@@ -733,9 +756,8 @@ footer {
       <div class="mc-overlay"></div>
       <span class="mc-cat">Dining Room</span>
       <div class="mc-body">
-        <div class="mc-date" style="display:none">January 30, 2026</div>
         <div class="mc-title">Latest Dining Room Interior Design Ideas</div>
-        <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">Elevate your dining experience with the latest interior design ideas for modern dining rooms.</div>
+        <div class="mc-meta">Dining Room • January 30, 2026</div>
         <div class="mc-read">Read Article →</div>
       </div>
     </a>
@@ -746,9 +768,8 @@ footer {
       <div class="mc-overlay"></div>
       <span class="mc-cat">Decoration</span>
       <div class="mc-body">
-        <div class="mc-date" style="display:none">January 30, 2026</div>
         <div class="mc-title">Best Home Interior Decoration Ideas</div>
-        <div class="mc-excerpt" style="font-family:var(--f-body);font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;">Discover the best home interior decoration ideas to elevate your living space beautifully.</div>
+        <div class="mc-meta">Decoration • January 30, 2026</div>
         <div class="mc-read">Read Article →</div>
       </div>
     </a>
@@ -862,8 +883,8 @@ footer {
     </div>
     <div class="foot-col">
       <h4>Contact</h4>
-      <a href="tel:+918187094428">+91 77801 96804</a>
-      <a href="mailto:info@oliveoak.in">info@oliveoak.in</a>
+      <a href="tel:+91 8187094428">+91 8187094428</a>
+      <a href="mailto:contact@oliveoak.in">contact@oliveoak.in</a>
     </div>
   </div>
   <div class="foot-bottom">
@@ -934,21 +955,24 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
 }
 </script>
 <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
+
+
+
 <script>
 /* ══════════════════════════════════════════════════════════════
-   FIREBASE — Load dynamic blog posts from admin CMS
+   CMS — Load dynamic blog posts from JSON CMS
    New posts are prepended to the "More Articles" scroll strip.
 ══════════════════════════════════════════════════════════════ */
-(async function loadFirebaseBlog() {
+(async function loadCMSBlog() {
   try {
-    if (typeof FIREBASE_CONFIG === 'undefined' || FIREBASE_CONFIG.apiKey.startsWith('PASTE')) return;
-    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-    const db = firebase.firestore();
-    const snap = await db.collection('blogs').orderBy('createdAt','desc').get();
-    if (snap.empty) return;
+    const res = await fetch('/data/blogs.json');
+    const blogs = await res.json();
+    if (!blogs || !blogs.length) return;
+
+    const publishedBlogs = blogs.filter(b => b.status === 'published');
+    publishedBlogs.sort((a,b) => (a.order||0) - (b.order||0));
+
+    if (!publishedBlogs.length) return;
 
     const strip = document.getElementById('scrollStrip');
     if (!strip) return;
@@ -956,30 +980,29 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
     /* Build a document fragment so we insert all at once */
     const frag = document.createDocumentFragment();
 
-    snap.forEach(doc => {
-      const d = doc.data();
+    publishedBlogs.forEach(d => {
       if (!d.title) return;
-      const postUrl = `blog-post.html?id=${doc.id}`;
+      const postUrl = `blog-post.html?id=${d.slug || d.id}`;
       const a = document.createElement('a');
       a.href = postUrl;
       a.className = 'strip-card';
       a.dataset.cat = d.category || 'Blog';
       a.innerHTML = `
         <div class="strip-card-img">
-          <img src="${d.coverImage || 'imag1.webp'}" alt="${d.title}" loading="lazy" decoding="async">
+          <img src="${d.featuredImage || d.coverImage || 'images/kitchen-vastu.webp'}" alt="${d.title}" loading="lazy" decoding="async">
         </div>
         <div class="strip-card-body">
-          
+          <div class="strip-card-cat">${d.category || 'Blog'}</div>
           <div class="strip-card-title">${d.title}</div>
           <div class="strip-card-footer">
-            
+            <div class="strip-card-date">${new Date(d.createdAt || d.updatedAt).toLocaleDateString()}</div>
             <div class="strip-card-read">Read &rarr;</div>
           </div>
         </div>`;
       frag.appendChild(a);
     });
 
-    /* Prepend Firebase cards before existing hardcoded cards */
+    /* Prepend CMS cards before existing hardcoded cards */
     strip.insertBefore(frag, strip.firstChild);
 
     /* Trigger the visible animation for new cards */
@@ -988,7 +1011,7 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
     });
 
   } catch(e) {
-    console.warn('Firebase blog not loaded:', e.message);
+    console.warn('CMS blog not loaded:', e.message);
   }
 })();
 </script>

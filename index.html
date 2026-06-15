@@ -562,6 +562,24 @@ body.unlocked #page-bg{
 
 
 
+@media(min-width: 901px) {
+
+  .hero-vignette {
+
+    background:
+
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+
+      radial-gradient(ellipse 70% 70% at 50% 50%, rgba(4,4,4,0) 0%, rgba(4,4,4,.32) 100%),
+
+      linear-gradient(to bottom, rgba(4,4,4,0) 0%, rgba(4,4,4,0) 40%, rgba(4,4,4,.06) 65%, rgba(4,4,4,.68) 100%),
+
+      linear-gradient(to right, rgba(4,4,4,.18) 0%, transparent 22%, transparent 78%, rgba(4,4,4,.18) 100%);
+
+  }
+
+}
+
 /* Text block   stays visible through ALL frames */
 
 .hero-text{
@@ -2416,13 +2434,13 @@ body.unlocked #page-bg{
 
 }
 
-.svc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;}
+.svc-wrap{display:grid;grid-template-columns:0.8fr 1.2fr;gap:80px;align-items:stretch;}
 
 
 
 /* Left: sticky image */
   .svc-img-wrap{
-    position:sticky; top:140px; width: 100%; aspect-ratio: 4/5; height: auto; overflow:hidden;
+    position:sticky; top:140px; width: 100%; height: calc(100vh - 180px); overflow:hidden;
     border-radius:16px;
     border: 1px solid rgba(200,169,126,0.25);
     background: rgba(0,0,0,0.5);
@@ -2433,7 +2451,7 @@ body.unlocked #page-bg{
 
   position:absolute;inset:0;
 
-  width:100%;height:100%;object-fit:cover;
+  width:100%;height:100%;object-fit:contain;
 
   opacity:0;transform:scale(1.04);
 
@@ -2489,7 +2507,7 @@ body.unlocked #page-bg{
 
   font-family:var(--f-display);
 
-  font-size:clamp(36px, 4vw, 52px);
+  font-size:clamp(42px, 5vw, 64px);
 
   font-weight:300;color:var(--white);
 
@@ -2502,82 +2520,77 @@ body.unlocked #page-bg{
 
 
 .svc-item{
-    display:flex;align-items:flex-start;gap:28px;
-    padding:36px 24px;
-    margin: 0 -24px;
+    display:flex;align-items:center;gap:32px;
+    padding:48px 0;
     border-bottom:1px solid rgba(255,255,255,.05);
-    border-left: 2px solid transparent;
     cursor:pointer;
     position:relative;
-    transition: all .5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: padding-left .6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
 .svc-item:first-of-type{border-top:1px solid rgba(255,255,255,.05)}
 
 .svc-item:hover, .svc-item.on {
     padding-left: 40px;
-    border-left: 2px solid var(--gold);
-    background: linear-gradient(90deg, rgba(200,169,126,0.07) 0%, transparent 100%);
-    box-shadow: inset 0 -1px 0 rgba(200,169,126,0.15);
   }
 
-
-
 .svc-n{
-
   font-family:var(--f-display);
-
-  font-size:11px;color:var(--gold-dk);
-
-  letter-spacing:2px;padding-top:5px;min-width:24px;
-
-  transition:color .3s
-
+  font-size:14px;
+  font-weight: 300;
+  color:rgba(255,255,255,0.2);
+  letter-spacing:1px;
+  min-width:32px;
+  transition:color .5s;
 }
 
 .svc-item.on .svc-n,.svc-item:hover .svc-n{color:var(--gold)}
 
-
-
-.svc-body{flex:1}
+.svc-body{flex:1; display:flex; flex-direction:column; justify-content:center;}
 
 .svc-name{
     font-family:var(--f-display);
-    font-size:20px;font-weight:300;
-    letter-spacing: 0.5px;
-    color:rgba(255,255,255,.5);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight:300;
+    letter-spacing: -0.5px;
+    color:rgba(255,255,255,0.25);
     margin-bottom:0;
-    transition:color .3s;
+    line-height: 1.1;
+    transition: color .6s, transform .6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: left;
   }
 
-.svc-item.on .svc-name,.svc-item:hover .svc-name{color:var(--white)}
+.svc-item.on .svc-name,.svc-item:hover .svc-name{
+    color:var(--white);
+    transform: scale(1.05);
+}
 
 .svc-desc{
-    font-family:var(--f-body);font-size:14px;
-    color:rgba(255,255,255,.45);line-height:1.75;
-    max-height:0;overflow:hidden;
-    transition:max-height .5s,opacity .5s,margin-top .5s;
-    opacity:0;margin-top:0;
+    font-family:var(--f-body);
+    font-size:15px;
+    color:rgba(255,255,255,.6);
+    line-height:1.75;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .6s cubic-bezier(0.16, 1, 0.3, 1), opacity .6s, margin-top .6s;
+    opacity:0;
+    margin-top:0;
+    max-width: 85%;
   }
 
-.svc-item.on .svc-desc{max-height:160px;opacity:1;margin-top:12px}
-
-
+.svc-item.on .svc-desc{max-height:160px;opacity:1;margin-top:20px}
 
 .svc-arrow{
-
-  color:rgba(200,169,126,.25);flex-shrink:0;
-
-  padding-top:6px;
-
-  transition:color .3s,transform .3s
-
+  color:rgba(255,255,255,.1);
+  flex-shrink:0;
+  display: flex;
+  align-items: center;
+  transition:color .5s, transform .6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .svc-item.on .svc-arrow,.svc-item:hover .svc-arrow{
-
-  color:var(--gold);transform:translateX(6px)
-
+  color:var(--gold);
+  transform:translateX(16px);
 }
 
 
@@ -3151,25 +3164,18 @@ body.unlocked #page-bg{
   .svc-header{padding:0 24px;margin-bottom:40px}
 
   #svc-list{
-
-    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-
+    display:flex;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;
     gap:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-
-    padding:0 24px 4px;scroll-padding-left:24px
-
+    padding:0 24px 24px;scroll-padding-left:24px;
   }
-
   #svc-list::-webkit-scrollbar{display:none}
-
   .svc-item{
-
-    scroll-snap-align:start;flex-shrink:0;
-
-    width:82vw;
-
-    border-radius:16px;overflow:hidden;min-height:400px;
-
+    scroll-snap-align:center;flex-shrink:0;
+    width:calc(100vw - 48px);max-width:none;
+    border-radius:16px;overflow:hidden;
+    background:var(--bg3);
+    padding:16px;
+    border:1px solid rgba(200,169,126,0.1);
   }
 
   .svc-body{position:relative;z-index:2}
@@ -3252,7 +3258,7 @@ body.unlocked #page-bg{
 
 
 
-  .svc-mob-img { display: none; width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 16px; margin-top: -16px; }
+  .svc-mob-img { display: none; width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 16px; }
 
   @media(max-width:768px){
 
@@ -3448,7 +3454,7 @@ body.unlocked #page-bg{
 
         </a>
 
-        <a href="#footer" class="btn btn-ghost">Get In Touch</a>
+        <a href="contact.html" class="btn btn-ghost">Get In Touch</a>
 
       </div>
 
@@ -3658,7 +3664,7 @@ body.unlocked #page-bg{
 
           </p>
 
-          <a href="#about" class="btn btn-ghost">Our Story
+          <a href="about.html" class="btn btn-ghost">Our Story
 
             <span class="arr"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
 
@@ -3774,7 +3780,7 @@ body.unlocked #page-bg{
         </div>
 
         <div style="margin-top: 40px; padding-bottom: 50px;">
-          <a href="#footer" class="btn btn-ghost" style="display:inline-flex; align-items:center; gap:8px;">
+          <a href="contact.html" class="btn btn-ghost" style="display:inline-flex; align-items:center; gap:8px;">
             Book Consultation
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
           </a>
@@ -3831,10 +3837,8 @@ body.unlocked #page-bg{
                 <div class="proj-card proj-card-top rx from-left">
           <img src="images/commercial/commercial-1.webp" alt="PSV PRECAST Corporate Office" loading="lazy" decoding="async">
           <div class="proj-card-inner">
-            <div class="proj-number">01 / COMMERCIAL</div>
             <h3 class="proj-title">PSV PRECAST Corporate Office</h3>
-            <p class="proj-location">Designed by OliveOak Interiors</p>
-            <a href="commercial-project-1.html" class="proj-link">
+            <a href="project.html?id=psv-precast-corporate-office" class="proj-link">
               View Project
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
             </a>
@@ -3847,13 +3851,9 @@ body.unlocked #page-bg{
 
           <div class="proj-card-inner">
 
-            <div class="proj-number">02 / RESIDENTIAL</div>
-
             <h3 class="proj-title">Olivara</h3>
 
-            <p class="proj-location">OliveOak Residences, Hyderabad</p>
-
-            <a href="project-2.html" class="proj-link">
+            <a href="project.html?id=residence-01" class="proj-link">
 
               View Project
 
@@ -3881,13 +3881,9 @@ body.unlocked #page-bg{
 
           <div class="proj-card-inner">
 
-            <div class="proj-number">03 / RESIDENTIAL</div>
-
             <h3 class="proj-title">The Duskwood</h3>
 
-            <p class="proj-location">OliveOak Residences, Hyderabad</p>
-
-            <a href="project-3.html" class="proj-link">
+            <a href="project.html?id=residence-02" class="proj-link">
 
               View Project<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
 
@@ -3903,13 +3899,9 @@ body.unlocked #page-bg{
 
           <div class="proj-card-inner">
 
-            <div class="proj-number">04 / RESIDENTIAL</div>
-
             <h3 class="proj-title">The Walnut Crest</h3>
 
-            <p class="proj-location">OliveOak Residences, Hyderabad</p>
-
-            <a href="project-4.html" class="proj-link">
+            <a href="project.html?id=residence-03" class="proj-link">
 
               View Project<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
 
@@ -3925,13 +3917,9 @@ body.unlocked #page-bg{
 
           <div class="proj-card-inner">
 
-            <div class="proj-number">05 / RESIDENTIAL</div>
-
             <h3 class="proj-title">The Quiet Canopy</h3>
 
-            <p class="proj-location">OliveOak Residences, Hyderabad</p>
-
-            <a href="project-5.html" class="proj-link">
+            <a href="project.html?id=residence-04" class="proj-link">
 
               View Project<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
 
@@ -4315,7 +4303,7 @@ body.unlocked #page-bg{
 
       <div>
 
-        <div class="foot-logo">OliveOak</div>
+        <div class="foot-logo"><img src="logo.webp" alt="Tet Contractors" style="height:50px; width:auto; object-fit:contain; filter: brightness(0) invert(1);"></div>
 
         <div class="foot-logo-sub">By TEV Contractors · Singapore</div>
 
@@ -4349,7 +4337,7 @@ body.unlocked #page-bg{
 
           <a href="blog.html"     class="foot-link">Blog</a>
 
-          <a href="#footer"   class="foot-link">Contact</a>
+          <a href="contact.html"   class="foot-link">Contact</a>
 
         </div>
 
@@ -4383,7 +4371,7 @@ body.unlocked #page-bg{
 
           <span class="foot-ci-label">Phone</span>
 
-          <a href="tel:+918187094428" class="foot-ci-val foot-link">+91 77801 96804</a>
+          <a href="tel:+91 8187094428" class="foot-ci-val foot-link">+91 8187094428</a>
 
         </div>
 
@@ -4391,7 +4379,7 @@ body.unlocked #page-bg{
 
           <span class="foot-ci-label">Email</span>
 
-          <a href="mailto:hello@oliveoak.in" class="foot-ci-val foot-link">hello@oliveoak.in</a>
+          <a href="mailto:contact@oliveoak.in" class="foot-ci-val foot-link">contact@oliveoak.in</a>
 
         </div>
 
@@ -5173,13 +5161,7 @@ const svcItemEls = [...document.querySelectorAll('.svc-item')];
 
 if (IS_MOBILE) {
 
-  /* Assign each card its own background image */
-
-  svcItemEls.forEach((item, i) => {
-
-    if (svcImgSrcs[i]) item.style.backgroundImage = `url('${svcImgSrcs[i]}')`;
-
-  });
+  /* Removed background image assignment since we have svc-mob-img */
 
 
 
@@ -5206,43 +5188,48 @@ if (IS_MOBILE) {
 
 
   /* Update active dot on scroll */
-
   const dots = [...dotsWrap.children];
-
   svcList.addEventListener('scroll', () => {
-
     const snapW = (svcItemEls[0]?.offsetWidth || 0) + 16;
-
-    const idx = Math.min(Math.round(svcList.scrollLeft / snapW), svcItemEls.length - 1);
-
+    const idx = Math.min(Math.round(svcList.scrollLeft / snapW), Math.max(0, svcItemEls.length - 1));
     dots.forEach((d, i) => d.classList.toggle('on', i === idx));
-
   }, { passive: true });
+
+  /* Auto play */
+  let svcAutoplay = setInterval(() => {
+    if (!svcList) return;
+    const snapW = (svcItemEls[0]?.offsetWidth || 0) + 16;
+    let nextIdx = Math.round(svcList.scrollLeft / snapW) + 1;
+    if (nextIdx >= svcItemEls.length) nextIdx = 0;
+    svcList.scrollTo({ left: nextIdx * snapW, behavior: 'smooth' });
+  }, 3000);
+  
+  svcList.addEventListener('touchstart', () => clearInterval(svcAutoplay), {passive: true});
 
 
 
 } else {
-
-  /* Desktop: click to switch sticky image */
-
-  svcItemEls.forEach(item => {
-
-    item.addEventListener('click', () => {
-
-      const i = +item.dataset.i;
-
-      svcItemEls.forEach(x => x.classList.remove('on'));
-
-      document.querySelectorAll('.svc-img').forEach(x => x.classList.remove('on'));
-
-      item.classList.add('on');
-
-      document.querySelectorAll('.svc-img')[i].classList.add('on');
-
+  /* Desktop: GSAP ScrollTrigger for sticky image */
+  if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    svcItemEls.forEach((item, i) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: "top center",
+        end: "bottom center",
+        onToggle: self => {
+          if (self.isActive) {
+            svcItemEls.forEach(x => x.classList.remove('on'));
+            document.querySelectorAll('.svc-img').forEach(x => x.classList.remove('on'));
+            item.classList.add('on');
+            const targetImg = document.querySelectorAll('.svc-img')[i];
+            if (targetImg) targetImg.classList.add('on');
+          }
+        }
+      });
     });
-
-  });
-
+  }
 }
 
 
@@ -5507,6 +5494,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 </script>
 
+
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </body>
 
 

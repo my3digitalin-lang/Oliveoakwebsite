@@ -90,7 +90,10 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
   <div class="login-box">
     <div class="login-logo">OliveOak</div>
     <div class="login-sub">GitHub CMS Admin</div>
-    <input class="login-input" type="password" id="adminPwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+    <div style="position:relative;">
+      <input class="login-input" type="password" id="adminPwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()" style="padding-right:40px;">
+      <button type="button" onclick="const p=document.getElementById('adminPwd'); p.type=p.type==='password'?'text':'password'; this.textContent=p.type==='password'?'👁️':'🙈';" style="position:absolute;right:12px;top:14px;background:none;border:none;cursor:pointer;font-size:16px;">👁️</button>
+    </div>
     <button class="login-btn" onclick="doLogin()" id="loginBtn">Sign In →</button>
     <div class="login-error" id="loginErr">❌ Incorrect password.</div>
   </div>
@@ -171,7 +174,7 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Technologies (Comma separated)</label>
+        <label class="form-label">Quotation (Sub-title)</label>
         <input type="text" class="form-input" id="proj-tech" placeholder="e.g. Marble, Wood, Brass">
       </div>
       <div class="form-group">
@@ -223,6 +226,16 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
             <option value="draft">Draft (Hidden)</option>
             <option value="published">Published (Live)</option>
           </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">SEO Meta Title</label>
+          <input type="text" class="form-input" id="blog-meta-title" placeholder="Optional">
+        </div>
+        <div class="form-group">
+          <label class="form-label">SEO Meta Description</label>
+          <input type="text" class="form-input" id="blog-meta-desc" placeholder="Optional">
         </div>
       </div>
       <div class="form-group">
@@ -340,8 +353,8 @@ async function fetchData() {
 
 function renderProjects() {
   const tb = document.getElementById('projects-tbody');
-  tb.innerHTML = dataCache.projects.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).map(p => `
-    <tr>
+  tb.innerHTML = dataCache.projects.sort((a,b)=>(a.order||0)-(b.order||0)).map((p, i) => `
+    <tr draggable="true" ondragstart="dragStart(event, \'project\', i)" ondragover="dragOver(event)" ondrop="drop(event, \'project\', i)" style="cursor:grab">
       <td><img src="${p.featuredImage||p.images[0]||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
       <td><strong>${p.title}</strong><br><small style="color:var(--dim)">/${p.slug}</small></td>
       <td>${p.category}</td>
@@ -357,8 +370,8 @@ function renderProjects() {
 
 function renderBlogs() {
   const tb = document.getElementById('blogs-tbody');
-  tb.innerHTML = dataCache.blogs.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).map(b => `
-    <tr>
+  tb.innerHTML = dataCache.blogs.sort((a,b)=>(a.order||0)-(b.order||0)).map((b, i) => `
+    <tr draggable="true" ondragstart="dragStart(event, \'blog\', i)" ondragover="dragOver(event)" ondrop="drop(event, \'blog\', i)" style="cursor:grab">
       <td><img src="${b.featuredImage||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
       <td><strong>${b.title}</strong><br><small style="color:var(--dim)">/${b.slug}</small></td>
       <td>${b.category}</td>
@@ -372,7 +385,44 @@ function renderBlogs() {
   `).join('');
 }
 
+
+// ===== DRAG AND DROP =====
+let draggedItem = null;
+function dragStart(e, type, index) {
+  draggedItem = { type, index };
+  e.dataTransfer.effectAllowed = "move";
+}
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+}
+async function drop(e, type, index) {
+  e.preventDefault();
+  if (!draggedItem || draggedItem.type !== type || draggedItem.index === index) return;
+  
+  const arr = type === 'project' ? dataCache.projects : dataCache.blogs;
+  
+  // Need to ensure array is currently sorted by order to match visual index
+  arr.sort((a,b)=>(a.order||0)-(b.order||0));
+  
+  const item = arr.splice(draggedItem.index, 1)[0];
+  arr.splice(index, 0, item);
+  
+  arr.forEach((x, i) => x.order = i + 1);
+  
+  if (type === 'project') renderProjects(); else renderBlogs();
+  
+  try {
+    showToast('Saving new order...', 'info');
+    await apiCall(type === 'project' ? 'projects' : 'blogs', 'PUT', arr);
+    showToast('Order saved successfully!', 'success');
+  } catch(err) {
+    showToast('Failed to save order: ' + err.message, 'error');
+  }
+}
+
 // ===== PROJECT CRUD =====
+
 function resetProjForm() {
   document.getElementById('proj-form-title').textContent = 'Create Project';
   document.getElementById('proj-id').value = '';
@@ -457,6 +507,8 @@ function resetBlogForm() {
   document.getElementById('blog-category').value = 'Design Trends';
   document.getElementById('blog-status').value = 'draft';
   document.getElementById('blog-excerpt').value = '';
+  document.getElementById('blog-meta-title').value = '';
+  document.getElementById('blog-meta-desc').value = '';
   document.getElementById('blog-content').value = '';
   document.getElementById('blog-featured-image').value = '';
   uploadedImages = [];
@@ -473,6 +525,8 @@ function editBlog(id) {
   document.getElementById('blog-category').value = b.category || 'Design Trends';
   document.getElementById('blog-status').value = b.status || 'draft';
   document.getElementById('blog-excerpt').value = b.excerpt || '';
+  document.getElementById('blog-meta-title').value = b.metaTitle || '';
+  document.getElementById('blog-meta-desc').value = b.metaDescription || '';
   document.getElementById('blog-content').value = b.content || '';
   document.getElementById('blog-featured-image').value = b.featuredImage || '';
   uploadedImages = b.featuredImage ? [b.featuredImage] : [];
@@ -491,6 +545,8 @@ async function saveBlog() {
     category: document.getElementById('blog-category').value,
     status: document.getElementById('blog-status').value,
     excerpt: document.getElementById('blog-excerpt').value,
+    metaTitle: document.getElementById('blog-meta-title').value,
+    metaDescription: document.getElementById('blog-meta-desc').value,
     content: document.getElementById('blog-content').value,
     featuredImage: document.getElementById('blog-featured-image').value || uploadedImages[0] || ''
   };

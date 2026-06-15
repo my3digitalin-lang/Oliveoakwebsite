@@ -28,6 +28,11 @@ async function handler(req, res) {
   }
 
   if (req.method === 'PUT') {
+    if (Array.isArray(req.body)) {
+      const { sha } = await getFileContent(filePath);
+      await updateFileContent(filePath, JSON.stringify(req.body, null, 2), `CMS: Bulk reorder`, sha);
+      return res.status(200).json(req.body);
+    }
     const updatedProject = req.body;
     if (!updatedProject.id) return res.status(400).json({ error: 'Missing id' });
 
