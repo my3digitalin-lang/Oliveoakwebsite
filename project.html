@@ -480,9 +480,7 @@ footer{background:var(--bg2);border-top:1px solid rgba(200,169,126,.1);padding:6
   <div class="story-left reveal">
     <div class="story-eyebrow">Project Story</div>
     <h2 class="story-h2" id="dyn-story-h2"></h2>
-    <blockquote class="story-quote" style="margin-top: 32px;">
-      "The Linden Court feels less like a residence and more like a quiet pause from the world outside."
-    </blockquote>
+    <blockquote class="story-quote" id="dyn-story-quote" style="margin-top: 32px; display: none;"></blockquote>
   </div>
   <div class="story-right reveal">
     <div class="story-body" id="dyn-desc"></div>
@@ -633,8 +631,19 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
       document.getElementById('dyn-story-h2').innerHTML = proj.title;
       
       // Basic formatting for description
-      const descHtml = (proj.description || '').split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('<div class="divider" style="height:24px;"></div>');
-      document.getElementById('dyn-desc').innerHTML = descHtml;
+      const descParts = (proj.description || '').split('\n\n');
+      const quoteEl = document.getElementById('dyn-story-quote');
+      if (descParts.length > 1) {
+          quoteEl.textContent = descParts[0];
+          quoteEl.style.display = 'block';
+          const remainingBody = descParts.slice(1).join('\n\n');
+          const descHtml = remainingBody.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('<div class="divider" style="height:24px;"></div>');
+          document.getElementById('dyn-desc').innerHTML = descHtml;
+      } else {
+          quoteEl.style.display = 'none';
+          const descHtml = (proj.description || '').split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('<div class="divider" style="height:24px;"></div>');
+          document.getElementById('dyn-desc').innerHTML = descHtml;
+      }
 
       // Gallery
       const imgs = proj.images || [];
