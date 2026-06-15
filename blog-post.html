@@ -144,10 +144,10 @@ footer a{color:var(--gold);text-decoration:none;margin:0 16px}
   }
 
   function renderPost(post) {
-    document.title = (post.title) + ' | OliveOak Interiors';
+    document.title = (post.metaTitle || post.title) + ' | OliveOak Interiors';
     const metaDesc = document.createElement('meta');
     metaDesc.name = 'description';
-    metaDesc.content = post.excerpt || '';
+    metaDesc.content = post.metaDescription || post.excerpt || '';
     document.head.appendChild(metaDesc);
 
     document.getElementById('postContent').innerHTML = `
