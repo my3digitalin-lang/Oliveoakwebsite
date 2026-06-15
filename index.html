@@ -22,27 +22,7 @@
 
 
 
-  <!-- Preload first mobile frames at highest browser priority -->
-
-  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-001.webp" as="image" media="(max-width:768px)">
-
-  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-002.webp" as="image" media="(max-width:768px)">
-
-  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-003.webp" as="image" media="(max-width:768px)">
-
-  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-004.webp" as="image" media="(max-width:768px)">
-
-  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-005.webp" as="image" media="(max-width:768px)">
-
-  <link rel="preload" href="Frames-webp-mobile/ezgif-frame-006.webp" as="image" media="(max-width:768px)">
-
-  <!-- Preload first desktop frames at highest priority -->
-
-  <link rel="preload" href="Frames-webp-pc/frame_0001.webp" as="image" media="(min-width:769px)">
-
-  <link rel="preload" href="Frames-webp-pc/frame_0002.webp" as="image" media="(min-width:769px)">
-
-  <link rel="preload" href="Frames-webp-pc/frame_0003.webp" as="image" media="(min-width:769px)">
+  <!-- Preloads are now handled dynamically by JS to prevent desktop frames on tablets -->
 
 
 
@@ -4505,7 +4485,21 @@ body.unlocked #page-bg{
 
 ============================================================== */
 
-const IS_MOBILE = window.innerWidth <= 1024 || (window.matchMedia && window.matchMedia("(any-pointer: coarse)").matches) || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+const IS_MOBILE = window.innerWidth <= 1024 || (window.matchMedia && window.matchMedia("(any-pointer: coarse)").matches) || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || navigator.maxTouchPoints > 0;
+
+// Dynamically inject preloads
+for (let i = 1; i <= 6; i++) {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  if (IS_MOBILE) {
+    let actualFrame = i * 2 - 1;
+    link.href = `Frames-webp-mobile/ezgif-frame-${String(actualFrame).padStart(3,'0')}.webp`;
+  } else {
+    link.href = `Frames-webp-pc/frame_${String(i + 9).padStart(4,'0')}.webp`; // OFFSET is 9
+  }
+  document.head.appendChild(link);
+}
 
 const OFFSET  = IS_MOBILE ? 0 : 9;           // skip first 9 wide-angle frames on desktop
 
