@@ -3283,6 +3283,17 @@ body.unlocked #page-bg{
 </head>
 
 <body>
+<svg style="width:0; height:0; position:absolute; visibility:hidden;" aria-hidden="true">
+  <filter id="luma-to-alpha-white" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="
+      0 0 0 0 1
+      0 0 0 0 1
+      0 0 0 0 1
+     -1 0 0 0 1
+    " />
+  </filter>
+</svg>
+
 
 
 
@@ -3540,7 +3551,7 @@ body.unlocked #page-bg{
 
           >
 
-          <img src="images/tev-logo-new.png" alt="TeV Contractors PTE. LTD." style="position: absolute; bottom: 20px; left: 20px; z-index: 5; height: 50px; width: auto; max-width: none; border-radius: 0; margin: 0; filter: invert(1); mix-blend-mode: screen; display: block; object-fit: contain; pointer-events: none;">
+          <img src="images/tev-logo-new.png" alt="TeV Contractors PTE. LTD." style="position: absolute; bottom: 20px; left: 20px; z-index: 5; height: 50px; width: auto; max-width: none; border-radius: 0; margin: 0; filter: url(#luma-to-alpha-white); display: block; object-fit: contain; pointer-events: none;">
 
         </div>
 
@@ -4081,7 +4092,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Residential Interiors</h3>
-        <p class="svc-new-desc">Elegant, functional home interiors crafted around your lifestyle from apartments to independent villas.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
@@ -4092,7 +4102,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Commercial Interiors</h3>
-        <p class="svc-new-desc">Inspiring workspaces, retail environments, and hospitality interiors that reflect your brand.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
@@ -4103,7 +4112,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Premium Living Interiors</h3>
-        <p class="svc-new-desc">Luxury finishes, bespoke furniture, and curated aesthetics designed for those who expect the extraordinary.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
@@ -4114,7 +4122,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Design Services</h3>
-        <p class="svc-new-desc">Full-spectrum interior design: concept development, mood boards, material selection, and 3D visualization.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
@@ -4125,7 +4132,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Design Consultation</h3>
-        <p class="svc-new-desc">One-on-one sessions with our expert designers to clarify your vision and explore possibilities.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
@@ -4136,7 +4142,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Space Planning</h3>
-        <p class="svc-new-desc">Intelligent layouts that maximise flow, natural light, and usability, making every square foot work beautifully.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
@@ -4147,7 +4152,6 @@ body.unlocked #page-bg{
       </div>
       <div class="svc-new-content">
         <h3 class="svc-new-title">Quality Consultation</h3>
-        <p class="svc-new-desc">Rigorous material and finish evaluation ensuring every element meets our premium standards.</p>
         <span class="svc-new-explore">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
       </div>
     </a>
