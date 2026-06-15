@@ -91,7 +91,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 /* ── HERO ─────────────────────────────────── */
 .proj-hero{
   position:relative;
-  height:75vh;min-height:500px;
+  height: 60vh; min-height: 400px;
   overflow:hidden;
 }
 .proj-hero-img{
@@ -174,7 +174,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 /* ── STORY ────────────────────────────────── */
 .story{
   display:grid;grid-template-columns:1fr 1.6fr;gap:80px;
-  padding:32px 64px 100px;max-width:1200px;margin:0 auto;
+  padding: 0 64px 80px; max-width: 1200px; margin: -20px auto 0;
 }
 .story-left{}
 .story-eyebrow{
@@ -465,7 +465,8 @@ footer{background:var(--bg2);border-top:1px solid rgba(200,169,126,.1);padding:6
     <div class="hero-grid">
       <div class="hero-left">
         <div class="hero-eyebrow reveal" id="dyn-cat" style="transition-delay:0.1s;">OliveOak Residences</div>
-        <h1 class="hero-h1" id="dyn-title">Linden Court</h1>        <div class="hero-quotation reveal" id="dyn-quotation" style="font-family:var(--f-body);font-size:14px;color:rgba(200,169,126,.9);letter-spacing:1px;margin-top:16px;"></div>
+        <h1 class="hero-h1 reveal" id="dyn-title" style="transition-delay:0.2s;">Linden Court</h1>
+        <div class="hero-quotation reveal" id="dyn-quotation" style="font-family:var(--f-body);font-size:14px;color:rgba(200,169,126,.9);letter-spacing:1px;margin-top:16px;"></div>
       </div>
       <div class="hero-right">
         
