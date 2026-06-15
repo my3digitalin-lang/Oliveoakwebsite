@@ -1575,7 +1575,7 @@ body.unlocked #page-bg{
 /* About image col   fully contained */
 
 .about-img-col{
-  background:#0a0907;
+  background:#000000;
 
   position:relative;
 
@@ -3007,7 +3007,7 @@ body.unlocked #page-bg{
   .about-copy-col{padding:60px 0 48px;min-width:unset}
 
   .about-img-col{
-  background:#0a0907;height:480px;min-width:unset;position:relative}
+  background:#000000;height:480px;min-width:unset;position:relative}
 
   .about-img-col img{position:absolute;inset:0}
 
@@ -3295,16 +3295,7 @@ body.unlocked #page-bg{
 </head>
 
 <body>
-<svg style="width:0; height:0; position:absolute; visibility:hidden;" aria-hidden="true">
-  <filter id="luma-to-alpha-white" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values="
-      0 0 0 0 1
-      0 0 0 0 1
-      0 0 0 0 1
-     -1 0 0 0 1
-    " />
-  </filter>
-</svg>
+
 
 
 
@@ -3563,7 +3554,7 @@ body.unlocked #page-bg{
 
           >
 
-          <img src="images/tev-logo-new.png" alt="TeV Contractors PTE. LTD." style="position: absolute; bottom: 25px; left: 30px; z-index: 5; height: 50px; width: auto; max-width: none; border-radius: 0; margin: 0; filter: url(#luma-to-alpha-white); display: block; object-fit: contain; pointer-events: none;">
+          <img src="images/tev-logo-new.png" alt="TeV Contractors PTE. LTD." style="position: absolute; bottom: 25px; left: 30px; z-index: 5; height: 50px; width: auto; max-width: none; border-radius: 0; margin: 0; filter: invert(1) grayscale(1) contrast(200%); display: block; object-fit: contain; pointer-events: none;">
 
         </div>
 
