@@ -4505,7 +4505,7 @@ body.unlocked #page-bg{
 
 ============================================================== */
 
-const IS_MOBILE = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+const IS_MOBILE = window.innerWidth <= 1024 || (window.matchMedia && window.matchMedia("(any-pointer: coarse)").matches) || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 const OFFSET  = IS_MOBILE ? 0 : 9;           // skip first 9 wide-angle frames on desktop
 
