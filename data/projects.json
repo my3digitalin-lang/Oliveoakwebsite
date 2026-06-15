@@ -116,5 +116,21 @@
     "status": "published",
     "createdAt": "2025-07-10T10:00:00Z",
     "updatedAt": "2025-07-10T10:00:00Z"
+  },
+  {
+    "title": "ghui",
+    "slug": "ghui",
+    "category": "Residential",
+    "status": "published",
+    "technologies": [],
+    "description": "bdchv ujhns",
+    "images": [
+      "/public/uploads/projects/1781527351659-703.webp",
+      "/public/uploads/projects/1781527368817-965.webp"
+    ],
+    "featuredImage": "/public/uploads/projects/1781527351659-703.webp",
+    "id": "1781527380798",
+    "createdAt": "2026-06-15T12:43:00.798Z",
+    "updatedAt": "2026-06-15T12:43:00.798Z"
   }
 ]
