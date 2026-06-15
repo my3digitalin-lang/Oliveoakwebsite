@@ -183,7 +183,7 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
       </div>
 
       <div class="form-group">
-        <label class="form-label">Images (Max 7, drag & drop or click)</label>
+        <label class="form-label">Images (Unlimited, drag & drop or click)</label>
         <div class="img-upload-area" onclick="document.getElementById('proj-file-input').click()">
           <span style="font-size:24px;display:block;margin-bottom:8px">📸</span>
           Click to upload images (Will auto-compress to WebP)
@@ -581,9 +581,6 @@ async function deleteBlog(id) {
 
 // ===== CLIENT-SIDE WEBP COMPRESSOR & UPLOAD =====
 async function handleImageUpload(files, type) {
-  if(type === 'project' && uploadedImages.length + files.length > 7) {
-    return showToast('Maximum 7 images allowed per project', 'error');
-  }
   
   showToast('Compressing and uploading images...', 'info');
   for(let file of files) {
