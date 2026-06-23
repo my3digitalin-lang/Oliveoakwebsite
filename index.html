@@ -4506,6 +4506,8 @@ const TOTAL   = IS_MOBILE ? 121 : 80;        // 168 - 9 = 159 usable frames
 
 const RANGE   = IS_MOBILE ? 1800 : 6000;
 
+const DECODE_AHEAD = 6;                      // frames to pre-decode ahead of the playhead
+
 const FP      = n => {
 
   let actualFrame = n * 2 - 1;
@@ -4558,7 +4560,9 @@ let loaded  = 0;
 
 let frame   = 0;
 
-let vDelta  = 0;      // virtual scroll delta
+let vDelta  = 0;      // rendered virtual scroll delta (eased toward targetDelta)
+
+let targetDelta = 0;  // where the scroll WANTS to be; vDelta glides toward this
 
 let done    = false;  // hero animation finished
 
@@ -4586,11 +4590,22 @@ function resize() {
 
 
 
+/* Find the closest already-decoded frame to `i` so we never stall on a
+   blank/old frame during fast scroll or while frames are still streaming. */
+function nearestLoaded(i) {
+  for (let r = 1; r < TOTAL; r++) {
+    const a = imgs[i - r], b = imgs[i + r];
+    if (a?.complete && a.naturalWidth) return a;
+    if (b?.complete && b.naturalWidth) return b;
+  }
+  return null;
+}
+
 function paint(i) {
 
-  const img = imgs[i];
+  let img = imgs[i];
 
-  if (!img?.complete || !img.naturalWidth) return;
+  if (!img?.complete || !img.naturalWidth) { img = nearestLoaded(i); if (!img) return; }
 
   const cw=canvas.width, ch=canvas.height, iw=img.naturalWidth, ih=img.naturalHeight;
 
@@ -4650,8 +4665,6 @@ function updateLoader() {
 
 function preload() {
 
-2
-
   const PRIORITY = Math.min(30, TOTAL);
 
 
@@ -4694,7 +4707,7 @@ function preload() {
 
       img.onerror = () => { loaded++; updateLoader(); };
 
-    img.onerror = () => { loaded++; updateLoader(); }; img.onload = () => { loaded++; updateLoader(); };
+      img.onload  = () => { loaded++; updateLoader(); };
 
       imgs[i-1] = img;
 
@@ -4750,7 +4763,20 @@ function tick() {
 
 
 
-  if (fi !== frame) { frame=fi; paint(frame); }
+  if (fi !== frame) {
+
+    /* Decode-ahead: warm up the next few frames in the scroll direction so
+       they're GPU-ready before the playhead arrives — kills the stutter. */
+    const dir = fi >= frame ? 1 : -1;
+    for (let k = 1; k <= DECODE_AHEAD; k++) {
+      const j = fi + dir * k;
+      const ahead = imgs[j];
+      if (ahead?.decode && !ahead.naturalWidth) ahead.decode().catch(() => {});
+    }
+
+    frame=fi; paint(frame);
+
+  }
 
 
 
@@ -4866,6 +4892,8 @@ function reEnterHero() {
 
   vDelta = 0;          /* frame 1, p = 0 */
 
+  targetDelta = 0;     /* keep momentum target in sync so it doesn't snap back */
+
 
 
   /* Hide scroll-back hint */
@@ -4946,17 +4974,45 @@ function reEnterHero() {
 
 ============================================================== */
 
-/* RAF batching   one canvas paint per animation frame */
+/* MOMENTUM ENGINE — vDelta eases toward targetDelta every frame, so the
+   animation glides to a smooth stop after you stop scrolling instead of
+   freezing instantly. EASE: higher = snappier, lower = floatier/longer glide. */
+const EASE = 0.10;
 
-let rafPending = false;
+let momentumOn = false;
+
+function momentum() {
+
+  const diff = targetDelta - vDelta;
+
+  /* Close enough — settle exactly and stop the loop to save battery */
+  if (Math.abs(diff) < 0.4) {
+
+    vDelta = targetDelta;
+
+    tick();
+
+    momentumOn = false;
+
+    return;
+
+  }
+
+  vDelta += diff * EASE;
+
+  tick();
+
+  requestAnimationFrame(momentum);
+
+}
 
 function scheduleRaf() {
 
-  if (rafPending) return;
+  if (momentumOn) return;
 
-  rafPending = true;
+  momentumOn = true;
 
-  requestAnimationFrame(() => { rafPending = false; tick(); });
+  requestAnimationFrame(momentum);
 
 }
 
@@ -4986,7 +5042,7 @@ window.addEventListener('wheel', e => {
 
   e.preventDefault();
 
-  vDelta = Math.min(Math.max(vDelta + e.deltaY * 0.72, 0), RANGE);
+  targetDelta = Math.min(Math.max(targetDelta + e.deltaY * 0.72, 0), RANGE);
 
   scheduleRaf();
 
@@ -5050,7 +5106,7 @@ window.addEventListener('touchmove', e => {
 
   e.preventDefault();
 
-  vDelta = Math.min(Math.max(vDelta + dy * 4.5, 0), RANGE);
+  targetDelta = Math.min(Math.max(targetDelta + dy * 4.5, 0), RANGE);
 
   scheduleRaf();
 
