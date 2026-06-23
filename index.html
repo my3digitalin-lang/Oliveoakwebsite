@@ -4977,7 +4977,12 @@ function reEnterHero() {
 /* MOMENTUM ENGINE — vDelta eases toward targetDelta every frame, so the
    animation glides to a smooth stop after you stop scrolling instead of
    freezing instantly. EASE: higher = snappier, lower = floatier/longer glide. */
-const EASE = 0.10;
+const EASE = 0.16;
+
+/* Settle once we're within half a frame of the target. Below this, vDelta
+   changes too little to move the visible frame — chasing it just produces a
+   slow sub-frame "creep" that feels stuck. Snapping here gives a crisp stop. */
+const SETTLE = (RANGE / TOTAL) * 0.5;
 
 let momentumOn = false;
 
@@ -4986,7 +4991,7 @@ function momentum() {
   const diff = targetDelta - vDelta;
 
   /* Close enough — settle exactly and stop the loop to save battery */
-  if (Math.abs(diff) < 0.4) {
+  if (Math.abs(diff) < SETTLE) {
 
     vDelta = targetDelta;
 
