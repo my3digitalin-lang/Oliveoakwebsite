@@ -22,7 +22,9 @@ async function githubRequest(path, method = 'GET', body = null) {
   if (!response.ok) {
     const err = await response.text();
     console.error('GitHub API Error:', url, response.status, err);
-    throw new Error(`GitHub API Error: ${response.statusText}`);
+    let detail = err;
+    try { detail = JSON.parse(err).message || err; } catch (_) {}
+    throw new Error(`GitHub ${response.status}: ${detail}`);
   }
   return response.json();
 }

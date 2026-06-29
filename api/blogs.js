@@ -5,6 +5,7 @@ const requireAuth = require('./middleware');
 async function handler(req, res) {
   const filePath = 'data/blogs.json';
 
+  try {
   if (req.method === 'GET') {
     const { content } = await getFileContent(filePath);
     return res.status(200).json(content);
@@ -52,6 +53,10 @@ async function handler(req, res) {
   }
 
   return res.status(405).json({ error: 'Method Not Allowed' });
+  } catch (e) {
+    console.error('Blogs handler error:', e);
+    return res.status(500).json({ error: e.message || 'Server error saving blog' });
+  }
 }
 
 module.exports = requireAuth(handler);
