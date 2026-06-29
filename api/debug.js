@@ -6,7 +6,9 @@ module.exports = async function handler(req, res) {
   // Test the GitHub API connection
   let githubStatus = 'not tested';
   let githubError = null;
-  
+  let permissions = null;
+  let canWrite = null;
+
   if (token && repo) {
     try {
       const response = await fetch(`https://api.github.com/repos/${repo}`, {
@@ -18,6 +20,10 @@ module.exports = async function handler(req, res) {
       if (response.ok) {
         const data = await response.json();
         githubStatus = `Connected! Repo: ${data.full_name}, Private: ${data.private}`;
+        // permissions reflects what THIS token can do on the repo.
+        // For a public repo, read works for any token, so push is the real test.
+        permissions = data.permissions || null;
+        canWrite = !!(data.permissions && (data.permissions.push || data.permissions.admin || data.permissions.maintain));
       } else {
         const errText = await response.text();
         githubStatus = `Error ${response.status}`;
@@ -35,6 +41,8 @@ module.exports = async function handler(req, res) {
     repo: repo || 'MISSING',
     hasPassword: !!pass,
     githubStatus,
+    permissions,
+    canWrite,
     githubError
   });
 };

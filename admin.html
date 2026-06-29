@@ -113,6 +113,7 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
     <div class="tab-bar">
       <button class="tab-btn active" onclick="showTab('list-projects')" id="tab-list-projects">Projects</button>
       <button class="tab-btn" onclick="showTab('list-blogs')" id="tab-list-blogs">Blogs</button>
+      <button class="tab-btn" onclick="showTab('list-leads')" id="tab-list-leads">Leads</button>
       <button class="tab-btn" onclick="showTab('form-project')" id="tab-form-project">+ New Project</button>
       <button class="tab-btn" onclick="showTab('form-blog')" id="tab-form-blog">+ New Blog</button>
     </div>
@@ -139,6 +140,20 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
           <tr><th>Image</th><th>Blog Title</th><th>Category</th><th>Status</th><th>Last Updated</th><th>Actions</th></tr>
         </thead>
         <tbody id="blogs-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Leads List -->
+    <div id="list-leads" class="tab-content hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+        <span id="leads-count" style="color:var(--dim);font-size:13px;"></span>
+        <button class="btn-nav" onclick="downloadLeadsExcel()" style="border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:8px;background:transparent;cursor:pointer;">⬇ Download Excel</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Date</th><th>Name</th><th>Phone</th><th>Email</th><th>Service</th><th>Budget</th><th>Source</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="leads-tbody"></tbody>
       </table>
     </div>
 
@@ -268,7 +283,7 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
 
 <script>
 let token = sessionStorage.getItem('admin_token');
-let dataCache = { projects: [], blogs: [] };
+let dataCache = { projects: [], blogs: [], leads: [] };
 let uploadedImages = []; // Temp state for current form
 
 // Initialize
@@ -339,11 +354,13 @@ async function fetchData() {
   document.getElementById('list-projects').classList.add('hidden');
   document.getElementById('list-blogs').classList.add('hidden');
   try {
-    const [p, b] = await Promise.all([apiCall('projects'), apiCall('blogs')]);
+    const [p, b, l] = await Promise.all([apiCall('projects'), apiCall('blogs'), apiCall('contacts')]);
     dataCache.projects = p || [];
     dataCache.blogs = b || [];
+    dataCache.leads = l || [];
     renderProjects();
     renderBlogs();
+    renderLeads();
   } catch(e) {
     showToast('Failed to fetch data: ' + e.message, 'error');
   }
@@ -383,6 +400,62 @@ function renderBlogs() {
       </td>
     </tr>
   `).join('');
+}
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function renderLeads() {
+  const leads = (dataCache.leads || []).slice().sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+  document.getElementById('leads-count').textContent = `${leads.length} enquir${leads.length===1?'y':'ies'}`;
+  const tb = document.getElementById('leads-tbody');
+  if(!leads.length){
+    tb.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--dim);padding:40px;">No enquiries yet.</td></tr>`;
+    return;
+  }
+  tb.innerHTML = leads.map(l => `
+    <tr>
+      <td>${new Date(l.createdAt).toLocaleString()}</td>
+      <td><strong>${esc(l.name)}</strong></td>
+      <td>${l.phone ? `<a href="tel:${esc(l.phone)}" style="color:var(--gold)">${esc(l.phone)}</a>` : '—'}</td>
+      <td>${l.email ? `<a href="mailto:${esc(l.email)}" style="color:var(--gold)">${esc(l.email)}</a>` : '—'}</td>
+      <td>${esc(l.service)||'—'}</td>
+      <td>${esc(l.budget)||'—'}</td>
+      <td>${esc(l.source)||'—'}</td>
+      <td><button class="action-btn del" onclick="deleteLead('${l.id}')">Delete</button></td>
+    </tr>
+  `).join('');
+}
+
+async function deleteLead(id){
+  if(!confirm('Delete this enquiry?')) return;
+  try {
+    await apiCall(`contacts?id=${encodeURIComponent(id)}`, 'DELETE');
+    dataCache.leads = dataCache.leads.filter(l => l.id !== id);
+    renderLeads();
+    showToast('Enquiry deleted', 'success');
+  } catch(e){ showToast('Delete failed: ' + e.message, 'error'); }
+}
+
+function downloadLeadsExcel(){
+  const leads = (dataCache.leads || []).slice().sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+  if(!leads.length){ showToast('No leads to export', 'info'); return; }
+  const cols = ['createdAt','name','phone','email','service','budget','message','source'];
+  const headers = ['Date','Name','Phone','Email','Service','Budget','Message','Source'];
+  const cell = v => {
+    let s = v==null ? '' : String(v);
+    if(/[",\n]/.test(s)) s = '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  };
+  const rows = leads.map(l => cols.map(c => cell(c==='createdAt' ? new Date(l[c]).toLocaleString() : l[c])).join(','));
+  // BOM so Excel reads UTF-8 (₹, accents) correctly
+  const csv = '﻿' + headers.join(',') + '\n' + rows.join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `oliveoak-leads-${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 

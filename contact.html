@@ -386,6 +386,7 @@ footer{background:rgba(6,5,4,.95);border-top:1px solid rgba(200,169,126,.08);pad
         </div>
       </div>
 
+      <input type="text" name="company" id="fcompany" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <button type="submit" class="btn-submit" id="submitBtn">Send Message &nbsp;→</button>
       <p class="form-note">We respond within 24 hours · All enquiries are confidential</p>
     </form>
@@ -502,12 +503,30 @@ const io = new IntersectionObserver(entries=>{
 document.querySelectorAll('.form-card,.info-side,.section-tag').forEach(el=>io.observe(el));
 
 /* FORM */
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
-  setTimeout(()=>{
+
+  const payload = {
+    name: document.getElementById('fname').value,
+    phone: document.getElementById('fphone').value,
+    email: document.getElementById('femail').value,
+    service: document.getElementById('fservice').value,
+    budget: document.getElementById('fbudget').value,
+    company: document.getElementById('fcompany').value, // honeypot
+    source: 'contact-page'
+  };
+
+  try {
+    const res = await fetch('/api/contacts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error('Request failed');
+
     btn.textContent = '✓ Message Sent';
     btn.style.background='rgba(100,180,100,.2)';
     btn.style.borderColor='rgba(100,200,100,.5)';
@@ -518,7 +537,17 @@ function handleSubmit(e){
       btn.disabled=false;
       btn.style.background='';btn.style.borderColor='';btn.style.color='';
     },3000);
-  },1200);
+  } catch(err){
+    btn.textContent = 'Failed — try again';
+    btn.style.background='rgba(200,80,80,.2)';
+    btn.style.borderColor='rgba(220,90,90,.5)';
+    btn.style.color='#e8a0a0';
+    setTimeout(()=>{
+      btn.textContent='Send Message →';
+      btn.disabled=false;
+      btn.style.background='';btn.style.borderColor='';btn.style.color='';
+    },3000);
+  }
 }
 
 /* CURSOR */
