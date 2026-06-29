@@ -5561,7 +5561,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const published = projects.filter(p => p.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
       
       projGrid.innerHTML = published.map((p, i) => {
-        const img = p.featuredImage || (p.images && p.images[0]) || '';
+        const img = p.thumbnail || p.featuredImage || (p.images && p.images[0]) || '';
         const cl = i === 0 ? 'p-card-large' : 'p-card-small'; // based on their masonry style
         return `
           <a href="project.html?id=${p.slug}" class="p-card ${cl} reveal" style="display:block;border-radius:12px;overflow:hidden;position:relative;margin-bottom:24px;background:#111;">
@@ -5588,7 +5588,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const published = blogs.filter(b => b.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
       
       blogGrid.innerHTML = published.map(b => {
-        const img = b.featuredImage || '';
+        const img = b.thumbnail || b.featuredImage || '';
         return `
           <a href="blog-post.html?id=${b.slug}" class="blog-card reveal" style="display:block;border:1px solid rgba(200,169,126,0.15);border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.02);margin-bottom:24px;">
             ${img ? `<img src="${img}" alt="${b.title}" style="width:100%;height:200px;object-fit:cover;">` : ''}

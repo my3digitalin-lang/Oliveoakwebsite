@@ -209,6 +209,17 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
         <input type="hidden" id="proj-featured-image">
       </div>
 
+      <div class="form-group">
+        <label class="form-label">Thumbnail Image (shown on listing cards — optional)</label>
+        <div class="img-upload-area" onclick="document.getElementById('proj-thumb-input').click()">
+          <span style="font-size:24px;display:block;margin-bottom:8px">🔖</span>
+          Click to upload a thumbnail (falls back to the cover image if left empty)
+          <input type="file" id="proj-thumb-input" accept="image/*" class="hidden" onchange="handleThumbUpload(this.files, 'proj')">
+        </div>
+        <div class="img-grid" id="proj-thumb-grid"></div>
+        <input type="hidden" id="proj-thumbnail">
+      </div>
+
       <button class="btn-primary" onclick="saveProject()" id="btn-save-proj">Save Project</button>
       <button class="btn-nav" onclick="showTab('list-projects')" style="margin-left:16px;padding:16px;">Cancel</button>
     </div>
@@ -271,6 +282,17 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
         </div>
         <div class="img-grid" id="blog-img-grid"></div>
         <input type="hidden" id="blog-featured-image">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Thumbnail Image (shown on the blog listing — optional)</label>
+        <div class="img-upload-area" onclick="document.getElementById('blog-thumb-input').click()">
+          <span style="font-size:24px;display:block;margin-bottom:8px">🔖</span>
+          Click to upload a thumbnail (falls back to the featured image if left empty)
+          <input type="file" id="blog-thumb-input" accept="image/*" class="hidden" onchange="handleThumbUpload(this.files, 'blog')">
+        </div>
+        <div class="img-grid" id="blog-thumb-grid"></div>
+        <input type="hidden" id="blog-thumbnail">
       </div>
 
       <button class="btn-primary" onclick="saveBlog()" id="btn-save-blog">Save Blog Post</button>
@@ -373,7 +395,7 @@ function renderProjects() {
   const tb = document.getElementById('projects-tbody');
   tb.innerHTML = dataCache.projects.sort((a,b)=>(a.order||0)-(b.order||0)).map((p, i) => `
     <tr draggable="true" ondragstart="dragStart(event, \'project\', i)" ondragover="dragOver(event)" ondrop="drop(event, \'project\', i)" style="cursor:grab">
-      <td><img src="${p.featuredImage||p.images[0]||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
+      <td><img src="${p.thumbnail||p.featuredImage||p.images[0]||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
       <td><strong>${p.title}</strong><br><small style="color:var(--dim)">/${p.slug}</small></td>
       <td>${p.category}</td>
       <td><span class="status-badge status-${p.status}">${p.status}</span></td>
@@ -390,7 +412,7 @@ function renderBlogs() {
   const tb = document.getElementById('blogs-tbody');
   tb.innerHTML = dataCache.blogs.sort((a,b)=>(a.order||0)-(b.order||0)).map((b, i) => `
     <tr draggable="true" ondragstart="dragStart(event, \'blog\', i)" ondragover="dragOver(event)" ondrop="drop(event, \'blog\', i)" style="cursor:grab">
-      <td><img src="${b.featuredImage||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
+      <td><img src="${b.thumbnail||b.featuredImage||''}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;background:#222"></td>
       <td><strong>${b.title}</strong><br><small style="color:var(--dim)">/${b.slug}</small></td>
       <td>${b.category}</td>
       <td><span class="status-badge status-${b.status}">${b.status}</span></td>
@@ -507,8 +529,10 @@ function resetProjForm() {
   document.getElementById('proj-tech').value = '';
   document.getElementById('proj-desc').value = '';
   document.getElementById('proj-featured-image').value = '';
+  document.getElementById('proj-thumbnail').value = '';
   uploadedImages = [];
   renderImageGrid('proj');
+  renderThumb('proj');
 }
 
 function editProject(id) {
@@ -523,8 +547,10 @@ function editProject(id) {
   document.getElementById('proj-tech').value = (p.technologies||[]).join(', ');
   document.getElementById('proj-desc').value = p.description || '';
   document.getElementById('proj-featured-image').value = p.featuredImage || (p.images&&p.images[0]) || '';
+  document.getElementById('proj-thumbnail').value = p.thumbnail || '';
   uploadedImages = p.images ? [...p.images] : [];
   renderImageGrid('proj');
+  renderThumb('proj');
   showTab('form-project');
 }
 
@@ -541,7 +567,8 @@ async function saveProject() {
     technologies: document.getElementById('proj-tech').value.split(',').map(s=>s.trim()).filter(Boolean),
     description: document.getElementById('proj-desc').value,
     images: uploadedImages,
-    featuredImage: document.getElementById('proj-featured-image').value || uploadedImages[0] || ''
+    featuredImage: document.getElementById('proj-featured-image').value || uploadedImages[0] || '',
+    thumbnail: document.getElementById('proj-thumbnail').value || ''
   };
   if(id) p.id = id;
 
@@ -585,8 +612,10 @@ function resetBlogForm() {
   document.getElementById('blog-meta-desc').value = '';
   document.getElementById('blog-content').value = '';
   document.getElementById('blog-featured-image').value = '';
+  document.getElementById('blog-thumbnail').value = '';
   uploadedImages = [];
   renderImageGrid('blog');
+  renderThumb('blog');
 }
 
 function editBlog(id) {
@@ -603,8 +632,10 @@ function editBlog(id) {
   document.getElementById('blog-meta-desc').value = b.metaDescription || '';
   document.getElementById('blog-content').value = b.content || '';
   document.getElementById('blog-featured-image').value = b.featuredImage || '';
+  document.getElementById('blog-thumbnail').value = b.thumbnail || '';
   uploadedImages = b.featuredImage ? [b.featuredImage] : [];
   renderImageGrid('blog');
+  renderThumb('blog');
   showTab('form-blog');
 }
 
@@ -622,7 +653,8 @@ async function saveBlog() {
     metaTitle: document.getElementById('blog-meta-title').value,
     metaDescription: document.getElementById('blog-meta-desc').value,
     content: document.getElementById('blog-content').value,
-    featuredImage: document.getElementById('blog-featured-image').value || uploadedImages[0] || ''
+    featuredImage: document.getElementById('blog-featured-image').value || uploadedImages[0] || '',
+    thumbnail: document.getElementById('blog-thumbnail').value || ''
   };
   if(id) b.id = id;
 
@@ -680,6 +712,40 @@ async function handleImageUpload(files, type) {
   }
   renderImageGrid(type);
   showToast('Upload complete', 'success');
+}
+
+// ===== THUMBNAIL (single image, separate from cover/gallery) =====
+async function handleThumbUpload(files, type) {
+  if(!files || !files.length) return;
+  showToast('Compressing and uploading thumbnail...', 'info');
+  try {
+    const base64Str = await compressImageToWebP(files[0]);
+    const filename = `thumb-${Date.now()}-${Math.floor(Math.random()*1000)}.webp`;
+    // type for /api/upload must be 'project' or 'blog'
+    const uploadType = type === 'proj' ? 'project' : 'blog';
+    const res = await apiCall('upload', 'POST', { type: uploadType, filename, base64: base64Str });
+    if(res.url) {
+      document.getElementById(`${type}-thumbnail`).value = res.url;
+      renderThumb(type);
+      showToast('Thumbnail uploaded', 'success');
+    }
+  } catch(e) {
+    console.error(e);
+    showToast('Thumbnail upload failed: ' + e.message, 'error');
+  }
+}
+
+function renderThumb(type) {
+  const grid = document.getElementById(`${type}-thumb-grid`);
+  const url = document.getElementById(`${type}-thumbnail`).value;
+  grid.innerHTML = url
+    ? `<div class="img-card"><img src="${url}"><div class="del-img" onclick="removeThumb('${type}')">✕</div></div>`
+    : '';
+}
+
+function removeThumb(type) {
+  document.getElementById(`${type}-thumbnail`).value = '';
+  renderThumb(type);
 }
 
 function compressImageToWebP(file) {
