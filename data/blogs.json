@@ -129,7 +129,7 @@
     "title": "hello",
     "slug": "hello",
     "category": "Design Trends",
-    "status": "draft",
+    "status": "published",
     "excerpt": "helo",
     "metaTitle": "",
     "metaDescription": "",
@@ -137,6 +137,6 @@
     "featuredImage": "/public/uploads/blogs/1782730128819-171.webp",
     "id": "1782730003195",
     "createdAt": "2026-06-29T10:46:43.195Z",
-    "updatedAt": "2026-06-29T10:49:38.538Z"
+    "updatedAt": "2026-06-29T10:50:22.570Z"
   }
 ]
