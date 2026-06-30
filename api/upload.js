@@ -18,12 +18,20 @@ async function handler(req, res) {
     const filePath = `public/uploads/${folder}/${filename}`;
 
     try {
-      // Check if file already exists to get its SHA (to overwrite if necessary)
-      const existingSha = await getFileSha(filePath);
-
-      await uploadFileBinary(filePath, base64, `CMS: Upload image ${filename}`, existingSha);
-      
-      return res.status(200).json({ url: `/${filePath}` });
+      // Retry on GitHub 409 (ref moved between read & write during rapid multi-image uploads)
+      let lastErr;
+      for (let attempt = 0; attempt < 5; attempt++) {
+        try {
+          const existingSha = await getFileSha(filePath);
+          await uploadFileBinary(filePath, base64, `CMS: Upload image ${filename}`, existingSha);
+          return res.status(200).json({ url: `/${filePath}` });
+        } catch (e) {
+          lastErr = e;
+          if (!/\b409\b/.test(e.message || '')) throw e;
+          await new Promise(r => setTimeout(r, 300 * (attempt + 1)));
+        }
+      }
+      throw lastErr;
     } catch (e) {
       return res.status(500).json({ error: e.message });
     }

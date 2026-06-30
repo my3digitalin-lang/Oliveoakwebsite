@@ -286,7 +286,7 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
         <div class="img-upload-area" onclick="document.getElementById('proj-file-input').click()">
           <span style="font-size:24px;display:block;margin-bottom:8px">📸</span>
           Click to upload images (Will auto-compress to WebP)
-          <input type="file" id="proj-file-input" multiple accept="image/*" class="hidden" onchange="handleImageUpload(this.files, 'project')">
+          <input type="file" id="proj-file-input" multiple accept="image/*" class="hidden" onchange="handleImageUpload(this.files, 'proj')">
         </div>
         <div class="img-grid" id="proj-img-grid"></div>
         <input type="hidden" id="proj-featured-image">
@@ -948,12 +948,13 @@ async function deleteBlog(id) {
 async function handleImageUpload(files, type) {
   
   showToast('Compressing and uploading images...', 'info');
+  const uploadType = type === 'proj' ? 'project' : type; // API expects 'project'/'blog'
   for(let file of files) {
     try {
       const base64Str = await compressImageToWebP(file);
       const filename = `${Date.now()}-${Math.floor(Math.random()*1000)}.webp`;
       const res = await apiCall('upload', 'POST', {
-        type, filename, base64: base64Str
+        type: uploadType, filename, base64: base64Str
       });
       if(res.url) {
         if(type==='blog') {
@@ -1037,10 +1038,11 @@ function compressImageToWebP(file) {
 function renderImageGrid(type) {
   const grid = document.getElementById(`${type}-img-grid`);
   const featInput = document.getElementById(`${type}-featured-image`);
+  if(!grid || !featInput) return; // form not in DOM / wrong type — avoid crashing
   const last = uploadedImages.length - 1;
   grid.innerHTML = uploadedImages.map((url, i) => {
     // Projects: cover is chosen via star. Blogs: cover is always the first image.
-    const isFeat = type === 'project' ? featInput.value === url : i === 0;
+    const isFeat = type === 'proj' ? featInput.value === url : i === 0;
     return `
       <div class="img-card ${isFeat ? 'is-featured' : ''}">
         <img src="${url}">
@@ -1049,7 +1051,7 @@ function renderImageGrid(type) {
           <button type="button" onclick="moveImage('${type}', ${i}, -1)" ${i===0?'disabled':''}>◀</button>
           <button type="button" onclick="moveImage('${type}', ${i}, 1)" ${i===last?'disabled':''}>▶</button>
         </div>
-        ${type==='project'
+        ${type==='proj'
           ? `<div class="star-img" onclick="setFeatured('${type}', '${url}')">${isFeat?'★ Featured':'☆ Set Cover'}</div>`
           : (i===0 ? `<div class="star-img" style="pointer-events:none">★ Cover</div>` : '')}
       </div>

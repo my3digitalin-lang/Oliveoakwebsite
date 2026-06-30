@@ -41,14 +41,19 @@ async function getFileContent(filePath) {
 }
 
 async function updateFileContent(filePath, contentStr, message, sha = null) {
-  const body = {
-    message: message,
-    content: Buffer.from(contentStr, 'utf8').toString('base64')
-  };
-  if (sha) {
-    body.sha = sha;
+  const content = Buffer.from(contentStr, 'utf8').toString('base64');
+  const doPut = (s) => githubRequest(`/contents/${filePath}`, 'PUT',
+    s ? { message, content, sha: s } : { message, content });
+  try {
+    return await doPut(sha);
+  } catch (e) {
+    // 409 = the file moved since we read its sha; re-fetch the latest sha and retry once
+    if (/\b409\b/.test(e.message || '')) {
+      const fresh = await getFileSha(filePath);
+      return await doPut(fresh);
+    }
+    throw e;
   }
-  return await githubRequest(`/contents/${filePath}`, 'PUT', body);
 }
 
 async function uploadFileBinary(filePath, base64Content, message, sha = null) {
