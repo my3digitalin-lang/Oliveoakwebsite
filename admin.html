@@ -96,6 +96,18 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
 .kb-meta a{color:var(--gold);text-decoration:none;}
 .kb-stage-sel{margin-top:8px;width:100%;background:#1a1815;color:var(--white);border:1px solid var(--border);border-radius:6px;padding:5px;font-size:11px;}
 .kb-empty{color:var(--dim);font-size:12px;text-align:center;padding:18px 6px;opacity:.6;}
+/* ===== RICH TEXT EDITOR ===== */
+.rte-toolbar{display:flex;flex-wrap:wrap;gap:6px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-bottom:none;border-radius:10px 10px 0 0;padding:8px;}
+.rte-toolbar button{background:transparent;border:1px solid var(--border);color:var(--dim);border-radius:6px;min-width:34px;height:30px;padding:0 8px;cursor:pointer;font-size:13px;}
+.rte-toolbar button:hover{border-color:var(--gold);color:var(--gold);}
+.rte-editor{min-height:300px;max-height:560px;overflow-y:auto;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:0 0 10px 10px;padding:16px;color:var(--white);font-family:var(--f-body);font-size:14px;line-height:1.7;outline:none;}
+.rte-editor:focus{border-color:var(--gold);}
+.rte-editor h2{font-size:22px;margin:16px 0 8px;color:var(--white);}
+.rte-editor h3{font-size:18px;margin:14px 0 6px;color:var(--white);}
+.rte-editor p{margin:0 0 10px;}
+.rte-editor ul,.rte-editor ol{margin:0 0 10px 22px;}
+.rte-editor a{color:var(--gold);}
+.rte-editor:empty:before{content:'Write your blog content here…';color:var(--dim);opacity:.6;}
 
 /* Toast */
 #toast{position:fixed;bottom:32px;right:32px;z-index:9999;padding:16px 28px;border-radius:12px;font-size:14px;box-shadow:0 8px 32px rgba(0,0,0,.4);transform:translateY(80px);opacity:0;transition:all .4s;max-width:360px;}
@@ -302,8 +314,21 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
         <textarea class="form-textarea" id="blog-excerpt" style="min-height:80px"></textarea>
       </div>
       <div class="form-group">
-        <label class="form-label">Content (HTML allowed)</label>
-        <textarea class="form-textarea" id="blog-content" style="min-height:300px"></textarea>
+        <label class="form-label">Content</label>
+        <div class="rte-toolbar">
+          <button type="button" onclick="rte('bold')" title="Bold"><b>B</b></button>
+          <button type="button" onclick="rte('italic')" title="Italic"><i>I</i></button>
+          <button type="button" onclick="rteBlock('h2')" title="Heading">H2</button>
+          <button type="button" onclick="rteBlock('h3')" title="Subheading">H3</button>
+          <button type="button" onclick="rteBlock('p')" title="Paragraph">¶</button>
+          <button type="button" onclick="rte('insertUnorderedList')" title="Bullet list">• List</button>
+          <button type="button" onclick="rte('insertOrderedList')" title="Numbered list">1. List</button>
+          <button type="button" onclick="rteLink()" title="Insert link">🔗</button>
+          <button type="button" onclick="rte('removeFormat')" title="Clear formatting">⌫</button>
+          <button type="button" onclick="toggleHtmlSource()" id="rte-html-btn" title="Edit raw HTML" style="margin-left:auto">&lt;/&gt; HTML</button>
+        </div>
+        <div id="blog-content-editor" class="rte-editor" contenteditable="true" oninput="syncRte()"></div>
+        <textarea class="form-textarea hidden" id="blog-content" style="min-height:300px" oninput="document.getElementById('blog-content-editor').innerHTML=this.value"></textarea>
       </div>
       <div class="form-group">
         <label class="form-label">Images (the first image is the cover — use ◀ ▶ to arrange order)</label>
@@ -716,6 +741,45 @@ async function deleteProject(id) {
   } catch(e) { showToast('Error: '+e.message, 'error'); }
 }
 
+// ===== RICH TEXT EDITOR =====
+function rte(cmd){
+  document.getElementById('blog-content-editor').focus();
+  document.execCommand(cmd, false, null);
+  syncRte();
+}
+function rteBlock(tag){
+  document.getElementById('blog-content-editor').focus();
+  document.execCommand('formatBlock', false, tag);
+  syncRte();
+}
+function rteLink(){
+  const url = prompt('Link URL (include https://):');
+  if(url){ document.getElementById('blog-content-editor').focus(); document.execCommand('createLink', false, url); syncRte(); }
+}
+function syncRte(){
+  // keep the hidden textarea (the saved value) in sync with the visual editor
+  if(!document.getElementById('blog-content').classList.contains('hidden')) return; // editing raw HTML directly
+  document.getElementById('blog-content').value = document.getElementById('blog-content-editor').innerHTML;
+}
+function loadRte(html){
+  document.getElementById('blog-content-editor').innerHTML = html || '';
+  document.getElementById('blog-content').value = html || '';
+  // always start in visual mode
+  document.getElementById('blog-content').classList.add('hidden');
+  document.getElementById('blog-content-editor').classList.remove('hidden');
+}
+function toggleHtmlSource(){
+  const ta = document.getElementById('blog-content');
+  const ed = document.getElementById('blog-content-editor');
+  if(ta.classList.contains('hidden')){
+    ta.value = ed.innerHTML;            // visual -> source
+    ta.classList.remove('hidden'); ed.classList.add('hidden');
+  } else {
+    ed.innerHTML = ta.value;            // source -> visual
+    ta.classList.add('hidden'); ed.classList.remove('hidden');
+  }
+}
+
 // ===== BLOG CRUD =====
 function resetBlogForm() {
   document.getElementById('blog-form-title').textContent = 'Create Blog Post';
@@ -727,7 +791,7 @@ function resetBlogForm() {
   document.getElementById('blog-excerpt').value = '';
   document.getElementById('blog-meta-title').value = '';
   document.getElementById('blog-meta-desc').value = '';
-  document.getElementById('blog-content').value = '';
+  loadRte('');
   document.getElementById('blog-featured-image').value = '';
   document.getElementById('blog-thumbnail').value = '';
   uploadedImages = [];
@@ -747,7 +811,7 @@ function editBlog(id) {
   document.getElementById('blog-excerpt').value = b.excerpt || '';
   document.getElementById('blog-meta-title').value = b.metaTitle || '';
   document.getElementById('blog-meta-desc').value = b.metaDescription || '';
-  document.getElementById('blog-content').value = b.content || '';
+  loadRte(b.content || '');
   document.getElementById('blog-thumbnail').value = b.thumbnail || '';
   uploadedImages = (b.images && b.images.length) ? [...b.images] : (b.featuredImage ? [b.featuredImage] : []);
   document.getElementById('blog-featured-image').value = uploadedImages[0] || b.featuredImage || '';
@@ -757,6 +821,7 @@ function editBlog(id) {
 }
 
 async function saveBlog() {
+  syncRte(); // flush visual editor into the saved field
   const btn = document.getElementById('btn-save-blog');
   btn.textContent = 'Saving...'; btn.disabled = true;
   
