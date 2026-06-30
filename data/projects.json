@@ -136,24 +136,5 @@
     "createdAt": "2025-07-10T10:00:00Z",
     "updatedAt": "2025-07-10T10:00:00Z",
     "order": 6
-  },
-  {
-    "title": "test",
-    "slug": "test",
-    "category": "Residential",
-    "status": "published",
-    "technologies": [
-      "test"
-    ],
-    "description": "gagaga",
-    "images": [
-      "/public/uploads/projects/1782842192428-619.webp",
-      "/public/uploads/projects/1782842188321-320.webp"
-    ],
-    "featuredImage": "/public/uploads/projects/1782842192428-619.webp",
-    "thumbnail": "/public/uploads/projects/thumb-1782842213592-789.webp",
-    "id": "1782842231010",
-    "createdAt": "2026-06-30T17:57:11.010Z",
-    "updatedAt": "2026-06-30T17:57:11.012Z"
   }
 ]
