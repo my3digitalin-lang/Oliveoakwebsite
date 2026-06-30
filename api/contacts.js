@@ -71,6 +71,24 @@ module.exports = async function handler(req, res) {
     return res.status(200).json(Array.isArray(content) ? content : []);
   }
 
+  if (req.method === 'PUT') {
+    const body = req.body || {};
+    if (!body.id) return res.status(400).json({ error: 'Missing id' });
+    const { content, sha } = await getFileContent(filePath);
+    const list = Array.isArray(content) ? content : [];
+    const idx = list.findIndex(c => c.id === body.id);
+    if (idx === -1) return res.status(404).json({ error: 'Lead not found' });
+    // Only allow updating known fields (currently the pipeline stage)
+    if (body.stage !== undefined) list[idx].stage = clean(body.stage, 40);
+    try {
+      await updateFileContent(filePath, JSON.stringify(list, null, 2), `Lead: ${list[idx].name} -> ${list[idx].stage}`, sha);
+      return res.status(200).json(list[idx]);
+    } catch (e) {
+      console.error('Lead update error:', e);
+      return res.status(500).json({ error: 'Could not update lead.' });
+    }
+  }
+
   if (req.method === 'DELETE') {
     const { id } = req.query;
     if (!id) return res.status(400).json({ error: 'Missing id' });

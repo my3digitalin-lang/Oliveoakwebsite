@@ -79,6 +79,23 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
 .img-card .reorder-img button{background:rgba(0,0,0,.7);color:var(--white);border:1px solid var(--border);border-radius:4px;width:24px;height:24px;cursor:pointer;font-size:11px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;}
 .img-card .reorder-img button:hover:not(:disabled){border-color:var(--gold);color:var(--gold);}
 .img-card .reorder-img button:disabled{opacity:.3;cursor:default;}
+/* ===== LEADS PIPELINE (KANBAN) ===== */
+.lv-btn{background:transparent;border:1px solid var(--border);color:var(--dim);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;}
+.lv-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(200,169,126,.08);}
+.kanban{display:flex;gap:14px;overflow-x:auto;padding-bottom:16px;align-items:flex-start;}
+.kb-col{flex:0 0 250px;width:250px;background:var(--glass);border:1px solid var(--border);border-radius:12px;display:flex;flex-direction:column;max-height:70vh;}
+.kb-col.drag-over{border-color:var(--gold);background:rgba(200,169,126,.06);}
+.kb-col-head{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--white);position:sticky;top:0;}
+.kb-col-head .kb-count{background:rgba(255,255,255,.08);color:var(--dim);border-radius:20px;padding:1px 9px;font-size:11px;}
+.kb-col-body{padding:10px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;min-height:60px;}
+.kb-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;cursor:grab;transition:border-color .2s,transform .1s;}
+.kb-card:hover{border-color:rgba(200,169,126,.45);}
+.kb-card:active{cursor:grabbing;}
+.kb-name{font-weight:600;color:var(--white);font-size:14px;margin-bottom:4px;}
+.kb-meta{font-size:11.5px;color:var(--dim);margin-bottom:2px;word-break:break-word;}
+.kb-meta a{color:var(--gold);text-decoration:none;}
+.kb-stage-sel{margin-top:8px;width:100%;background:#1a1815;color:var(--white);border:1px solid var(--border);border-radius:6px;padding:5px;font-size:11px;}
+.kb-empty{color:var(--dim);font-size:12px;text-align:center;padding:18px 6px;opacity:.6;}
 
 /* Toast */
 #toast{position:fixed;bottom:32px;right:32px;z-index:9999;padding:16px 28px;border-radius:12px;font-size:14px;box-shadow:0 8px 32px rgba(0,0,0,.4);transform:translateY(80px);opacity:0;transition:all .4s;max-width:360px;}
@@ -152,14 +169,25 @@ body{font-family:var(--f-body);background:var(--bg);color:var(--white);min-heigh
     <div id="list-leads" class="tab-content hidden">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
         <span id="leads-count" style="color:var(--dim);font-size:13px;"></span>
-        <button class="btn-nav" onclick="downloadLeadsExcel()" style="border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:8px;background:transparent;cursor:pointer;">⬇ Download Excel</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="lv-btn active" id="lv-pipeline" onclick="setLeadsView('pipeline')">▥ Pipeline</button>
+          <button class="lv-btn" id="lv-table" onclick="setLeadsView('table')">▤ Table</button>
+          <button class="btn-nav" onclick="downloadLeadsExcel()" style="border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:8px;background:transparent;cursor:pointer;">⬇ Download Excel</button>
+        </div>
       </div>
-      <table class="data-table">
-        <thead>
-          <tr><th>Date</th><th>Name</th><th>Phone</th><th>Email</th><th>Service</th><th>Budget</th><th>Source</th><th>Actions</th></tr>
-        </thead>
-        <tbody id="leads-tbody"></tbody>
-      </table>
+
+      <!-- Pipeline (Kanban) view -->
+      <div id="leads-pipeline" class="kanban"></div>
+
+      <!-- Table view -->
+      <div id="leads-table-wrap" class="hidden">
+        <table class="data-table">
+          <thead>
+            <tr><th>Date</th><th>Name</th><th>Phone</th><th>Email</th><th>Service</th><th>Budget</th><th>Stage</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="leads-tbody"></tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Project Form -->
@@ -431,9 +459,38 @@ function renderBlogs() {
 
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
+// Pipeline stages (edit labels here to rename columns)
+const LEAD_STAGES = [
+  { key: 'new',       label: 'New' },
+  { key: 'qualified', label: 'Qualified' },
+  { key: 'no_pickup', label: "Didn't Pick Up" },
+  { key: 'portfolio', label: 'Sent Portfolio' },
+  { key: 'meeting',   label: 'Meeting' },
+  { key: 'followup',  label: 'Follow Up' },
+  { key: 'converted', label: 'Converted' },
+  { key: 'lost',      label: 'Lost' }
+];
+const stageLabel = k => (LEAD_STAGES.find(s => s.key === k) || LEAD_STAGES[0]).label;
+const leadStage  = l => LEAD_STAGES.some(s => s.key === l.stage) ? l.stage : 'new';
+let leadsView = 'pipeline';
+
+function setLeadsView(view){
+  leadsView = view;
+  document.getElementById('lv-pipeline').classList.toggle('active', view==='pipeline');
+  document.getElementById('lv-table').classList.toggle('active', view==='table');
+  document.getElementById('leads-pipeline').classList.toggle('hidden', view!=='pipeline');
+  document.getElementById('leads-table-wrap').classList.toggle('hidden', view!=='table');
+}
+
 function renderLeads() {
   const leads = (dataCache.leads || []).slice().sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
   document.getElementById('leads-count').textContent = `${leads.length} enquir${leads.length===1?'y':'ies'}`;
+  renderLeadsTable(leads);
+  renderPipeline(leads);
+  setLeadsView(leadsView);
+}
+
+function renderLeadsTable(leads){
   const tb = document.getElementById('leads-tbody');
   if(!leads.length){
     tb.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--dim);padding:40px;">No enquiries yet.</td></tr>`;
@@ -447,10 +504,62 @@ function renderLeads() {
       <td>${l.email ? `<a href="mailto:${esc(l.email)}" style="color:var(--gold)">${esc(l.email)}</a>` : '—'}</td>
       <td>${esc(l.service)||'—'}</td>
       <td>${esc(l.budget)||'—'}</td>
-      <td>${esc(l.source)||'—'}</td>
+      <td>${esc(stageLabel(leadStage(l)))}</td>
       <td><button class="action-btn del" onclick="deleteLead('${l.id}')">Delete</button></td>
     </tr>
   `).join('');
+}
+
+function renderPipeline(leads){
+  const board = document.getElementById('leads-pipeline');
+  board.innerHTML = LEAD_STAGES.map(stage => {
+    const items = leads.filter(l => leadStage(l) === stage.key);
+    const cards = items.map(l => `
+      <div class="kb-card" draggable="true" ondragstart="leadDragStart(event,'${l.id}')">
+        <div class="kb-name">${esc(l.name)}</div>
+        ${l.phone ? `<div class="kb-meta"><a href="tel:${esc(l.phone)}">${esc(l.phone)}</a></div>` : ''}
+        ${l.email ? `<div class="kb-meta">${esc(l.email)}</div>` : ''}
+        <div class="kb-meta">${[esc(l.service), esc(l.budget)].filter(Boolean).join(' · ')||'—'}</div>
+        <div class="kb-meta" style="opacity:.6">${new Date(l.createdAt).toLocaleDateString()}</div>
+        <select class="kb-stage-sel" onchange="moveLeadStage('${l.id}', this.value)">
+          ${LEAD_STAGES.map(s => `<option value="${s.key}" ${s.key===stage.key?'selected':''}>${esc(s.label)}</option>`).join('')}
+        </select>
+      </div>
+    `).join('');
+    return `
+      <div class="kb-col" data-stage="${stage.key}"
+           ondragover="leadDragOver(event)" ondragleave="leadDragLeave(event)" ondrop="leadDrop(event,'${stage.key}')">
+        <div class="kb-col-head">${esc(stage.label)} <span class="kb-count">${items.length}</span></div>
+        <div class="kb-col-body">${cards || `<div class="kb-empty">Drop leads here</div>`}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+let draggedLeadId = null;
+function leadDragStart(e, id){ draggedLeadId = id; e.dataTransfer.effectAllowed = 'move'; }
+function leadDragOver(e){ e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function leadDragLeave(e){ e.currentTarget.classList.remove('drag-over'); }
+function leadDrop(e, stage){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if(draggedLeadId) moveLeadStage(draggedLeadId, stage);
+  draggedLeadId = null;
+}
+
+async function moveLeadStage(id, stage){
+  const lead = dataCache.leads.find(l => l.id === id);
+  if(!lead || leadStage(lead) === stage) return;
+  const prev = lead.stage;
+  lead.stage = stage;
+  renderLeads();
+  try {
+    await apiCall('contacts', 'PUT', { id, stage });
+  } catch(e){
+    lead.stage = prev; // revert on failure
+    renderLeads();
+    showToast('Could not move lead: ' + e.message, 'error');
+  }
 }
 
 async function deleteLead(id){
@@ -466,14 +575,18 @@ async function deleteLead(id){
 function downloadLeadsExcel(){
   const leads = (dataCache.leads || []).slice().sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
   if(!leads.length){ showToast('No leads to export', 'info'); return; }
-  const cols = ['createdAt','name','phone','email','service','budget','message','source'];
-  const headers = ['Date','Name','Phone','Email','Service','Budget','Message','Source'];
+  const cols = ['createdAt','name','phone','email','service','budget','stage','message','source'];
+  const headers = ['Date','Name','Phone','Email','Service','Budget','Stage','Message','Source'];
   const cell = v => {
     let s = v==null ? '' : String(v);
     if(/[",\n]/.test(s)) s = '"' + s.replace(/"/g,'""') + '"';
     return s;
   };
-  const rows = leads.map(l => cols.map(c => cell(c==='createdAt' ? new Date(l[c]).toLocaleString() : l[c])).join(','));
+  const rows = leads.map(l => cols.map(c => {
+    if(c==='createdAt') return cell(new Date(l[c]).toLocaleString());
+    if(c==='stage') return cell(stageLabel(leadStage(l)));
+    return cell(l[c]);
+  }).join(','));
   // BOM so Excel reads UTF-8 (₹, accents) correctly
   const csv = '﻿' + headers.join(',') + '\n' + rows.join('\n');
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
