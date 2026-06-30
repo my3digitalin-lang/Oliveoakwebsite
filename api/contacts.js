@@ -78,8 +78,10 @@ module.exports = async function handler(req, res) {
     const list = Array.isArray(content) ? content : [];
     const idx = list.findIndex(c => c.id === body.id);
     if (idx === -1) return res.status(404).json({ error: 'Lead not found' });
-    // Only allow updating known fields (currently the pipeline stage)
+    // Only allow updating known fields
     if (body.stage !== undefined) list[idx].stage = clean(body.stage, 40);
+    if (body.notes !== undefined) list[idx].notes = clean(body.notes, 4000);
+    if (body.lastContactedAt !== undefined) list[idx].lastContactedAt = clean(body.lastContactedAt, 40);
     try {
       await updateFileContent(filePath, JSON.stringify(list, null, 2), `Lead: ${list[idx].name} -> ${list[idx].stage}`, sha);
       return res.status(200).json(list[idx]);
