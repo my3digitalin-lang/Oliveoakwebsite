@@ -895,18 +895,35 @@ document.querySelectorAll('.mc, .strip-card, .nl-tag, .nl-h2, .nl-sub').forEach(
 
 
 /* Newsletter */
-function handleNewsletterSubmit(e) {
+async function handleNewsletterSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('nl-submit');
-  btn.textContent = 'Subscribed ✓';
-  btn.style.background = '#6b9c6b';
-  btn.style.color = '#fff';
-  setTimeout(() => {
-    btn.textContent = 'Subscribe';
-    btn.style.background = '';
-    btn.style.color = '';
+  const email = document.getElementById('nl-email').value;
+  btn.textContent = 'Subscribing…';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/contacts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source: 'newsletter' })
+    });
+    if (!res.ok) throw new Error('failed');
+    btn.textContent = 'Subscribed ✓';
+    btn.style.background = '#6b9c6b';
+    btn.style.color = '#fff';
     document.getElementById('nl-email').value = '';
-  }, 3000);
+  } catch (err) {
+    btn.textContent = 'Try again';
+    btn.style.background = '#a55';
+    btn.style.color = '#fff';
+  } finally {
+    setTimeout(() => {
+      btn.textContent = 'Subscribe';
+      btn.disabled = false;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  }
 }
 
 /* Custom cursor */

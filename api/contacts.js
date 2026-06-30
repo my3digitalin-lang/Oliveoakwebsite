@@ -62,9 +62,10 @@ module.exports = async function handler(req, res) {
     // Honeypot: bots fill hidden fields. Silently accept & drop.
     if (clean(body.company)) return res.status(201).json({ success: true });
 
-    const name = clean(body.name, 120);
     const phone = clean(body.phone, 40);
     const email = clean(body.email, 160);
+    let name = clean(body.name, 120);
+    if (!name && email) name = email.split('@')[0]; // e.g. newsletter signups send only an email
     if (!name || (!phone && !email)) {
       return res.status(400).json({ error: 'Name and a phone or email are required.' });
     }
