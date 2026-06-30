@@ -133,7 +133,7 @@
     "excerpt": "gwhyeudifvkb, g",
     "metaTitle": "ghjkl",
     "metaDescription": "fghjk",
-    "content": "<a href=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\" target=\"_blank\">\n    <img src=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\" alt=\"Instagram Image\" width=\"500\">\n</a>",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Instagram Blog</title>\n</head>\n<body>\n\n    <h1>Instagram: Connecting People Through Photos and Videos</h1>\n\n    <p>\n        Instagram is one of the world's most popular social media platforms, allowing users\n        to share photos, videos, stories, and reels with friends, family, and followers.\n        Since its launch in 2010, it has become a hub for creativity, entertainment,\n        education, and business.\n    </p>\n\n    <img src=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\"\n         alt=\"Instagram\"\n         width=\"700\">\n\n    <h2>Features of Instagram</h2>\n\n    <p>\n        Instagram offers a variety of features including Stories, Reels, Live Streaming,\n        Direct Messages, Shopping, and Explore. These features help users discover new\n        content and connect with people across the globe.\n    </p>\n\n    <img src=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\"\n         alt=\"Instagram Features\"\n         width=\"700\">\n\n    <h2>Benefits of Using Instagram</h2>\n\n    <p>\n        Instagram is widely used by individuals, influencers, businesses, and organizations.\n        It provides opportunities to build personal brands, market products, connect with\n        audiences, and showcase creative work through engaging visual content.\n    </p>\n\n    <img src=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\"\n         alt=\"Instagram Benefits\"\n         width=\"700\">\n\n    <h2>Tips for Staying Safe</h2>\n\n    <p>\n        Users should protect their privacy by using strong passwords, enabling two-factor\n        authentication, being careful about what they share publicly, and avoiding suspicious\n        links or messages. Regularly reviewing privacy settings can help maintain account\n        security.\n    </p>\n\n    <img src=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\"\n         alt=\"Instagram Safety\"\n         width=\"700\">\n\n    <h2>Conclusion</h2>\n\n    <p>\n        Instagram continues to evolve with new features that make it an exciting platform for\n        communication, creativity, and business. Whether you're sharing memories, promoting a\n        brand, or discovering new ideas, Instagram offers something for everyone.\n    </p>\n\n</body>\n</html>",
     "images": [
       "/public/uploads/blogs/1782840888586-604.webp",
       "/public/uploads/blogs/1782840890812-303.webp",
@@ -147,6 +147,6 @@
     "thumbnail": "/public/uploads/blogs/thumb-1782840927748-262.webp",
     "id": "1782840936368",
     "createdAt": "2026-06-30T17:35:36.368Z",
-    "updatedAt": "2026-06-30T17:41:17.450Z"
+    "updatedAt": "2026-06-30T17:42:34.456Z"
   }
 ]
