@@ -68,7 +68,7 @@
     "slug": "residence-03",
     "title": "The Walnut Crest",
     "category": "Residential",
-    "description": "True luxury is not about excess\u2014it is about intention.\n\nCrafted with meticulous attention to detail, this residence combines elegance, depth, and sophistication in every corner. Rich materials, layered textures, and refined craftsmanship create an immersive living experience that feels both distinctive and deeply personal.",
+    "description": "True luxury is not about excess—it is about intention.\n\nCrafted with meticulous attention to detail, this residence combines elegance, depth, and sophistication in every corner. Rich materials, layered textures, and refined craftsmanship create an immersive living experience that feels both distinctive and deeply personal.",
     "featuredImage": "/images/projects/residence-03/1.webp",
     "images": [
       "/images/projects/residence-03/1.webp",
@@ -118,7 +118,7 @@
     "slug": "psv-precast-corporate-office",
     "title": "PSV Precast Corporate Office",
     "category": "Commercial",
-    "description": "PSV PRECAST Corporate Office  \n Designed by OliveOak Interiors\n\nDesigned to reflect PSV Precast\u2019s commitment to strength, precision, and progress, this workspace blends functionality with refined elegance. Thoughtfully planned work zones, warm material palettes, and biophilic elements come together to create an environment that fosters collaboration, focus, and growth.\n\nA workplace designed not just for work, but for the people shaping the future of PSV Precast.",
+    "description": "PSV PRECAST Corporate Office  \n Designed by OliveOak Interiors\n\nDesigned to reflect PSV Precast’s commitment to strength, precision, and progress, this workspace blends functionality with refined elegance. Thoughtfully planned work zones, warm material palettes, and biophilic elements come together to create an environment that fosters collaboration, focus, and growth.\n\nA workplace designed not just for work, but for the people shaping the future of PSV Precast.",
     "featuredImage": "/images/projects/psv-precast-corporate-office/1.webp",
     "images": [
       "/images/projects/psv-precast-corporate-office/1.webp",
@@ -136,5 +136,24 @@
     "createdAt": "2025-07-10T10:00:00Z",
     "updatedAt": "2025-07-10T10:00:00Z",
     "order": 6
+  },
+  {
+    "title": "test",
+    "slug": "test",
+    "category": "Residential",
+    "status": "published",
+    "technologies": [
+      "test"
+    ],
+    "description": "gagaga",
+    "images": [
+      "/public/uploads/projects/1782842192428-619.webp",
+      "/public/uploads/projects/1782842188321-320.webp"
+    ],
+    "featuredImage": "/public/uploads/projects/1782842192428-619.webp",
+    "thumbnail": "/public/uploads/projects/thumb-1782842213592-789.webp",
+    "id": "1782842231010",
+    "createdAt": "2026-06-30T17:57:11.010Z",
+    "updatedAt": "2026-06-30T17:57:11.012Z"
   }
 ]
