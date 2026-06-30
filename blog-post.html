@@ -38,6 +38,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 60px;height:72px;d
 .post-body ul,.post-body ol{margin:16px 0 24px 24px;display:flex;flex-direction:column;gap:10px}
 .post-body li{font-size:15px;color:var(--dim);line-height:1.8}
 .post-body strong{color:var(--white);font-weight:600}
+.post-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:40px 0 8px}
+.post-gallery img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block}
+@media(max-width:600px){.post-gallery{grid-template-columns:1fr;gap:12px}}
 
 /* CTA */
 .post-cta{background:linear-gradient(135deg,rgba(200,169,126,.08),rgba(200,169,126,.03));border:1px solid rgba(200,169,126,.2);border-radius:20px;padding:48px 48px;margin:48px 0;text-align:center}
@@ -170,8 +173,17 @@ footer a{color:var(--gold);text-decoration:none;margin:0 16px}
       <article class="post-body">
         <div class="post-intro">${post.excerpt || ''}</div>
         ${post.content || ''}
+        ${renderGallery(post)}
       </article>
     `;
+  }
+
+  function renderGallery(post) {
+    const imgs = (post.images && post.images.length) ? post.images : (post.featuredImage ? [post.featuredImage] : []);
+    // The first image is used as the hero above, so skip it here to avoid a duplicate
+    const rest = imgs.slice(1);
+    if(!rest.length) return '';
+    return `<div class="post-gallery">${rest.map(u => `<img src="${u}" loading="lazy" decoding="async" alt="${post.title}">`).join('')}</div>`;
   }
 
   function showError(msg) {

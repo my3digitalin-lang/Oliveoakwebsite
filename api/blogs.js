@@ -27,6 +27,12 @@ async function handler(req, res) {
   }
 
   if (req.method === 'PUT') {
+    // Bulk reorder: client sends the full ordered array
+    if (Array.isArray(req.body)) {
+      const { sha } = await getFileContent(filePath);
+      await updateFileContent(filePath, JSON.stringify(req.body, null, 2), `CMS: Reorder blogs`, sha);
+      return res.status(200).json(req.body);
+    }
     const updatedBlog = req.body;
     if (!updatedBlog.id) return res.status(400).json({ error: 'Missing id' });
 
