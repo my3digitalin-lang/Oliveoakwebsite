@@ -124,5 +124,29 @@
     "featuredImage": "images/kitchen-vastu.webp",
     "createdAt": "2026-01-30T00:00:00.000Z",
     "updatedAt": "2026-01-30T00:00:00.000Z"
+  },
+  {
+    "title": "ghjkl;",
+    "slug": "ghjkl",
+    "category": "Design Trends",
+    "status": "draft",
+    "excerpt": "gwhyeudifvkb, g",
+    "metaTitle": "ghjkl",
+    "metaDescription": "fghjk",
+    "content": "fghuiolkmn m,",
+    "images": [
+      "/public/uploads/blogs/1782840888586-604.webp",
+      "/public/uploads/blogs/1782840890812-303.webp",
+      "/public/uploads/blogs/1782840892706-18.webp",
+      "/public/uploads/blogs/1782840876108-675.webp",
+      "/public/uploads/blogs/1782840894763-7.webp",
+      "/public/uploads/blogs/1782840896772-29.webp",
+      "/public/uploads/blogs/1782840899402-898.webp"
+    ],
+    "featuredImage": "/public/uploads/blogs/1782840888586-604.webp",
+    "thumbnail": "/public/uploads/blogs/thumb-1782840927748-262.webp",
+    "id": "1782840936368",
+    "createdAt": "2026-06-30T17:35:36.368Z",
+    "updatedAt": "2026-06-30T17:35:36.370Z"
   }
 ]
