@@ -20,6 +20,38 @@ function clean(v, max = 500) {
   return String(v).trim().slice(0, max);
 }
 
+// Best-effort email notification via Resend. No-op unless RESEND_API_KEY and
+// LEAD_NOTIFY_EMAIL are set, so the contact form keeps working without it.
+async function notifyNewLead(lead) {
+  const key = process.env.RESEND_API_KEY;
+  const to = process.env.LEAD_NOTIFY_EMAIL;
+  if (!key || !to) return;
+  const from = process.env.LEAD_FROM_EMAIL || 'OliveOak Leads <onboarding@resend.dev>';
+  const esc = s => String(s == null ? '' : s).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+  const rows = [
+    ['Name', lead.name], ['Phone', lead.phone], ['Email', lead.email],
+    ['Service', lead.service], ['Budget', lead.budget], ['Message', lead.message],
+    ['Source', lead.source], ['Received', new Date(lead.createdAt).toLocaleString()]
+  ].filter(([, v]) => v)
+   .map(([k, v]) => `<tr><td style="padding:5px 12px;color:#999">${k}</td><td style="padding:5px 12px;color:#111"><b>${esc(v)}</b></td></tr>`).join('');
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from,
+        to: to.split(',').map(s => s.trim()).filter(Boolean),
+        reply_to: lead.email || undefined,
+        subject: `New enquiry: ${lead.name}${lead.service ? ' — ' + lead.service : ''}`,
+        html: `<div style="font-family:Arial,sans-serif"><h2 style="color:#0a0806">New website enquiry</h2><table style="border-collapse:collapse">${rows}</table></div>`
+      })
+    });
+    if (!r.ok) console.error('Resend error:', r.status, await r.text());
+  } catch (e) {
+    console.error('Lead email failed:', e);
+  }
+}
+
 module.exports = async function handler(req, res) {
   const filePath = 'data/contacts.json';
 
@@ -54,6 +86,7 @@ module.exports = async function handler(req, res) {
       const list = Array.isArray(content) ? content : [];
       list.push(lead);
       await updateFileContent(filePath, JSON.stringify(list, null, 2), `Lead: ${name}`, sha);
+      await notifyNewLead(lead); // best-effort email alert (never blocks the save)
       return res.status(201).json({ success: true });
     } catch (e) {
       console.error('Contact save error:', e);
