@@ -133,7 +133,7 @@
     "excerpt": "gwhyeudifvkb, g",
     "metaTitle": "ghjkl",
     "metaDescription": "fghjk",
-    "content": "<a href=\"https://www.google.com/imgres?q=instagram&imgurl=https%3A%2F%2Fwww.webwise.ie%2Fwp-content%2Fuploads%2F2017%2F11%2FInstagram--1024x576.jpg&imgrefurl=https%3A%2F%2Fwww.webwise.ie%2Fparents%2Fexplained-image-sharing-app-instagram%2F&docid=9PoMvWnTi1YbwM&tbnid=8tUYhMc33c7xqM&vet=12ahUKEwjyrdetwK-VAxUXka8BHTxiECwQnPAOegQINxAA..i&w=1024&h=576&hcb=2&ved=2ahUKEwjyrdetwK-VAxUXka8BHTxiECwQnPAOegQINxAA\" target=\"_blank\">\n    Instagram Image\n</a>",
+    "content": "<a href=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\" target=\"_blank\">\n    <img src=\"https://www.webwise.ie/wp-content/uploads/2017/11/Instagram--1024x576.jpg\" alt=\"Instagram Image\" width=\"500\">\n</a>",
     "images": [
       "/public/uploads/blogs/1782840888586-604.webp",
       "/public/uploads/blogs/1782840890812-303.webp",
@@ -147,6 +147,6 @@
     "thumbnail": "/public/uploads/blogs/thumb-1782840927748-262.webp",
     "id": "1782840936368",
     "createdAt": "2026-06-30T17:35:36.368Z",
-    "updatedAt": "2026-06-30T17:39:45.414Z"
+    "updatedAt": "2026-06-30T17:41:17.450Z"
   }
 ]
