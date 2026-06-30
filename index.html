@@ -5558,7 +5558,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const res = await fetch('/data/projects.json');
       const projects = await res.json();
-      const published = projects.filter(p => p.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
+      const published = projects.filter(p => p.status === 'published').sort((a,b)=>(a.order||0)-(b.order||0) || new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
       
       projGrid.innerHTML = published.map((p, i) => {
         const img = p.thumbnail || p.featuredImage || (p.images && p.images[0]) || '';
@@ -5585,7 +5585,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const res = await fetch('/data/blogs.json');
       const blogs = await res.json();
-      const published = blogs.filter(b => b.status === 'published').sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
+      const published = blogs.filter(b => b.status === 'published').sort((a,b)=>(a.order||0)-(b.order||0) || new Date(b.createdAt)-new Date(a.createdAt)).slice(0, 3);
       
       blogGrid.innerHTML = published.map(b => {
         const img = b.thumbnail || b.featuredImage || '';
