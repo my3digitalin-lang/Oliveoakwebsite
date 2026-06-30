@@ -8,7 +8,8 @@
     "budget": "5-10L",
     "message": "",
     "source": "contact-page",
-    "createdAt": "2026-06-29T10:52:27.340Z"
+    "createdAt": "2026-06-29T10:52:27.340Z",
+    "stage": "no_pickup"
   },
   {
     "id": "1782741362039",
