@@ -162,15 +162,13 @@ body{
 
   color:var(--white);
 
+  /* overflow-y must stay visible: pairing clip with auto would compute to
+     hidden and make body a scroll container, which breaks the sticky hero
+     (it would pin to body's never-scrolling scrollport, not the viewport) */
+
   overflow-x:clip;
 
-  /* LOCKED during hero animation */
-
-  overflow-y:hidden;
-
 }
-
-body.unlocked{overflow-y:auto}
 
 img{max-width:100%;height:auto;display:block}
 
@@ -500,23 +498,32 @@ body.unlocked #page-bg{
 
 /* ================================================================
 
-   HERO STAGE    fixed, full-screen, scroll-jacked
+   HERO STAGE    sticky scene inside a tall track — page scroll drives
+   the frame animation, then the hero scrolls away naturally
 
 ================================================================ */
 
-#hero{
+#hero-track{
 
-  position:fixed;inset:0;z-index:5000;
+  position:relative;
 
-  background:var(--black);
-
-  transition:opacity 1.4s var(--spring);
+  /* height set from JS: 100vh + scroll range */
 
 }
 
-#hero.fade-out{opacity:0;pointer-events:none}
+#hero{
 
-#hero.gone{display:none}
+  position:sticky;top:0;
+
+  height:100vh;height:100svh;
+
+  overflow:hidden;
+
+  z-index:5000;
+
+  background:var(--black);
+
+}
 
 
 
@@ -3404,6 +3411,8 @@ body.unlocked #page-bg{
 
 =================================================== -->
 
+<div id="hero-track">
+
 <div id="hero">
 
   <!-- Poster: visible instantly while canvas frames load -->
@@ -3478,13 +3487,15 @@ body.unlocked #page-bg{
 
 </div>
 
+</div><!-- /#hero-track -->
+
 
 
 
 
 <!-- ===================================================
 
-     MAIN CONTENT (hidden until hero completes)
+     MAIN CONTENT (scrolls in after the hero track)
 
 =================================================== -->
 
@@ -4498,41 +4509,50 @@ body.unlocked #page-bg{
 
 ============================================================== */
 
-const IS_MOBILE = window.innerWidth <= 1024 || (window.matchMedia && window.matchMedia("(any-pointer: coarse)").matches) || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || navigator.maxTouchPoints > 0;
-
-// Dynamically inject preloads
-for (let i = 1; i <= 6; i++) {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  if (IS_MOBILE) {
-    let actualFrame = i * 2 - 1;
-    link.href = `Frames-webp-mobile/ezgif-frame-${String(actualFrame).padStart(3,'0')}.webp`;
-  } else {
-    link.href = `Frames-webp-pc/frame_${String(i + 9).padStart(4,'0')}.webp`; // OFFSET is 9
-  }
-  document.head.appendChild(link);
-}
+/* Mobile = phone/tablet UA, iPadOS (reports as Mac but multi-touch), or a
+   small screen whose PRIMARY pointer is touch. Touchscreen laptops have a
+   fine primary pointer (trackpad/mouse) so they correctly stay on desktop. */
+const IS_MOBILE = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)
+  || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.userAgent))
+  || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches && window.innerWidth <= 1024);
 
 const OFFSET  = IS_MOBILE ? 0 : 9;           // skip first 9 wide-angle frames on desktop
 
-const TOTAL   = IS_MOBILE ? 121 : 80;        // 168 - 9 = 159 usable frames
+const TOTAL   = IS_MOBILE ? 121 : 159;       // desktop: all 159 usable frames (odd ones first, evens streamed later)
 
-const RANGE   = IS_MOBILE ? 1800 : 6000;
+const RANGE   = IS_MOBILE ? 1600 : 2200;    // real scroll px that plays the full animation
 
-const DECODE_AHEAD = 6;                      // frames to pre-decode ahead of the playhead
+const DECODE_AHEAD = IS_MOBILE ? 6 : 10;     // frames to pre-decode ahead of the playhead
 
-const FP      = n => {
+const FP      = n => IS_MOBILE
 
-  let actualFrame = n * 2 - 1;
+  ? `Frames-webp-mobile/ezgif-frame-${String(n * 2 - 1).padStart(3,'0')}.webp`
 
-  return IS_MOBILE
+  : `Frames-webp-pc/frame_${String(n + OFFSET).padStart(4,'0')}.webp`;
 
-  ? `Frames-webp-mobile/ezgif-frame-${String(actualFrame).padStart(3,'0')}.webp`
+/* Load order: coarse-to-fine "ladder" — frame 1, the last frame, then every
+   16th across the whole animation, the first 32 densely (users start
+   scrubbing here), then every 8th/4th/2nd/1st. The full animation becomes
+   scrubbable after ~10 downloads; detail streams in behind the playhead, so
+   fast scrolling shows a nearby frame instead of freezing. */
+const LOAD_ORDER = (() => {
+  const order = [], seen = new Set();
+  const push = n => { if (n >= 1 && n <= TOTAL && !seen.has(n)) { seen.add(n); order.push(n); } };
+  push(1); push(TOTAL);
+  for (let n = 1; n <= TOTAL; n += 16) push(n);
+  for (let n = 1; n <= Math.min(32, TOTAL); n++) push(n);
+  for (let s = 8; s >= 1; s >>= 1) for (let n = 1; n <= TOTAL; n += s) push(n);
+  return order;
+})();
 
-  : `Frames-webp-pc/frame_${String(actualFrame + OFFSET).padStart(4,'0')}.webp`;
-
-};
+// Dynamically inject preloads for the first frames the loader fetches
+for (let i = 0; i < 6; i++) {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = FP(LOAD_ORDER[i]);
+  document.head.appendChild(link);
+}
 
 
 
@@ -4558,7 +4578,9 @@ const main     = document.getElementById('main');
 
 const nav      = document.getElementById('nav');
 
-const backHint = document.getElementById('back-hint');
+const posterEl = document.getElementById('hero-poster');
+
+const heroTrack = document.getElementById('hero-track');
 
 
 
@@ -4572,15 +4594,13 @@ let imgs    = new Array(TOTAL);
 
 let loaded  = 0;
 
+const decodedSet = new Set();   // frames already handed to img.decode()
+
 let frame   = 0;
 
-let vDelta  = 0;      // rendered virtual scroll delta (eased toward targetDelta)
+let vDelta  = 0;      // rendered scroll position (eased toward targetDelta)
 
-let targetDelta = 0;  // where the scroll WANTS to be; vDelta glides toward this
-
-let done    = false;  // hero animation finished
-
-let busy    = false;  // mid-transition (lock re-entry)
+let targetDelta = 0;  // real scroll position (clamped to RANGE); vDelta glides toward this
 
 let observer = null;
 
@@ -4629,7 +4649,9 @@ function paint(i) {
 
   ctx.imageSmoothingEnabled = true;
 
-  ctx.imageSmoothingQuality = 'high';
+  /* 'medium' — 'high' resampling is measurably slow on integrated GPUs and
+     indistinguishable at the near-1:1 scale we draw at */
+  ctx.imageSmoothingQuality = 'medium';
 
   ctx.clearRect(0,0,cw,ch);
 
@@ -4637,9 +4659,7 @@ function paint(i) {
 
   // Hide poster once canvas has painted — seamless handoff
 
-  const poster = document.getElementById('hero-poster');
-
-  if (poster) poster.style.opacity = '0';
+  if (posterEl) posterEl.style.opacity = '0';
 
 }
 
@@ -4657,7 +4677,7 @@ const heroLoadBar = document.getElementById('hero-load-bar');
 
 function updateLoader() {
 
-  const pct = Math.round((loaded / TOTAL) * 100);
+  const pct = Math.min(100, Math.round((loaded / TOTAL) * 100));
 
   if (heroLoadBar) {
 
@@ -4679,55 +4699,51 @@ function updateLoader() {
 
 function preload() {
 
-  const PRIORITY = Math.min(30, TOTAL);
+  /* Small concurrent queue that walks LOAD_ORDER. Firing every request at
+     once would let the browser split bandwidth across all frames equally,
+     defeating the coarse-to-fine ordering — a short pipeline keeps the
+     early (whole-animation-coverage) frames arriving first. */
 
+  const CONCURRENCY = 8;
 
+  let idx = 0, active = 0;
 
-  // Phase 1: first 30 frames — high priority
+  function pump() {
 
-  for (let i = 1; i <= PRIORITY; i++) {
+    while (active < CONCURRENCY && idx < LOAD_ORDER.length) {
 
-    const img = new Image();
+      const n = LOAD_ORDER[idx++];
 
-    img.src = FP(i);
-
-    img.onerror = () => { loaded++; updateLoader(); };
-
-    img.onload = () => {
-
-      loaded++;
-
-      updateLoader();
-
-      if (i === 1) paint(0);
-
-    };
-
-    imgs[i-1] = img;
-
-  }
-
-
-
-  // Phase 2: remaining frames — after 300ms so priority frames get bandwidth first
-
-  setTimeout(() => {
-
-    for (let i = PRIORITY + 1; i <= TOTAL; i++) {
+      active++;
 
       const img = new Image();
 
-      img.src = FP(i);
+      img.onload = img.onerror = () => {
 
-      img.onerror = () => { loaded++; updateLoader(); };
+        active--;
 
-      img.onload  = () => { loaded++; updateLoader(); };
+        loaded++;
 
-      imgs[i-1] = img;
+        updateLoader();
+
+        /* repaint if this is the frame currently on screen (covers the
+           initial paint and upgrades coarse neighbors once the exact
+           frame arrives) */
+        if (n - 1 === frame) paint(frame);
+
+        pump();
+
+      };
+
+      img.src = FP(n);
+
+      imgs[n-1] = img;
 
     }
 
-  }, 300);
+  }
+
+  pump();
 
 }
 
@@ -4780,12 +4796,17 @@ function tick() {
   if (fi !== frame) {
 
     /* Decode-ahead: warm up the next few frames in the scroll direction so
-       they're GPU-ready before the playhead arrives — kills the stutter. */
+       they're GPU-ready before the playhead arrives — kills the stutter.
+       Runs once per frame index (tracked in decodedSet); covers both frames
+       still downloading and frames loaded but not yet decoded. */
     const dir = fi >= frame ? 1 : -1;
     for (let k = 1; k <= DECODE_AHEAD; k++) {
       const j = fi + dir * k;
       const ahead = imgs[j];
-      if (ahead?.decode && !ahead.naturalWidth) ahead.decode().catch(() => {});
+      if (ahead?.decode && !decodedSet.has(j)) {
+        decodedSet.add(j);
+        ahead.decode().catch(() => decodedSet.delete(j));
+      }
     }
 
     frame=fi; paint(frame);
@@ -4816,175 +4837,13 @@ function tick() {
 
   hint.style.opacity = Math.max(0, 1 - p * 8);
 
-
-
-  /* Trigger exit when we reach the end */
-
-  if (p >= 1 && !done && !busy) {
-
-    exitHero();
-
-  }
-
 }
 
 
 
 /* ==============================================================
 
-   HERO EXIT   forward transition
-
-============================================================== */
-
-function exitHero() {
-
-  busy = true;
-
-
-
-  /* Pause on last frame   but cancel if user scrolled back */
-
-  setTimeout(() => {
-
-    if (vDelta < RANGE * 0.98) {   /* user scrolled back during delay */
-
-      busy = false;
-
-      return;
-
-    }
-
-    window.scrollTo(0, 0);
-
-    hero.classList.add('fade-out');
-
-    main.classList.add('visible');
-
-
-
-    setTimeout(() => {
-
-      hero.classList.add('gone');
-
-      document.body.classList.add('unlocked');
-
-      window.scrollTo(0, 0);
-
-      done = true;
-
-      busy = false;
-
-      startObserver();
-
-      nav.classList.toggle('solid', false);
-
-    }, 1400);
-
-  }, 400);
-
-}
-
-
-
-/* ==============================================================
-
-   HERO RE-ENTRY   scroll back to top triggers reverse
-
-============================================================== */
-
-function reEnterHero() {
-
-  if (busy) return;
-
-  busy = true;
-
-
-
-  /* Reset to BEGINNING   user scrolls down to replay forward */
-
-  done   = false;
-
-  vDelta = 0;          /* frame 1, p = 0 */
-
-  targetDelta = 0;     /* keep momentum target in sync so it doesn't snap back */
-
-
-
-  /* Hide scroll-back hint */
-
-  backHint.classList.remove('visible');
-
-
-
-  /* Clear all word reveals so they animate in fresh */
-
-  revEls.forEach(({ node }) => { if (node) node.classList.remove('show'); });
-
-
-
-  /* Reset progress bar and paint frame 1 */
-
-  progress.style.width = '0%';
-
-  paint(0);
-
-
-
-  /* Re-show scroll hint */
-
-  hint.style.opacity = '1';
-
-
-
-  /* Re-show hero (fade in from black) */
-
-  hero.classList.remove('gone');
-
-  hero.classList.remove('fade-out');
-
-  hero.style.opacity    = '0';
-
-  hero.style.transition = 'none';
-
-
-
-  /* Fade main out */
-
-  main.classList.remove('visible');
-
-  document.body.classList.remove('unlocked');
-
-  document.body.style.overflow = 'hidden';
-
-
-
-  requestAnimationFrame(() => {
-
-    hero.style.transition = 'opacity .6s ease';
-
-    hero.style.opacity    = '1';
-
-
-
-    setTimeout(() => {
-
-      hero.style.transition = '';
-
-      hero.style.opacity    = '';
-
-      busy = false;
-
-    }, 650);
-
-  });
-
-}
-
-
-
-/* ==============================================================
-
-   WHEEL   drives animation (both directions)
+   SCROLL-DRIVEN PLAYBACK — native page scroll drives the animation
 
 ============================================================== */
 
@@ -5037,137 +4896,23 @@ function scheduleRaf() {
 
 
 
-let atTop = false;  /* reliable "at page top" flag set by scroll event */
+/* Wheel, trackpad, touch, keyboard, scrollbar — all drive the animation
+   through native scrolling; the momentum engine smooths the stepped
+   wheel input into a glide. Scrolling back up replays it in reverse. */
 
+function syncScroll() {
 
-
-window.addEventListener('wheel', e => {
-
-  if (done) {
-
-    /* In main content   re-enter hero when at top + scroll up */
-
-    if (atTop && e.deltaY < 0) {
-
-      e.preventDefault();
-
-      reEnterHero();
-
-    }
-
-    return;
-
-  }
-
-  e.preventDefault();
-
-  targetDelta = Math.min(Math.max(targetDelta + e.deltaY * 0.72, 0), RANGE);
+  targetDelta = Math.min(Math.max(window.scrollY, 0), RANGE);
 
   scheduleRaf();
 
-}, { passive: false });
+  /* Nav turns solid once the main content reaches it (hero fully scrolled away) */
 
+  nav.classList.toggle('solid', window.scrollY > RANGE + window.innerHeight - 100);
 
+}
 
-/* ==============================================================
-
-   TOUCH   full mobile support (swipe up/down drives animation)
-
-============================================================== */
-
-let ty       = null;
-
-let touchDir = 0;  /* track direction for re-entry */
-
-
-
-window.addEventListener('touchstart', e => {
-
-  ty = e.touches[0].clientY;
-
-  touchDir = 0;
-
-  /* Don't call preventDefault here so page can still scroll in main */
-
-}, { passive: true });
-
-
-
-window.addEventListener('touchmove', e => {
-
-  if (ty === null) return;
-
-  const dy = ty - e.touches[0].clientY;
-
-  touchDir = dy;
-
-  ty = e.touches[0].clientY;
-
-
-
-  if (done) {
-
-    /* swipe down at top triggers re-entry */
-
-    if (atTop && dy < -4) {
-
-      e.preventDefault();
-
-      reEnterHero();
-
-    }
-
-    return;
-
-  }
-
-
-
-  e.preventDefault();
-
-  targetDelta = Math.min(Math.max(targetDelta + dy * 4.5, 0), RANGE);
-
-  scheduleRaf();
-
-}, { passive: false });
-
-
-
-window.addEventListener('touchend', () => { ty = null; }, { passive: true });
-
-
-
-/* ==============================================================
-
-   SCROLL   track atTop, nav solid, back hint
-
-============================================================== */
-
-window.addEventListener('scroll', () => {
-
-  atTop = window.scrollY < 8;          /* reliable top flag with small threshold */
-
-  nav.classList.toggle('solid', window.scrollY > 60);
-
-
-
-  if (done) {
-
-    backHint.classList.toggle('visible', atTop);
-
-  }
-
-}, { passive: true });
-
-
-
-/* Click on the back-hint button to re-enter hero */
-
-backHint.addEventListener('click', () => {
-
-  if (done && !busy) reEnterHero();
-
-});
+window.addEventListener('scroll', syncScroll, { passive: true });
 
 
 
@@ -5359,9 +5104,30 @@ if (IS_MOBILE) {
 
 window.addEventListener('resize', resize);
 
+/* Track height = one viewport (sticky hero) + the scroll range that plays
+   the animation. vh units keep it correct on window resize. */
+
+heroTrack.style.height = `calc(100vh + ${RANGE}px)`;
+
+/* Main content lives below the hero track and scrolls in natively */
+
+document.body.classList.add('unlocked');
+
+main.classList.add('visible');
+
+startObserver();
+
 resize();
 
 preload();
+
+/* Sync with restored scroll position (reload mid-page) and paint */
+
+syncScroll();
+
+vDelta = targetDelta;
+
+tick();
 
 
 
