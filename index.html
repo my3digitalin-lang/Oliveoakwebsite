@@ -525,6 +525,21 @@ body.unlocked #page-bg{
 
 }
 
+/* Exit: hero detaches from the track, pins to the viewport fully opaque,
+   then fades away to reveal the content sitting freshly at page top */
+
+#hero.exiting{
+
+  position:fixed;inset:0;
+
+  height:100vh;height:100svh;
+
+  transition:opacity 1.2s ease;
+
+}
+
+#hero.exiting.faded{opacity:0;pointer-events:none}
+
 
 
 #hero-canvas{
@@ -4606,6 +4621,8 @@ let vDelta  = 0;      // rendered scroll position (eased toward targetDelta)
 
 let targetDelta = 0;  // real scroll position (clamped to RANGE); vDelta glides toward this
 
+let exited  = false;  // hero has faded out; page scrolls normally
+
 let observer = null;
 
 
@@ -4906,17 +4923,86 @@ function scheduleRaf() {
 
 function syncScroll() {
 
+  if (exited) {
+
+    nav.classList.toggle('solid', window.scrollY > 60);
+
+    return;
+
+  }
+
   targetDelta = Math.min(Math.max(window.scrollY, 0), RANGE);
 
   scheduleRaf();
 
-  /* Nav turns solid once the main content reaches it (hero fully scrolled away) */
+  /* Past the hold zone's midpoint the animation (incl. easing) is done —
+     fade the hero away and present the content as a fresh page */
 
-  nav.classList.toggle('solid', window.scrollY > RANGE + HOLD + window.innerHeight - 100);
+  if (window.scrollY >= RANGE + HOLD * 0.6) exitHero();
 
 }
 
 window.addEventListener('scroll', syncScroll, { passive: true });
+
+
+
+/* ==============================================================
+
+   HERO EXIT — fade the 3D scene out completely, reset the page to
+   the top under the opaque hero, and let the content fade in fresh
+
+============================================================== */
+
+function exitHero() {
+
+  if (exited) return;
+
+  exited = true;
+
+
+
+  /* Pin the hero to the viewport (it leaves the collapsing track) */
+
+  hero.classList.add('exiting');
+
+
+
+  /* Collapse the scroll track and jump to page top — invisible, the
+     opaque hero still covers the viewport */
+
+  heroTrack.style.height = '0px';
+
+  const html = document.documentElement;
+
+  const prevBehavior = html.style.scrollBehavior;
+
+  html.style.scrollBehavior = 'auto';
+
+  window.scrollTo(0, 0);
+
+  html.style.scrollBehavior = prevBehavior;
+
+  nav.classList.remove('solid');
+
+
+
+  /* Content enters fresh — arrival animations play now */
+
+  main.classList.add('visible');
+
+
+
+  /* Fade the hero away, then drop it from the page entirely */
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+
+    hero.classList.add('faded');
+
+    setTimeout(() => { heroTrack.style.display = 'none'; }, 1300);
+
+  }));
+
+}
 
 
 
@@ -5113,11 +5199,10 @@ window.addEventListener('resize', resize);
 
 heroTrack.style.height = `calc(100vh + ${RANGE + HOLD}px)`;
 
-/* Main content lives below the hero track and scrolls in natively */
+/* Main content lives below the hero track; it becomes visible with its
+   arrival animations when the hero exits (fresh-page transition) */
 
 document.body.classList.add('unlocked');
-
-main.classList.add('visible');
 
 startObserver();
 
