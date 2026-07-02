@@ -4522,6 +4522,10 @@ const TOTAL   = IS_MOBILE ? 121 : 159;       // desktop: all 159 usable frames (
 
 const RANGE   = IS_MOBILE ? 1600 : 2200;    // real scroll px that plays the full animation
 
+const HOLD    = IS_MOBILE ? 500 : 600;      // extra pinned scroll px on the last frame, so the
+                                            // animation (incl. easing catch-up) finishes before
+                                            // the hero scrolls away and content appears
+
 const DECODE_AHEAD = IS_MOBILE ? 6 : 10;     // frames to pre-decode ahead of the playhead
 
 const FP      = n => IS_MOBILE
@@ -4908,7 +4912,7 @@ function syncScroll() {
 
   /* Nav turns solid once the main content reaches it (hero fully scrolled away) */
 
-  nav.classList.toggle('solid', window.scrollY > RANGE + window.innerHeight - 100);
+  nav.classList.toggle('solid', window.scrollY > RANGE + HOLD + window.innerHeight - 100);
 
 }
 
@@ -5107,7 +5111,7 @@ window.addEventListener('resize', resize);
 /* Track height = one viewport (sticky hero) + the scroll range that plays
    the animation. vh units keep it correct on window resize. */
 
-heroTrack.style.height = `calc(100vh + ${RANGE}px)`;
+heroTrack.style.height = `calc(100vh + ${RANGE + HOLD}px)`;
 
 /* Main content lives below the hero track and scrolls in natively */
 
